@@ -107,6 +107,9 @@ public class UpdateWorkgatepassActivity extends AppCompatActivity {
             edtWorkValidDate.setText(jsonObject.get("work_valid_upto").toString());
             edtDate.setText(jsonObject.get("work_valid_upto").toString());
             edtDate2.setText(jsonObject.get("visa_validity").toString());
+            chk1.setText(jsonObject.get("j_declaration").toString());
+            chk2.setText(jsonObject.get("h_declaration").toString());
+            chk3.setText(jsonObject.get("declaration").toString());
             id2=jsonObject.getString("id").toString();
             SelectClient.add(jsonObject.get("client").toString());
             spnClient.setAdapter(new ArrayAdapter<>(UpdateWorkgatepassActivity.this,android.R.layout.simple_spinner_dropdown_item,SelectClient));
