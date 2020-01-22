@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+    <LinearLayout
+        android:id="@+id/layout_india"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edtAadharNo"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:padding="@dimen/_10sdp"
+            android:layout_height="wrap_content"
+            android:hint="Aadhar No."/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edtPanNo"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:padding="@dimen/_10sdp"
+            android:layout_height="wrap_content"
+            android:hint="Pan No."/>
+        <LinearLayout
+            android:id="@+id/layout_AadharPanupload"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:padding="@dimen/_10sdp"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primaryTextColor"
+                    android:text="Upload Copy of aadhar"/>
+                <Button
+                    android:id="@+id/btn_uploadAadhar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Choose Files"
+                    android:textColor="@color/whiteTextColor"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:textAllCaps="false"
+                    />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:padding="@dimen/_10sdp"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primaryTextColor"
+                    android:text="Upload Pan No."/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Choose Files"
+                    android:textColor="@color/whiteTextColor"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:textAllCaps="false"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edtReference_policeverification"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:padding="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_height="wrap_content"
+            android:hint="Reference No of Police Verification"/>
+
+        <LinearLayout
+            android:id="@+id/layoutDateofissue_policeverification"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/_5sdp"
+            android:paddingTop="@dimen/_10sdp">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date of issuance of Police Verification"
+                android:textColor="@color/primaryTextColor" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:padding="@dimen/_5sdp"
+                android:gravity="center|left"
+                android:textColor="@color/whiteTextColor"
+                android:id="@+id/edtDateofissueP"
+                android:drawablePadding="10dp"
+                android:background="@drawable/edit_text_background"
+                android:drawableRight="@drawable/ic_calendar"
+                android:text="Select Date"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/layout_uploadpoliceverification"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:padding="@dimen/_10sdp"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primaryTextColor"
+                    android:text="Upload copy of Police Verification"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Choose Files"
+                    android:textColor="@color/whiteTextColor"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:textAllCaps="false"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primaryTextColor"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:text="Upload Signature"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Choose Files"
+            android:textColor="@color/whiteTextColor"
+            android:backgroundTint="@color/colorPrimary"
+            android:textAllCaps="false"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            />
+
+
+
+        <TextView
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Valid Police Verification available?"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginLeft="@dimen/_10sdp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:background="@drawable/border_spinner"
+            android:layout_marginTop="@dimen/_15sdp">
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_25sdp"
+                android:background="@null"
+                android:minHeight="@dimen/_35sdp"
+                android:entries="@array/valid"
+                android:dropDownSelector="@color/colorAccent"
+                android:imeOptions="actionDone"
+                android:paddingRight="@dimen/_1sdp"
+                android:paddingLeft="@dimen/_1sdp"
+                android:spinnerMode="dropdown"
+                android:textColor="@color/ColorBlack"
+                android:theme="@style/ThemeOverlay.AppCompat.Light"
+                android:textColorHint="@color/ColorBlack"
+                android:textSize="@dimen/_12sdp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:layout_centerVertical="true"
+                app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+        </RelativeLayout>
+        <include
+            layout="@layout/personmasterothers"/>
+
+
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true">
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/_5sdp"
+        android:orientation="vertical">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent">
+
+            <ImageView
+                android:id="@+id/imgBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_arrow_back_black_24dp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="Visitor Gate Pass"
+                android:textStyle="bold"
+                android:textColor="@color/whiteTextColor" />
+        </androidx.appcompat.widget.Toolbar>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/_5sdp"
+                android:paddingTop="@dimen/_10sdp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Client*"
+                    android:textColor="@color/ColorBlack" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_spinner"
+                    android:layout_marginTop="@dimen/_5sdp">
+                    <Spinner
+                        android:id="@+id/spnClient"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:background="@null"
+                        android:minHeight="@dimen/_35sdp"
+                        android:dropDownSelector="@color/colorAccent"
+                        android:imeOptions="actionDone"
+                        android:paddingRight="@dimen/_1sdp"
+                        android:paddingLeft="@dimen/_1sdp"
+                        android:spinnerMode="dropdown"
+                        android:textColor="@color/ColorBlack"
+                        android:theme="@style/ThemeOverlay.AppCompat.Light"
+                        android:textColorHint="@color/ColorBlack"
+                        android:textSize="@dimen/_12sdp" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/_2sdp"
+                        android:layout_marginEnd="@dimen/_2sdp"
+                        android:layout_centerVertical="true"
+                        app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/_5sdp"
+                android:paddingTop="@dimen/_10sdp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Client Branch Name*"
+                    android:textColor="@color/ColorBlack" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_spinner"
+                    android:layout_marginTop="@dimen/_5sdp">
+                    <Spinner
+                        android:id="@+id/spnBranch"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:background="@null"
+                        android:minHeight="@dimen/_35sdp"
+                        android:dropDownSelector="@color/colorAccent"
+                        android:imeOptions="actionDone"
+                        android:paddingRight="@dimen/_1sdp"
+                        android:paddingLeft="@dimen/_1sdp"
+                        android:spinnerMode="dropdown"
+                        android:textColor="@color/ColorBlack"
+                        android:theme="@style/ThemeOverlay.AppCompat.Light"
+                        android:textColorHint="@color/ColorBlack"
+                        android:textSize="@dimen/_12sdp" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/_2sdp"
+                        android:layout_marginEnd="@dimen/_2sdp"
+                        android:layout_centerVertical="true"
+                        app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/_5sdp"
+                android:paddingTop="@dimen/_10sdp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Name of Person*"
+                    android:textColor="@color/ColorBlack" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_spinner"
+                    android:layout_marginTop="@dimen/_5sdp">
+                    <Spinner
+                        android:id="@+id/spnPersonName"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:background="@null"
+                        android:minHeight="@dimen/_35sdp"
+                        android:dropDownSelector="@color/colorAccent"
+                        android:imeOptions="actionDone"
+                        android:paddingRight="@dimen/_1sdp"
+                        android:paddingLeft="@dimen/_1sdp"
+                        android:spinnerMode="dropdown"
+                        android:textColor="@color/ColorBlack"
+                        android:theme="@style/ThemeOverlay.AppCompat.Light"
+                        android:textColorHint="@color/ColorBlack"
+                        android:textSize="@dimen/_12sdp" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/_2sdp"
+                        android:layout_marginEnd="@dimen/_2sdp"
+                        android:layout_centerVertical="true"
+                        app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/_5sdp"
+                android:paddingTop="@dimen/_10sdp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Person Id"
+                    android:textColor="@color/ColorBlack" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_spinner"
+                    android:layout_marginTop="@dimen/_5sdp">
+                    <Spinner
+                        android:id="@+id/spnPersonId"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:background="@null"
+                        android:minHeight="@dimen/_35sdp"
+                        android:dropDownSelector="@color/colorAccent"
+                        android:imeOptions="actionDone"
+                        android:paddingRight="@dimen/_1sdp"
+                        android:paddingLeft="@dimen/_1sdp"
+                        android:spinnerMode="dropdown"
+                        android:textColor="@color/ColorBlack"
+                        android:theme="@style/ThemeOverlay.AppCompat.Light"
+                        android:textColorHint="@color/ColorBlack"
+                        android:textSize="@dimen/_12sdp" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/_2sdp"
+                        android:layout_marginEnd="@dimen/_2sdp"
+                        android:layout_centerVertical="true"
+                        app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/_5sdp"
+                android:paddingTop="@dimen/_10sdp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Name of Firm*"
+                    android:textColor="@color/ColorBlack" />
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtFirmName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/_5sdp"
+                android:paddingTop="@dimen/_10sdp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Designation*"
+                    android:textColor="@color/ColorBlack" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_spinner"
+                    android:layout_marginTop="@dimen/_5sdp">
+                    <Spinner
+                        android:id="@+id/spnDesignation"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:background="@null"
+                        android:minHeight="@dimen/_35sdp"
+                        android:dropDownSelector="@color/colorAccent"
+                        android:imeOptions="actionDone"
+                        android:paddingRight="@dimen/_1sdp"
+                        android:paddingLeft="@dimen/_1sdp"
+                        android:entries="@array/designation"
+                        android:spinnerMode="dropdown"
+                        android:textColor="@color/ColorBlack"
+                        android:theme="@style/ThemeOverlay.AppCompat.Light"
+                        android:textColorHint="@color/ColorBlack"
+                        android:textSize="@dimen/_12sdp" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/_2sdp"
+                        android:layout_marginEnd="@dimen/_2sdp"
+                        android:layout_centerVertical="true"
+                        app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/_5sdp"
+                android:paddingTop="@dimen/_10sdp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Approval Given By*"
+                    android:textColor="@color/ColorBlack" />
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtAprovalBy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/_5sdp"
+                android:paddingTop="@dimen/_10sdp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Person whom to Visited*"
+                    android:textColor="@color/ColorBlack" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_spinner"
+                    android:layout_marginTop="@dimen/_5sdp">
+                    <Spinner
+                        android:id="@+id/spnPersonVisit"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_25sdp"
+                        android:background="@null"
+                        android:minHeight="@dimen/_35sdp"
+                        android:dropDownSelector="@color/colorAccent"
+                        android:imeOptions="actionDone"
+                        android:paddingRight="@dimen/_1sdp"
+                        android:paddingLeft="@dimen/_1sdp"
+                        android:spinnerMode="dropdown"
+                        android:textColor="@color/ColorBlack"
+                        android:theme="@style/ThemeOverlay.AppCompat.Light"
+                        android:textColorHint="@color/ColorBlack"
+                        android:textSize="@dimen/_12sdp" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/_2sdp"
+                        android:layout_marginEnd="@dimen/_2sdp"
+                        android:layout_centerVertical="true"
+                        app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/_5sdp"
+                android:paddingTop="@dimen/_10sdp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Reason for visit *"
+                    android:textColor="@color/ColorBlack" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtReason"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/_5sdp"
+                android:paddingTop="@dimen/_10sdp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Visit Date*"
+                    android:textColor="@color/ColorBlack" />
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:padding="@dimen/_5sdp"
+                    android:gravity="center|left"
+                    android:textColor="@color/whiteTextColor"
+                    android:id="@+id/edtDate"
+                    android:drawablePadding="10dp"
+                    android:background="@drawable/edit_text_background"
+                    android:drawableRight="@drawable/ic_calendar"
+                    android:text="Select Date"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/_5sdp"
+                android:paddingTop="@dimen/_10sdp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Visit Time*"
+                    android:textColor="@color/ColorBlack" />
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:padding="@dimen/_5sdp"
+                    android:gravity="center|left"
+                    android:textColor="@color/whiteTextColor"
+                    android:id="@+id/edtTime"
+                    android:drawablePadding="10dp"
+                    android:background="@drawable/edit_text_background"
+                    android:drawableRight="@drawable/ic_access_time_black_24dp"
+                    android:text="Select Time"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <CheckBox
+                android:id="@+id/chek"
+                android:text="Declaration : "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:text="I/We certify that I/We know the above mentioned person personally and to the best of my knowledge He/ She bears good conduct. I /We are responsible for his/ Her conduct inside work/ site premises. No Liability either financially or otherwise on Client Name on the above involvement. Any wrong information made, passes will be treated as invalid or cancelled."
+                android:textColorHighlight="@color/colorAccent"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:text="Register"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAllCaps="false"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:background="@drawable/login_shape_bk"
+            android:backgroundTint="@color/colorAccent"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:textColor="@color/whiteTextColor"/>
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"/>
+    </LinearLayout>
+</ScrollView>

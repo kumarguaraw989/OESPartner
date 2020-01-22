@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        style="@style/loginCard"
+        app:cardCornerRadius="@dimen/loginCardRadius"
+        android:elevation="5dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/loginViewsMargin"
+        android:layout_marginBottom="@dimen/loginViewsMargin"
+        android:background="@color/whiteCardColor">
+        <LinearLayout
+            style="@style/linearParent"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:padding="@dimen/loginViewsMargin">
+            <TextView
+                style="@style/headerTextPrimary"
+                android:text="Register"
+                android:layout_marginTop="@dimen/loginViewsMargin"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_spinner"
+                android:layout_marginTop="@dimen/_15sdp">
+                <Spinner
+                    android:id="@+id/spnSelectUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:background="@null"
+                    android:minHeight="@dimen/_35sdp"
+                    android:dropDownSelector="@color/colorAccent"
+                    android:imeOptions="actionDone"
+                    android:paddingRight="@dimen/_1sdp"
+                    android:paddingLeft="@dimen/_1sdp"
+                    android:spinnerMode="dropdown"
+
+                    android:textColor="@color/ColorBlack"
+                    android:theme="@style/ThemeOverlay.AppCompat.Light"
+                    android:textColorHint="@color/ColorBlack"
+                    android:textSize="@dimen/_12sdp"
+
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/_2sdp"
+                    android:layout_marginEnd="@dimen/_2sdp"
+                    android:layout_centerVertical="true"
+                    app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_spinner"
+                android:layout_marginTop="@dimen/_15sdp">
+
+                <Spinner
+                    android:id="@+id/spin_client"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_25sdp"
+                    android:background="@null"
+                    android:minHeight="@dimen/_35sdp"
+                    android:dropDownSelector="@color/colorAccent"
+                    android:imeOptions="actionDone"
+                    android:paddingRight="@dimen/_1sdp"
+                    android:paddingLeft="@dimen/_1sdp"
+                    android:spinnerMode="dropdown"
+                    android:textColor="@color/ColorBlack"
+                    android:theme="@style/ThemeOverlay.AppCompat.Light"
+                    android:textColorHint="@color/ColorBlack"
+                    android:textSize="@dimen/_12sdp"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/_2sdp"
+                    android:layout_marginEnd="@dimen/_2sdp"
+                    android:layout_centerVertical="true"
+                    app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+            </RelativeLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/parent"
+                android:layout_marginTop="@dimen/signup_text_margin_top">
+                <EditText
+                    android:id="@+id/edtName"
+                    style="@style/modifiedEditText"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:hint="Name*"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/parent"
+                android:layout_marginTop="@dimen/signup_text_margin_top">
+                <EditText
+                    android:id="@+id/edtEmail"
+                    style="@style/modifiedEditText"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:hint="Email*"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/parent"
+                android:layout_marginTop="@dimen/signup_text_margin_top">
+                <EditText
+                    android:id="@+id/edtPhoneNo"
+                    style="@style/modifiedEditText"
+                    android:inputType="phone"
+                    android:maxLines="1"
+                    android:hint="@string/login_phone_hint"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/parent"
+                android:layout_marginTop="@dimen/signup_text_margin_top">
+                <EditText
+                    android:id="@+id/edtPingenerate"
+                    style="@style/modifiedEditText"
+                    android:hint="@string/login_password_hint"
+                    android:maxLines="1"
+                    android:inputType="textPassword"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/parent"
+                android:layout_marginTop="@dimen/signup_text_margin_top">
+                <EditText
+                    android:id="@+id/edtDesignation"
+                    style="@style/modifiedEditText"
+                    android:hint="@string/login_designation_hint"
+                    android:maxLines="1"
+                    android:inputType="text"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/parent"
+                android:layout_marginTop="@dimen/signup_text_margin_top">
+                <EditText
+                    android:id="@+id/edtBloodgroup"
+                    style="@style/modifiedEditText"
+                    android:hint="@string/blood_group"
+                    android:maxLines="1"
+                    android:inputType="text"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/parent"
+                android:layout_marginTop="@dimen/signup_text_margin_top">
+                <EditText
+                    android:id="@+id/edtBiomatricdata"
+                    style="@style/modifiedEditText"
+                    android:hint="@string/biomatric_data"
+                    android:maxLines="1"
+                    android:inputType="text"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/parent"
+                android:layout_marginTop="@dimen/signup_text_margin_top">
+                <EditText
+                    android:id="@+id/edtAadharNo"
+                    style="@style/modifiedEditText"
+                    android:hint="@string/Aadhar_no"
+                    android:maxLines="1"
+                    android:inputType="text"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:paddingTop="@dimen/_10sdp"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btnPhoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorAccentSplash"
+                    android:text="Upload Photo"
+                    android:textAllCaps="false"
+                    android:textColor="@color/whiteTextColor"
+                    />
+                <Button
+                    android:id="@+id/btnSignature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/colorAccentSplash"
+                    android:text="Upload Signature"
+                    android:textAllCaps="false"
+                    android:textColor="@color/whiteTextColor"
+                    />
+            </LinearLayout>
+            <include
+                android:id="@+id/include_registersecurity"
+                android:visibility="gone"
+                layout="@layout/register_security"/>
+            <include
+                android:visibility="gone"
+                layout="@layout/register_dealer"/>
+            <include
+                android:visibility="gone"
+                layout="@layout/register_contractor"/>
+            <include
+                android:visibility="gone"
+                layout="@layout/register_consumer"/>
+            <include
+                android:visibility="gone"
+                layout="@layout/register_supplier"/>
+            <include
+                android:visibility="gone"
+                layout="@layout/register_transporter"/>
+
+
+            <ProgressBar
+                android:id="@+id/loading"
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:scrollbarSize="@dimen/_455sdp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:visibility="gone" />
+            <Button
+                android:id="@+id/btnRegister"
+                style="@style/loginButton"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_gravity="center"
+                android:text="Register" />
+            <TextView
+                android:id="@+id/txtRegister"
+                style="@style/parent"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textColor="@color/primaryTextColor"
+                android:text="@string/signup_login_hint"
+                android:layout_marginTop="@dimen/loginViewsMargin"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</ScrollView>

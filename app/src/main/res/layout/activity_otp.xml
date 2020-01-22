@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:gravity="center_horizontal"
+        android:textColor="@color/colorAccentSplash"
+        android:text="Phone Authnetication"/>
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edtphone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Phone"
+        android:inputType="phone"
+        android:textColorHint="@color/colorDivider"
+        android:layout_margin="20dp"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etd_otp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Otp..."
+        android:clickable="false"
+        android:textColor="@color/colorAccent"
+        android:textColorHint="@color/colorDivider"
+        android:layout_margin="20dp"/>
+
+    <Button
+        android:id="@+id/btn_generate_otp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Generate Otp"
+        android:layout_marginLeft="@dimen/_50sdp"
+        android:layout_marginRight="@dimen/_50sdp"
+        android:textColorHint="@color/whiteTextColor"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_margin="20dp"/>
+    <Button
+        android:id="@+id/btn_verify_otp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Verify Otp"
+        android:layout_marginLeft="@dimen/_50sdp"
+        android:layout_marginRight="@dimen/_50sdp"
+        android:textColorHint="@color/whiteTextColor"
+        android:backgroundTint="@color/colorAccent"
+        android:layout_margin="20dp"/>
+
+</LinearLayout>

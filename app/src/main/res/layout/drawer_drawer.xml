@@ -1,0 +1,14 @@
+<ExpandableListView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/list_slidermenu"
+    android:layout_width="300dp"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:background="@drawable/actionbar_background"
+    android:choiceMode="singleChoice"
+    android:divider="#000000"
+    android:dividerHeight="0.2dp"
+    android:groupIndicator="@null"
+    android:alpha="255"
+    android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
+    >
+</ExpandableListView>

@@ -1,0 +1,217 @@
+<resources>
+    <string name="app_name">OESPartner</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="drawer_open"></string>
+    <string name="drawer_close"></string>
+
+    <string name="fa_glass">&#xf015;</string>
+    <string name="fa_music">&#xf007;</string>
+    <string name="fa_search">&#xf007;</string>
+    <string name="fa_envelope_o">&#xf003;</string>
+    <string name="fa_tranport">&#xf018;</string>
+    <string name="fa_star">&#xf005;</string>
+    <string name="fa_star_o">&#xf006;</string>
+    <string name="fa_user">&#xf007;</string>
+    <string name="fa_film">&#xf008;</string>
+    <string name="fa_chevron_right">&#xf054;</string>
+    <string name="fa_chevron_down">&#xf078;</string>
+
+
+    <string name="register">REGISTER</string>
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Password</string>
+    <string name="signup_login_hint">Already have an account? Sign In</string>
+    <string name="login_signup_hint">Don\'t have an account? Sign Up</string>
+    <string name="title_activity_new">NewActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+
+    <string name="menu_home">Dashboard</string>
+    <string name="menu_gallery">Clients</string>
+    <string name="menu_slideshow">Manage Client</string>
+    <string name="menu_tools">Manage Branch</string>
+    <string name="menu_share">Manage Sub Branch</string>
+    <string name="menu_send">Partner</string>
+    <string name="title_activity_dashboard">Person Master</string>
+
+    <!-- Permission Text -->
+    <string name="contact_permission">Contact permission are needed to access</string>
+    <string name="storage_permission">Storage permission are needed to access</string>
+    <string name="read_sms_permission">Read sms permission are needed to access</string>
+    <string name="location_permission">Location permission are needed to access</string>
+    <string name="phone_state_permisssion">Phone state permission are needed to access</string>
+    <string name="phone_call_permission">Phone call permission are needed to access</string>
+    <string name="phone_camera_permission">Camera permission are needed to access</string>
+    <string name="record_audio">Audio recording permission needed</string>
+    <string name="camera_audio_permission">Camera and record audio permission are needed to access</string>
+    <string name="ok_alert">OK</string>
+
+    <string name="storage_permission_granted">Storage Permissions have been granted</string>
+    <string name="storage_permission_not_granted">Permissions were not granted for Storage</string>
+    <string name="phone_camera_permission_granted">Camera permission has been granted</string>
+    <string name="phone_camera_permission_not_granted">Permission were not granted for Camera</string>
+    <string name="phone_call_permission_not_granted">Permission were not granted for Phone call</string>
+    <string name="terms">Accept FOEDERA\'s <u>Terms &amp; Conditions</u></string>
+    <string name="insurance"><u>Please upload your insurance information with Foedera listed as an additional insured.</u></string>
+
+    <string name="camera_access_denied">Camera Access Denied</string>
+    <string name="camera_denied_marsh">You must have to allow this app to use Camera. If you selected \"Never ask again\", give Camera permission in app settings in your device Settings manually.</string>
+    <string name="storage_access_denied">Storage Access Denied</string>
+
+    <string name="storage_denied_marsh">You must have to allow this app to read Storage. If you selected \"Never ask again\", give Storage permission in app settings in your device Settings manually.</string>
+    <string name="unable_to_fetch_data">Unable to fetch data</string>
+    <string name="fingerprint_text">Use Fingerprint as an alernate to your password for faster login.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login_designation_hint">Designation</string>
+    <string name="blood_group">Blood Group</string>
+    <string name="biomatric_data">Biometric Data</string>
+    <string name="Aadhar_no">Aadhar No</string>
+    <string name="login_otp_hint">Login Otp</string>
+    <string name="choose_files">Choose files</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="choose_from_gallery">Choose From Gallery</string>
+    <string name="cancel">Cancel</string>
+    <string name="add_photo">Add Photo</string>
+    <string name="login_phone_hint">Phone No</string>
+    <string name="login_pin_hint">Password</string>
+    <string name="action_Logout">Logout</string>
+
+    <string-array name="country_arrays">
+        <item>Select Country</item>
+        <item>United States</item>
+        <item>Indonesia</item>
+        <item>France</item>
+        <item>Italy</item>
+        <item>Singapore</item>
+        <item>New Zealand</item>
+        <item>India</item>
+    </string-array>
+    <string-array name="state_arrays">
+        <item>Select State</item>
+        <item>United States</item>
+        <item>Indonesia</item>
+        <item>France</item>
+        <item>Italy</item>
+        <item>Singapore</item>
+        <item>New Zealand</item>
+        <item>India</item>
+    </string-array>
+    <string-array name="gender_arrays">
+        <item>Mr</item>
+        <item>Ms</item>
+        <item>Mrs</item>
+
+    </string-array>
+    <string-array name="bloodgroup_arrays">
+        <item>A</item>
+        <item>B+</item>
+        <item>AB</item>
+
+    </string-array>
+
+    <string-array name="clientid_arrays">
+        <item>Client Id</item>
+        <item>2</item>
+        <item>3</item>
+
+    </string-array>
+
+    <string-array name="client_list">
+        <item>Select Client</item>
+        <item>IOCL</item>
+        <item>Opportunity Engineering Solutions</item>
+    </string-array>
+
+    <string-array name="register_list">
+        <item>Select Category</item>
+        <item>Security</item>
+        <item>Dealer</item>
+        <item>Contractor</item>
+        <item>Consumer</item>
+        <item>Supplier</item>
+        <item>Transporter</item>
+        <item>New Zealand</item>
+        <item>India</item>
+    </string-array>
+
+    <string-array name="reasonformaterial_gatepass">
+        <item>Reason for Material Gate Pass</item>
+        <item>Material Loading</item>
+        <item>Material Unloading</item>
+        <item>Vehical Checking-Checking</item>
+        <item>Vehical Checking-Calibration</item>
+        <item>Vehical Checking-Lock</item>
+        <item>Others</item>
+    </string-array>
+    <string-array name="vehical_load">
+        <item>Vehical Load</item>
+        <item>loaded</item>
+        <item>Unloaded</item>
+    </string-array>
+
+    <string-array name="materialgatepasstype_list">
+        <item>Material Gate Pass Type</item>
+        <item>Inward</item>
+        <item>Outward</item>
+    </string-array>
+
+    <string-array name="branchname">
+        <item>Branch Name</item>
+    </string-array>
+
+    <string-array name="client">
+        <item>Material Belongs to</item>
+        <item>Client</item>
+        <item>Stakeholder</item>
+    </string-array>
+    <string-array name="returnable">
+        <item>Material is Returnable or Non-Returnable</item>
+        <item>Non-returnable</item>
+        <item>Returnable</item>
+    </string-array>
+    <string-array name="designation">
+        <item>Select One</item>
+        <item>Promoter/Partner/Proprietor</item>
+        <item>Engineer</item>
+        <item>Manager</item>
+        <item>Supervisor</item>
+        <item>Driver</item>
+        <item>Helper</item>
+        <item>Contract</item>
+        <item>Labour</item>
+        <item>Electrician</item>
+        <item>Security</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="gender">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string-array name="wearglass">
+        <item>Select One</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
+    <string-array name="valid">
+        <item>Select</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
+    <string-array name="nationality">
+        <item>Select</item>
+        <item>India</item>
+        <item>Other</item>
+    </string-array>
+
+</resources>
