@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/_10sdp"
+    android:layout_marginTop="@dimen/_10sdp"
+    android:id="@+id/layout_driver"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_20sdp"
+        android:gravity="center"
+        android:textColor="@color/colorDivider"
+        android:textStyle="normal"
+        android:text="License Verification" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="@drawable/border_spinner" />
+    <RelativeLayout
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+    <EditText
+        android:layout_marginTop="@dimen/_10sdp"
+        android:id="@+id/edtDlNo"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:gravity="center"
+          android:inputType="text"
+        android:background="@drawable/border_spinner"
+        android:hint="Driver Licence No." />
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Licence Valid Upto."
+            android:textStyle="italic"
+            android:layout_alignParentEnd="true"/>
+        <EditText
+            android:layout_below="@+id/tv1"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:id="@+id/edtDateValidoflicence"
+            android:focusable="false"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_40sdp"
+            android:gravity="center"
+            android:inputType="text"
+            android:text="Select Date"
+            android:textColor="@color/whiteTextColor"
+            android:drawableRight="@drawable/ic_calendar"
+            android:background="@drawable/edit_text_background" />
+    </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vehical No : "
+            android:textColor="@color/ColorBlack" />
+
+        <RelativeLayout
+             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_spinner"
+            android:layout_marginTop="@dimen/_5sdp">
+            <Spinner
+                android:id="@+id/spnVihicalNo"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_25sdp"
+                android:background="@null"
+                android:minHeight="@dimen/_35sdp"
+                android:dropDownSelector="@color/colorAccent"
+                android:imeOptions="actionDone"
+                android:paddingRight="@dimen/_1sdp"
+                android:paddingLeft="@dimen/_1sdp"
+                android:spinnerMode="dropdown"
+                android:textColor="@color/ColorBlack"
+                android:theme="@style/ThemeOverlay.AppCompat.Light"
+                android:textColorHint="@color/ColorBlack"
+                android:textSize="@dimen/_12sdp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:layout_centerVertical="true"
+                app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+        </RelativeLayout>
+     <RelativeLayout
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+        <EditText
+            android:layout_marginTop="@dimen/_10sdp"
+            android:id="@+id/edtHelperName"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:gravity="center"
+            android:inputType="text"
+             android:background="@drawable/border_spinner"
+            android:hint="Helper Name" />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last eye test date"
+            android:textStyle="italic"
+            android:layout_alignParentEnd="true"/>
+        <EditText
+            android:layout_below="@+id/tv2"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:id="@+id/edtLastDateofEyeTest"
+            android:focusable="false"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_40sdp"
+            android:gravity="center"
+            android:inputType="text"
+            android:text="Select Date"
+            android:textColor="@color/whiteTextColor"
+            android:drawableRight="@drawable/ic_calendar"
+            android:background="@drawable/edit_text_background" />
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+        <EditText
+            android:layout_marginTop="@dimen/_10sdp"
+            android:id="@+id/edtTrainingCertificateno"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:gravity="center"
+            android:inputType="text"
+             android:background="@drawable/border_spinner"
+            android:hint="Training Certificate no." />
+
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Report Uploded"
+            android:textStyle="italic"
+            android:gravity="center"
+            android:layout_alignParentEnd="true"/>
+        <Button
+            android:id="@+id/btn_uploadreport"
+            android:layout_below="@+id/tv3"
+            android:layout_alignParentEnd="true"
+            android:layout_width="@dimen/_100sdp"
+            android:background="@drawable/edittext_border"
+            android:layout_height="@dimen/_50sdp"
+            android:text="Choose Files"
+            android:textAllCaps="false"
+            />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Training Valid Upto"
+        android:textStyle="italic"
+        android:layout_alignParentEnd="true"/>
+    <EditText
+        android:layout_below="@+id/tv4"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:id="@+id/edtDateoftrainingValid"
+        android:focusable="false"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_40sdp"
+        android:gravity="center"
+        android:inputType="text"
+        android:text="Select Date"
+        android:textColor="@color/whiteTextColor"
+        android:drawableRight="@drawable/ic_calendar"
+        android:background="@drawable/edit_text_background" />
+
+
+
+
+</LinearLayout>

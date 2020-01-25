@@ -7,7 +7,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -25,6 +28,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.appizona.yehiahd.fastsave.FastSave;
 import com.example.oespartner.App_Helper.Constants;
+import com.example.oespartner.Model.AddChamberDetailsModel;
 import com.example.oespartner.Model.Data;
 import com.example.oespartner.R;
 import com.example.oespartner.WebService.ApiClient;
@@ -38,6 +42,7 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import butterknife.BindView;
@@ -100,7 +105,9 @@ public class AddTransportActivity extends AppCompatActivity {
     @BindView(R.id.edtReferenceNo6)
     EditText edtReferenceNo6;
     @BindView(R.id.btnAddChamberDetails)
-    ImageButton btnAddChamberDetails;
+    TextView btnAddChamberDetails;
+    @BindView(R.id.btnRemoveChamberDetails)
+    TextView btnRemoveChamberDetails;
     @BindView(R.id.edtNoOfChambers)
     EditText edtNoOfChambers;
     @BindView(R.id.edtCapacity)
@@ -124,15 +131,26 @@ public class AddTransportActivity extends AppCompatActivity {
     ArrayList<String> SelectVichelName = new ArrayList<>();
     MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
     String email,role;
+    List<AddChamberDetailsModel> myList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_transport);
         imgBack = (ImageView) findViewById(R.id.imgBack);
         btnRegister = findViewById(R.id.btnRegister);
+        final EditText edtNo = findViewById(R.id.No);
+        final EditText edtcapacity = findViewById
+                (R.id.edtcapacity);
+        final EditText edtDlLevel = findViewById
+                (R.id.edtdlLevel);
+        final EditText edPlLevel = findViewById
+                (R.id.edtplLevel);
         ButterKnife.bind(this);
         getSupportActionBar().hide();
+        myList=new ArrayList<>();
         Data data_model = FastSave.getInstance().getObject("login_data", Data.class);
+        final ViewGroup tes = (ViewGroup) findViewById(R.id.layout_addchambers);
         email=data_model.getEmail();
         role=data_model.getRole();
         imgBack.setOnClickListener(v -> onBackPressed());
@@ -145,6 +163,63 @@ public class AddTransportActivity extends AppCompatActivity {
         edtValidUptoPvValve.setOnClickListener(view -> Constants.DateDialog(edtValidUptoPvValve, AddTransportActivity.this));
         edtDateValidUptofire.setOnClickListener(view -> Constants.DateDialog(edtDateValidUptofire, AddTransportActivity.this));
         edtDateValidUptohealth.setOnClickListener(view -> Constants.DateDialog(edtDateValidUptohealth, AddTransportActivity.this));
+
+        btnRemoveChamberDetails.setOnClickListener
+                (v -> tes.removeViewAt(0));
+        btnAddChamberDetails.setOnClickListener(v -> {
+            AddChamberDetailsModel mylist1=new AddChamberDetailsModel();
+            final View extend = LayoutInflater.from(v.getContext()).inflate(R.layout.item_chamber_add, tes, false);
+            tes.addView(extend);
+            mylist1.setNo(edtNo.getText().toString());
+            mylist1.setCapacity(edtcapacity.getText().toString());
+            mylist1.setDlLenght(edtDlLevel.getText().toString());
+            System.out.println(edtNo.getText().toString());
+            System.out.println(edtcapacity.getText().toString());
+            System.out.println(edtDlLevel.getText().toString());
+            myList.add(mylist1);
+        });
+        edtNoOfChambers.setOnClickListener(v -> {
+            int totalval=0;
+            for (int i=0;i<myList.size();i++){
+                AddChamberDetailsModel list=myList.get(i);
+                String val=list.getNo();
+                Log.e("val",val);
+                Log.e("capacity",list.getCapacity());
+                Log.e("dl",list.getDlLenght());
+                totalval=Integer.valueOf(val)+totalval;
+            }
+            Log.e("totalval",String.valueOf(totalval));
+            edtNoOfChambers.setText(String.valueOf(totalval));
+         });
+        edtCapacity.setOnClickListener(v -> {
+            int totalval=0;
+            for (int i=0;i<myList.size();i++){
+                AddChamberDetailsModel list=myList.get(i);
+                String val=list.getCapacity();
+                Log.e("val",val);
+                Log.e("capacity",list.getCapacity());
+                Log.e("dl",list.getDlLenght());
+                totalval=Integer.valueOf(val)+totalval;
+            }
+            Log.e("totalvaldllevel",String.valueOf(totalval));
+            edtCapacity.setText(String.valueOf(totalval));
+        });
+        edtTotalDipRoadLength.setOnClickListener(v -> {
+            int totalval=0;
+            for (int i=0;i<myList.size();i++){
+                AddChamberDetailsModel list=myList.get(i);
+                String val=list.getDlLenght();
+                Log.e("val",val);
+                Log.e("capacity",list.getCapacity());
+                Log.e("dl",list.getDlLenght());
+                totalval=Integer.valueOf(val)+totalval;
+            }
+            Log.e("totalvaldllevel",String.valueOf(totalval));
+            edtTotalDipRoadLength.setText(String.valueOf(totalval));
+        });
+
+
+
 
         SelectVichelName.add("Select Anyone");
         StringRequest stringRequest=new StringRequest(Request.Method.POST,Config.Spinner_VehicleApi, response -> {

@@ -20,6 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".Activity.UpdatePartnerPersonActivity"></activity>
         <activity android:name=".Activity.UpdateVehicleNoActivity"></activity>
         <activity android:name=".Activity.AddVehicleNoActivity" />
         <activity android:name=".Activity.VehicleNoActivity" />

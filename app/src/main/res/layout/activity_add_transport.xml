@@ -5,6 +5,7 @@
     android:fillViewport="true">
 
     <LinearLayout
+        android:id="@+id/ll1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -210,16 +211,10 @@
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:text="No file Chosen"
                     android:textColor="@color/ColorBlack" />
-
-
             </LinearLayout>
-
-
         </LinearLayout>
 
-        <include
-
-            layout="@layout/transport_description" />
+        <include layout="@layout/transport_description" />
 
         <View
             android:layout_width="match_parent"
@@ -230,7 +225,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:gravity="center"
             android:layout_marginTop="@dimen/_5sdp"
             android:orientation="horizontal">
 
@@ -238,19 +233,37 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text="Chamber Details"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/ColorBlack"
                 android:textStyle="bold" />
 
-            <ImageButton
+            <TextView
                 android:id="@+id/btnAddChamberDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_40sdp"
                 android:layout_weight="1"
-                android:background="@drawable/ic_chamber_add" />
+                android:gravity="center"
+                android:drawableTop="@drawable/ic_chamber_add"
+                android:text="Add Chamber Detail"
+                android:textColor="#000"
+                android:textSize="@dimen/_8sdp" />
+
+            <TextView
+                android:id="@+id/btnRemoveChamberDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_40sdp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="#000"
+                android:drawableTop="@drawable/ic_cancel_black_24dp"
+                android:text="Remove Chamber Detail"
+                android:textSize="@dimen/_8sdp" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -265,7 +278,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="No"
-
                 android:textColor="@color/ColorBlack" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -288,22 +300,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-
                 android:text="PL Level"
-                android:textColor="@color/ColorBlack" />
-
-
+                android:textColor="@color/ColorBlack"/>
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginRight="@dimen/_5sdp"
-            android:text="Type of Vehicle"
-
-            />
 
         <include layout="@layout/item_chamber_add" />
 
@@ -314,6 +314,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_5sdp"
             android:orientation="vertical">
+
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
@@ -326,6 +327,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_2sdp"
+                android:textColorHint="#808080"
+                android:hint="Click to get total number of chambers"
                 android:background="@drawable/border_spinner"
                 android:padding="@dimen/_5sdp" />
 
@@ -339,6 +342,8 @@
                 android:id="@+id/edtCapacity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColorHint="#808080"
+                android:hint="Click here to get total Capacity"
                 android:layout_marginTop="@dimen/_2sdp"
                 android:background="@drawable/border_spinner"
                 android:padding="@dimen/_5sdp" />
@@ -354,6 +359,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_2sdp"
+                android:textColorHint="#808080"
+                android:hint="Click here to get total dip rod lenght"
                 android:background="@drawable/border_spinner"
                 android:padding="@dimen/_5sdp" />
 
