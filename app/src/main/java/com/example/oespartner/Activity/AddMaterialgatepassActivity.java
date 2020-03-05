@@ -5,7 +5,9 @@ import androidx.appcompat.widget.AppCompatEditText;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -47,7 +50,7 @@ import retrofit2.Response;
 
 public class AddMaterialgatepassActivity extends AppCompatActivity {
     ImageView imgBack;
-    Button btnAdd;
+    Button btnAdd,btnUpdate;
     Spinner select_client, branch_name, material_gatepass, vehical_load, reasonformaterialgatepass, materialbelongsto, material_returnable;
     AppCompatEditText stakeholder, partenername, vehical_no, others;
     RelativeLayout materialbelong_layout, materialreturn_layout;
@@ -56,7 +59,6 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
     String email, role;
     ArrayList<String> SelectClientBranch = new ArrayList<>();
     ArrayList<String> SelectClient = new ArrayList<>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,8 +67,11 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
         Data data_model = FastSave.getInstance().getObject("login_data", Data.class);
         email=data_model.getEmail();
         role=data_model.getRole();
+        TextView btnAddMaterial=findViewById(R.id.btnAddMaterial);
+        TextView btnRemoveMaterial=findViewById(R.id.btnRemoveMaterial);
         imgBack = (ImageView) findViewById(R.id.imgBack);
         btnAdd = (Button) findViewById(R.id.btnAdd);
+        btnUpdate=findViewById(R.id.btnupdate);
         materialbelong_layout = findViewById(R.id.Relative_maerialbelongstto);
         materialreturn_layout = findViewById(R.id.materialreturn_layout);
         imgBack = (ImageView) findViewById(R.id.imgBack);
@@ -83,6 +88,8 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
         others = findViewById(R.id.others);
         materialbelongsto = findViewById(R.id.material_belongsto);
         material_returnable = findViewById(R.id.material_returnable);
+        btnUpdate.setVisibility(View.GONE);
+        final ViewGroup tes = (ViewGroup) findViewById(R.id.layout_addchambers);
         setupSpinners();
         String[] mgatepassType = {"Material Gate Pass Type", "Inward", "Outward"};
         material_gatepass.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, mgatepassType));
@@ -113,8 +120,7 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String dAdress = branch_name.getItemAtPosition(branch_name.getSelectedItemPosition()).toString();
-                Toast.makeText(getApplicationContext(), dAdress, Toast.LENGTH_LONG).show();
-            }
+             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -141,8 +147,7 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String dAdress = select_client.getItemAtPosition(select_client.getSelectedItemPosition()).toString();
-                Toast.makeText(getApplicationContext(), dAdress, Toast.LENGTH_LONG).show();
-            }
+             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -170,6 +175,12 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+        btnAddMaterial.setOnClickListener(v -> {
+            final View extend = LayoutInflater.from(v.getContext()).inflate(R.layout.item_chamber_add, tes, false);
+            tes.addView(extend);
+        });
+        btnRemoveMaterial.setOnClickListener(v -> tes.removeViewAt(0));
     }
 
     public void postMaterialGatePass(String email, String role, String client, String branch, String gate_pass_type, String partner_code, String partner_name, String vehicle_no, String vehicle_load, String reason, String belong_to,

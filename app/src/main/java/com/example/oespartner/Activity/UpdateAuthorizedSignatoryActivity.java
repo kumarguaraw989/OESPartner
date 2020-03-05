@@ -50,6 +50,8 @@ public class UpdateAuthorizedSignatoryActivity extends AppCompatActivity {
     String id2;
     @BindView(R.id.add_signatory)
     Button add;
+    @BindView(R.id.update_signatory)
+    Button update;
     @BindView(R.id.imgBack)
     ImageView ImgBack;
     @BindView(R.id.loading)
@@ -86,6 +88,7 @@ public class UpdateAuthorizedSignatoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_authorized_signatory);
         getSupportActionBar().hide();
         ButterKnife.bind(this);
+        add.setVisibility(View.GONE);
         Data data_model= FastSave.getInstance().getObject("login_data", Data.class);
          email=data_model.getEmail();
          role=data_model.getRole();
@@ -94,7 +97,7 @@ public class UpdateAuthorizedSignatoryActivity extends AppCompatActivity {
         SelectUserType.add("Select one");
         ImgBack.setOnClickListener(v -> onBackPressed());
 
-        add.setOnClickListener(view -> {
+        update.setOnClickListener(view -> {
              String Date2 = edtSignatoryValidupto.getText().toString();
             String WorkOrderReferenceNo = edtWork_orderreference.getText().toString();
             String WorkOrderDescription = edtWork_description.getText().toString();
@@ -179,8 +182,7 @@ public class UpdateAuthorizedSignatoryActivity extends AppCompatActivity {
                      } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    Toast.makeText(UpdateAuthorizedSignatoryActivity.this,response, Toast.LENGTH_SHORT).show();
-                }
+                 }
             }, error -> Toast.makeText(UpdateAuthorizedSignatoryActivity.this,error.toString(), Toast.LENGTH_SHORT).show()){
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {

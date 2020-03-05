@@ -82,8 +82,7 @@ public class UpdateVehicleNoActivity extends AppCompatActivity {
 
     }
     public void postVehicleNo(String id2,String email,  String role, String vehicleNo,String vehicleType) {
-        //LoginModel model = sh.getLoginModel(getString(R.string.login_model));
-        RetrofitApi apiService = ApiClient.getClient().create(RetrofitApi.class);
+         RetrofitApi apiService = ApiClient.getClient().create(RetrofitApi.class);
         Data data_model= FastSave.getInstance().getObject("login_data",Data.class);
         Call<AddVehicleNo> call = apiService.UpdateVehicleNo(id2, data_model.getEmail(),  data_model.getRole(),vehicleNo,vehicleType
         );
@@ -92,8 +91,8 @@ public class UpdateVehicleNoActivity extends AppCompatActivity {
             public void onResponse(Call<AddVehicleNo> call, Response<AddVehicleNo> response) {
                 progress_bar.setVisibility(View.GONE);
                 FancyToast.makeText(UpdateVehicleNoActivity.this,"Data submitted successfully",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
+                onBackPressed();
             }
-
             @Override
             public void onFailure(Call<AddVehicleNo> call, Throwable t) {
                 progress_bar.setVisibility(View.GONE);

@@ -44,7 +44,8 @@ import retrofit2.Response;
 
 public class UpdateMaterialgatepassActivity extends AppCompatActivity {
 ImageView imgBack;
-Button btnAdd;
+Button btnAdd,btnUpdate;
+
     Spinner select_client, branch_name, material_gatepass, vehical_load, reasonformaterialgatepass, materialbelongsto, material_returnable;
     AppCompatEditText stakeholder, partenername, vehical_no, others;
     RelativeLayout materialbelong_layout,materialreturn_layout;
@@ -72,6 +73,7 @@ Button btnAdd;
         materialbelong_layout=findViewById(R.id.Relative_maerialbelongstto);
         materialreturn_layout=findViewById(R.id.materialreturn_layout);
         imgBack = (ImageView) findViewById(R.id.imgBack);
+        btnUpdate=findViewById(R.id.btnupdate);
         btnAdd = (Button) findViewById(R.id.btnAdd);
         imgBack.setOnClickListener(v -> onBackPressed());
         select_client = findViewById(R.id.select_client);
@@ -83,13 +85,14 @@ Button btnAdd;
         vehical_load = findViewById(R.id.vehical_load);
         reasonformaterialgatepass = findViewById(R.id.reson_formaterialgatepass);
         others = findViewById(R.id.others);
+        btnAdd.setVisibility(View.GONE);
         materialbelongsto = findViewById(R.id.material_belongsto);
         material_returnable = findViewById(R.id.material_returnable);
         setupSpinners();
         Data data_model= FastSave.getInstance().getObject("login_data", Data.class);
         imgBack.setOnClickListener(v -> onBackPressed());
         progress_bar=(ProgressBar)findViewById(R.id.progress_bar);
-        btnAdd.setOnClickListener(v -> {
+        btnUpdate.setOnClickListener(v -> {
             String partner_code = stakeholder.getText().toString();
             String partner_name = partenername.getText().toString();
             String vehicle_no = vehical_no.getText().toString();

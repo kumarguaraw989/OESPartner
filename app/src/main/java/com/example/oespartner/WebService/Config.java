@@ -9,7 +9,7 @@ public class Config {
     public static final String URL_Partner = "http://oestech.com/management/vehicle_management/index.php/home_api/get_partner_id";
     public static final String URL_otp = "http://oestech.com/management/vehicle_management/index.php/home_api/send_sms";
     public static final String URL_role = "http://oestech.com/management/vehicle_management/index.php/home_api/get_role";
-
+    public static final String URL_getCLIENT="http://oestech.com/management/vehicle_management/index.php/home_api/get_client";
     public static final String editVisitorGatePass_url = "http://oestech.com/management/vehicle_management/index.php/home_api/get_visitor_gatepass";
 
 }

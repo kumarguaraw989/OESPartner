@@ -333,5 +333,19 @@ I hereby authorise Mr/ Mrs/Ms Name of Person as my Authorise representative. He 
             android:layout_marginBottom="@dimen/_10sdp"
             android:textColor="@color/whiteTextColor"/>
 
+        <Button
+            android:id="@+id/update_signatory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:text="Update"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAllCaps="false"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:background="@drawable/login_shape_bk"
+            android:backgroundTint="@color/colorAccent"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:textColor="@color/whiteTextColor"/>
     </LinearLayout>
 </ScrollView>

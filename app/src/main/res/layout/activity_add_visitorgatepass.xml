@@ -451,7 +451,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -459,13 +458,12 @@
                 android:text="I/We certify that I/We know the above mentioned person personally and to the best of my knowledge He/ She bears good conduct. I /We are responsible for his/ Her conduct inside work/ site premises. No Liability either financially or otherwise on Client Name on the above involvement. Any wrong information made, passes will be treated as invalid or cancelled."
                 android:textColorHighlight="@color/colorAccent"/>
         </LinearLayout>
-
         <Button
             android:id="@+id/btnRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_15sdp"
-            android:text="Register"
+            android:text="Submit"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textAllCaps="false"
             android:layout_gravity="center"

@@ -43,11 +43,11 @@ import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 public class AddAuthorizedSignatoryActivity extends AppCompatActivity {
-    ArrayList<String> SelectUserType = new ArrayList<>();
     @BindView(R.id.add_signatory)
     Button add;
+    @BindView(R.id.update_signatory)
+    Button update;
     @BindView(R.id.imgBack)
     ImageView ImgBack;
     @BindView(R.id.loading)
@@ -72,23 +72,19 @@ public class AddAuthorizedSignatoryActivity extends AppCompatActivity {
     AppCompatCheckBox declaration1;
     @BindView(R.id.check_declaration2)
     AppCompatCheckBox declaration2;
-
     ArrayList<String> SelectClientBranch = new ArrayList<>();
     ArrayList<String> SelectClient = new ArrayList<>();
     ArrayList<String> SelectPersonName = new ArrayList<>();
     ArrayList<String> SelectPersonId = new ArrayList<>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_authorized_signatory);
         getSupportActionBar().hide();
         ButterKnife.bind(this);
-
-
+        update.setVisibility(View.GONE);
         edtWorkValidUpto.setOnClickListener(view -> Constants.DateDialog(edtWorkValidUpto, AddAuthorizedSignatoryActivity.this));
         edtSignatoryValidupto.setOnClickListener(view -> Constants.DateDialog(edtSignatoryValidupto, AddAuthorizedSignatoryActivity.this));
-
         SelectClient.add("Select Client");
         StringRequest stringRequest=new StringRequest(Config.URL_CLient, response -> {
             try {
@@ -109,15 +105,12 @@ public class AddAuthorizedSignatoryActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String dAdress=client.getItemAtPosition(client.getSelectedItemPosition()).toString();
-                Toast.makeText(getApplicationContext(),dAdress,Toast.LENGTH_LONG).show();
-            }
+             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
-
-
 
         SelectClientBranch.add("Select Branch");
         StringRequest stringRequest1=new StringRequest(Config.URL_ClientBranch, response -> {
@@ -139,8 +132,7 @@ public class AddAuthorizedSignatoryActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String dAdress=spin_branchname.getItemAtPosition(spin_branchname.getSelectedItemPosition()).toString();
-                Toast.makeText(getApplicationContext(),dAdress,Toast.LENGTH_LONG).show();
-            }
+             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -162,12 +154,10 @@ public class AddAuthorizedSignatoryActivity extends AppCompatActivity {
                     }
 
                     spin_nameofperson.setAdapter(new ArrayAdapter<>(AddAuthorizedSignatoryActivity.this, android.R.layout.simple_spinner_dropdown_item, SelectPersonName));
-                    //spnPersonId.setAdapter(new ArrayAdapter<>(AddWorkgatepassActivity.this,android.R.layout.simple_spinner_dropdown_item,SelectPersonId));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Toast.makeText(AddAuthorizedSignatoryActivity.this,response, Toast.LENGTH_SHORT).show();
-            }
+             }
         }, error -> Toast.makeText(AddAuthorizedSignatoryActivity.this,error.toString(), Toast.LENGTH_SHORT).show()){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
@@ -184,7 +174,6 @@ public class AddAuthorizedSignatoryActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 String dAdress=spin_nameofperson.getItemAtPosition(spin_nameofperson.getSelectedItemPosition()).toString();
-                Toast.makeText(getApplicationContext(),dAdress,Toast.LENGTH_LONG).show();
 
             }
             @Override

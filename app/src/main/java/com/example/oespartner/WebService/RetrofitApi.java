@@ -1,6 +1,7 @@
 package com.example.oespartner.WebService;
 
 
+import com.android.volley.toolbox.StringRequest;
 import com.example.oespartner.Model.AddAuthorizedSignatoryModel;
 import com.example.oespartner.Model.AddMaterialGatePassModel;
 import com.example.oespartner.Model.AddPartnerPersonModel;
@@ -38,7 +39,7 @@ public interface RetrofitApi {
 
     @POST("login")
     @FormUrlEncoded
-    Call<LoginResult> login(@Field("role") String role, @Field("phone") String phone, @Field("pin") String pin);
+    Call<LoginResult> login( @Field("phone") String phone, @Field("pin") String pin);
 
     @POST("registration/add_info")
     Call<String> registration(@Body RequestBody body);
@@ -144,7 +145,14 @@ public interface RetrofitApi {
             @Field("h_declaration") String h_declaration,
             @Field("stakeholder_id") String stakeholder_id,
             @Field("p_valid_upto") String p_valid_upto,
-            @Field("id") String id);
+            @Field("driving_license_no") String driving_license_no,
+            @Field("license_valid_upto") String license_valid_upto ,
+            @Field("vehicle_no") String vehicle_no ,
+            @Field("helper_name") String helper_name ,
+            @Field("eye_test_date") String eye_test_date ,
+            @Field("training_certificate_no") String training_certificate_no,
+            @Field("training_valid_upto") String training_valid_upto,
+             @Field("id") String id);
 
 
     @FormUrlEncoded
@@ -163,21 +171,24 @@ public interface RetrofitApi {
     @POST("add_transport")
     Call<String> AddTransport(@Body RequestBody body);
 
-    @Multipart
+//    @Multipart
+//    @POST("add_person_master")
+//    Call<AddPartnerPersonModel> AddPartnerPerson(
+//            @Part("email") RequestBody session_email,
+//            @Part("role") RequestBody role,
+//            @Part("title") RequestBody title,
+//            @Part("person_name") RequestBody person_name,
+//            @Part("phone") RequestBody phone,
+//            @Part("email1") RequestBody email,
+//            @Part("photo\"; filename=\"photo.jpg") RequestBody photo,
+//            @Part("father_name") RequestBody father_name,
+//            @Part("dob") RequestBody dob,
+//            @Part("age") RequestBody age,
+//            @Part("gender") RequestBody gender,
+//            @Part("blood_group") RequestBody blood_group);
+
     @POST("add_person_master")
-    Call<AddPartnerPersonModel> AddPartnerPerson(
-            @Part("email") RequestBody session_email,
-            @Part("role") RequestBody role,
-            @Part("title") RequestBody title,
-            @Part("person_name") RequestBody person_name,
-            @Part("phone") RequestBody phone,
-            @Part("email1") RequestBody email,
-            @Part("photo\"; filename=\"photo.jpg") RequestBody photo,
-            @Part("father_name") RequestBody father_name,
-            @Part("dob") RequestBody dob,
-            @Part("age") RequestBody age,
-            @Part("gender") RequestBody gender,
-            @Part("blood_group") RequestBody blood_group);
+    Call<String> AddPartnerPerson(@Body RequestBody body);
 
     @FormUrlEncoded
     @POST("update_work_gatepass")
@@ -311,6 +322,9 @@ public interface RetrofitApi {
             @Field("designationnn") String designationnn,
             @Field("description") String description,
             @Field("valid_upto") String valid_upto);
+
+    @POST("update_person_master")
+    Call<String> UpdatePartenerPerson(@Body RequestBody body);
 
     @FormUrlEncoded
     @POST("get_material_gatepass")

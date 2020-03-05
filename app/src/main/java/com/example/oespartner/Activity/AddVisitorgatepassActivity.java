@@ -82,7 +82,6 @@ public class AddVisitorgatepassActivity extends AppCompatActivity {
     @BindView(R.id.spnPersonId) Spinner spnPersonId;
     @BindView(R.id.spnDesignation) Spinner spnDesignation;
     @BindView(R.id.spnPersonVisit) Spinner spnPersonVisit;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,8 +111,7 @@ public class AddVisitorgatepassActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String dAdress=spnBranch.getItemAtPosition(spnBranch.getSelectedItemPosition()).toString();
-                Toast.makeText(getApplicationContext(),dAdress,Toast.LENGTH_LONG).show();
-            }
+             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -139,14 +137,11 @@ public class AddVisitorgatepassActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String dAdress=spnClient.getItemAtPosition(spnClient.getSelectedItemPosition()).toString();
-                Toast.makeText(getApplicationContext(),dAdress,Toast.LENGTH_LONG).show();
-            }
+             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
-
         SelectPersonName.add("Select Person Name");
         StringRequest stringRequest2=new StringRequest(Request.Method.POST, Config.URL_PersonName, new com.android.volley.Response.Listener<String>() {
             @Override
@@ -166,8 +161,7 @@ public class AddVisitorgatepassActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Toast.makeText(AddVisitorgatepassActivity.this,response, Toast.LENGTH_SHORT).show();
-            }
+             }
         }, error -> Toast.makeText(AddVisitorgatepassActivity.this,error.toString(), Toast.LENGTH_SHORT).show()){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
@@ -184,15 +178,12 @@ public class AddVisitorgatepassActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 String dAdress=spnPersonName.getItemAtPosition(spnPersonName.getSelectedItemPosition()).toString();
-                Toast.makeText(getApplicationContext(),dAdress,Toast.LENGTH_LONG).show();
-                if (position==1){
+                 if (position==1){
                     spnPersonId.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                             String id=spnPersonId.getItemAtPosition(spnPersonId.getSelectedItemPosition()).toString();
-                            Toast.makeText(getApplicationContext(),id,Toast.LENGTH_LONG).show();
-                        }
-
+                         }
                         @Override
                         public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -204,7 +195,7 @@ public class AddVisitorgatepassActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
-
+        SelectPersonVisited.add("Select");
         StringRequest stringRequest3=new StringRequest(Config.URL_PersonVisit, response -> {
             try {
                 JSONArray jsonArray=new JSONArray(response);
@@ -224,14 +215,12 @@ public class AddVisitorgatepassActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String dAdress=spnPersonVisit.getItemAtPosition(spnPersonVisit.getSelectedItemPosition()).toString();
-                Toast.makeText(getApplicationContext(),dAdress,Toast.LENGTH_LONG).show();
-            }
+             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
-
         edtDate.setOnClickListener(v -> Constants.DateDialog(edtDate, AddVisitorgatepassActivity.this));
         edtTime.setOnClickListener(v -> {
             Calendar mcurrentTime = Calendar.getInstance();

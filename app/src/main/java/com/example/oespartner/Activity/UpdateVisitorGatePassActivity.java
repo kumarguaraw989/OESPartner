@@ -202,26 +202,23 @@ public class UpdateVisitorGatePassActivity extends AppCompatActivity {
             }
         });
         SelectPersonName.add("Select Anyone");
-        StringRequest stringRequest2=new StringRequest(Request.Method.POST, Config.URL_PersonName, new com.android.volley.Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONArray jsonArray=new JSONArray(response.toString());
-                    for (int j=0; j<jsonArray.length(); ++j){
-                        JSONObject jsonObject1=jsonArray.getJSONObject(j);
-                        String catogery=jsonObject1.getString("person_name");
-                        String catogery1=jsonObject1.getString("id");
-                        SelectPersonName.add(catogery);
-                        SelectPersonId.add(catogery1);
-                    }
-
-                    spnPersonName.setAdapter(new ArrayAdapter<>(UpdateVisitorGatePassActivity.this, android.R.layout.simple_spinner_dropdown_item, SelectPersonName));
-                    spnPersonId.setAdapter(new ArrayAdapter<>(UpdateVisitorGatePassActivity.this,android.R.layout.simple_spinner_dropdown_item,SelectPersonId));
-                } catch (JSONException e) {
-                    e.printStackTrace();
+        StringRequest stringRequest2=new StringRequest(Request.Method.POST, Config.URL_PersonName, response -> {
+            try {
+                JSONArray jsonArray=new JSONArray(response.toString());
+                for (int j=0; j<jsonArray.length(); ++j){
+                    JSONObject jsonObject1=jsonArray.getJSONObject(j);
+                    String catogery=jsonObject1.getString("person_name");
+                    String catogery1=jsonObject1.getString("id");
+                    SelectPersonName.add(catogery);
+                    SelectPersonId.add(catogery1);
                 }
-                Toast.makeText(UpdateVisitorGatePassActivity.this,response, Toast.LENGTH_SHORT).show();
+
+                spnPersonName.setAdapter(new ArrayAdapter<>(UpdateVisitorGatePassActivity.this, android.R.layout.simple_spinner_dropdown_item, SelectPersonName));
+                spnPersonId.setAdapter(new ArrayAdapter<>(UpdateVisitorGatePassActivity.this,android.R.layout.simple_spinner_dropdown_item,SelectPersonId));
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+            Toast.makeText(UpdateVisitorGatePassActivity.this,response, Toast.LENGTH_SHORT).show();
         }, error -> Toast.makeText(UpdateVisitorGatePassActivity.this,error.toString(), Toast.LENGTH_SHORT).show()){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
@@ -234,7 +231,6 @@ public class UpdateVisitorGatePassActivity extends AppCompatActivity {
         };
         RequestQueue queue2=Volley.newRequestQueue(this);
         queue2.add(stringRequest2);
-
     }
 
     public void postVisitorGatePass(String email,  String role,String client, String branch, String person_name, String firm_name, String designation,

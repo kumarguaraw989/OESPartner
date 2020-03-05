@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true">
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,13 +13,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorAccent">
-
             <ImageView
                 android:id="@+id/imgBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_arrow_back_black_24dp" />
-
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -28,151 +27,197 @@
                 android:textStyle="bold"
                 android:textColor="@color/whiteTextColor" />
         </androidx.appcompat.widget.Toolbar>
+    <LinearLayout
+        android:layout_margin="@dimen/_20sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Client Name *"
+            android:textColor="@color/ColorBlack" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_spinner"
+            android:layout_marginTop="@dimen/_5sdp">
+            <Spinner
+                android:elevation="@dimen/_5sdp"
+                android:id="@+id/spnClient"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:minHeight="@dimen/_35sdp"
+                 android:dropDownSelector="@color/colorAccent"
+                android:imeOptions="actionDone"
+                android:paddingRight="@dimen/_1sdp"
+                android:paddingLeft="@dimen/_1sdp"
+                android:spinnerMode="dropdown"
+                android:textColor="@color/ColorBlack"
+                android:theme="@style/ThemeOverlay.AppCompat.Light"
+                android:textColorHint="@color/ColorBlack"
+                android:textSize="@dimen/_12sdp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:layout_centerVertical="true"
+                app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Branch Name *"
+            android:textColor="@color/ColorBlack" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             android:background="@drawable/border_spinner"
+            android:layout_marginTop="@dimen/_5sdp">
+            <Spinner
+                android:id="@+id/spnBranch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:minHeight="@dimen/_35sdp"
+                android:dropDownSelector="@color/colorAccent"
+                android:imeOptions="actionDone"
+                android:paddingRight="@dimen/_1sdp"
+                android:paddingLeft="@dimen/_1sdp"
+                android:spinnerMode="dropdown"
+                android:textColor="@color/ColorBlack"
+                android:theme="@style/ThemeOverlay.AppCompat.Light"
+                android:textColorHint="@color/ColorBlack"
+                android:textSize="@dimen/_12sdp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:layout_centerVertical="true"
+                app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+        </RelativeLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name Of Person*"
+            android:textColor="@color/ColorBlack" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_spinner"
+            android:layout_marginTop="@dimen/_5sdp">
+            <Spinner
+                android:id="@+id/spnPersonName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:minHeight="@dimen/_35sdp"
+                android:dropDownSelector="@color/colorAccent"
+                android:imeOptions="actionDone"
+                android:paddingRight="@dimen/_1sdp"
+                android:paddingLeft="@dimen/_1sdp"
+                android:spinnerMode="dropdown"
+                android:textColor="@color/ColorBlack"
+                android:theme="@style/ThemeOverlay.AppCompat.Light"
+                android:textColorHint="@color/ColorBlack"
+                android:textSize="@dimen/_12sdp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:layout_centerVertical="true"
+                app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Designation *"
+            android:textColor="@color/ColorBlack" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_spinner"
+            android:layout_marginTop="@dimen/_5sdp">
+            <Spinner
+                android:id="@+id/spnDesignation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:minHeight="@dimen/_35sdp"
+                android:dropDownSelector="@color/colorAccent"
+                android:imeOptions="actionDone"
+                android:paddingRight="@dimen/_1sdp"
+                android:paddingLeft="@dimen/_1sdp"
+                android:spinnerMode="dropdown"
+                android:textColor="@color/ColorBlack"
+                android:theme="@style/ThemeOverlay.AppCompat.Light"
+                android:textColorHint="@color/ColorBlack"
+                android:textSize="@dimen/_12sdp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:layout_centerVertical="true"
+                app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+        </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_15sdp"
-            android:gravity="center"
-            android:orientation="horizontal">
+             android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/_5sdp"
-                android:paddingTop="@dimen/_10sdp">
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:weightSum="1">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Client Name*"
-                    android:textColor="@color/colorblack" />
-
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/spnClient"
-                    android:layout_width="150dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/border_spinner"
-                    android:paddingLeft="@dimen/_20sdp" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/_5sdp"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Branch Name*"
-                    android:textColor="@color/colorblack" />
-
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/spnBranch"
-                    android:layout_width="150dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/border_spinner"
-                    android:paddingLeft="@dimen/_20sdp" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/_5sdp"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Name of Person*"
-                    android:textColor="@color/colorblack" />
-
-
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/spnPersonName"
-                    android:layout_width="150dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/border_spinner"
-                    android:paddingLeft="@dimen/_20sdp" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/_5sdp"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Designation*"
-                    android:textColor="@color/colorblack" />
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/spnDesignation"
-                    android:layout_width="150dp"
-                    android:layout_height="50dp"
-                    android:entries="@array/designation"
-                    android:background="@drawable/border_spinner"
-                    android:paddingLeft="@dimen/_20sdp" />
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:gravity="center"
-            android:orientation="horizontal">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/_5sdp"
-                android:paddingTop="@dimen/_10sdp">
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_weight=".35"
                     android:text="Work Order Reference Number*"
-                    android:textColor="@color/colorblack" />
+                    android:textColor="@color/whiteTextColor" />
+
                 <EditText
                     android:id="@+id/edtReference"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Reference no."
-                    />
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_weight=".5"
+                    android:background="@drawable/roundededittext"
+                    android:inputType="text"
+                    android:padding="@dimen/_10sdp"/>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/_5sdp"
-                android:paddingTop="@dimen/_10sdp">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Work order valid upto*"
-                    android:textColor="@color/colorblack" />
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="Work order valid upto *"
+                    android:textColor="@color/colorblack"/>
                 <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:focusable="false"
                     android:padding="@dimen/_5sdp"
@@ -183,8 +228,79 @@
                     android:background="@drawable/edit_text_background"
                     android:drawableRight="@drawable/ic_calendar"
                     android:text="Select Date"/>
-            </LinearLayout>
         </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Partner id*"
+            android:textColor="@color/ColorBlack" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_spinner"
+            android:layout_marginTop="@dimen/_5sdp">
+
+            <Spinner
+                android:id="@+id/spnStackHolder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:dropDownSelector="@color/colorAccent"
+                android:imeOptions="actionDone"
+                android:minHeight="@dimen/_35sdp"
+                android:paddingLeft="@dimen/_1sdp"
+                android:paddingRight="@dimen/_1sdp"
+                android:spinnerMode="dropdown"
+                android:textColor="@color/ColorBlack"
+                android:textColorHint="@color/ColorBlack"
+                android:textSize="@dimen/_12sdp"
+                android:theme="@style/ThemeOverlay.AppCompat.Light" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:layout_centerVertical="true"
+                app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+        </RelativeLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Person id*"
+            android:textColor="@color/ColorBlack" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_spinner"
+            android:layout_marginTop="@dimen/_5sdp">
+            <Spinner
+                android:id="@+id/spnPersonId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:minHeight="@dimen/_35sdp"
+                android:dropDownSelector="@color/colorAccent"
+                android:imeOptions="actionDone"
+                android:paddingRight="@dimen/_1sdp"
+                android:paddingLeft="@dimen/_1sdp"
+                android:spinnerMode="dropdown"
+                android:textColor="@color/ColorBlack"
+                android:theme="@style/ThemeOverlay.AppCompat.Light"
+                android:textColorHint="@color/ColorBlack"
+                android:textSize="@dimen/_12sdp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:layout_centerVertical="true"
+                app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -192,7 +308,6 @@
             android:layout_marginTop="@dimen/_15sdp"
             android:gravity="center"
             android:orientation="horizontal">
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -200,73 +315,22 @@
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/_5sdp"
                 android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Partner id*"
-                    android:textColor="@color/colorblack" />
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/spnStackHolder"
-                    android:background="@drawable/border_spinner"
-                    android:layout_width="@dimen/_100sdp"
-                    android:layout_height="@dimen/_30sdp" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/_5sdp"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Person id*"
-                    android:textColor="@color/colorblack" />
-                <androidx.appcompat.widget.AppCompatSpinner
-                    android:id="@+id/spnPersonId"
-                    android:layout_width="@dimen/_100sdp"
-                    android:background="@drawable/border_spinner"
-                    android:layout_height="@dimen/_30sdp"/>
-            </LinearLayout>
-        </LinearLayout>
-
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/_5sdp"
-                android:paddingTop="@dimen/_10sdp">
-
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Work Order Description*"
                     android:textColor="@color/colorblack" />
-
                 <EditText
+                    android:background="@drawable/border_spinner"
                     android:id="@+id/edtDescription"
                     android:layout_width="match_parent"
+                    android:padding="@dimen/_30sdp"
                     android:layout_height="wrap_content"
+                    android:textColorHint="@color/colorDivider"
                     android:hint="Write Work Order Description"
                     />
             </LinearLayout>
-
         </LinearLayout>
-
-
         <TextView
             android:layout_marginTop="@dimen/_15sdp"
             android:layout_width="match_parent"
@@ -276,10 +340,10 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:text="Gate Pass Validity upto"/>
         <View
-            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:layout_width="match_parent"
             android:background="@color/colorDivider"
-            android:layout_height="1dp"/>
+            android:layout_height="@dimen/_1sdp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -337,6 +401,9 @@
                     android:text="Select Date"/>
             </LinearLayout>
         </LinearLayout>
+        <include
+            android:visibility="gone"
+            layout="@layout/layoutdriverworkgatepass"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -345,7 +412,6 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -353,23 +419,25 @@
                 android:orientation="vertical"
                 android:paddingLeft="@dimen/_5sdp"
                 android:paddingTop="@dimen/_10sdp">
-
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Work order valid upto*"
                     android:textColor="@color/colorblack" />
                 <EditText
+                    android:background="@drawable/border_spinner"
                     android:id="@+id/edtWorkValidDate"
-                    android:layout_width="@dimen/_100sdp"
+                    android:layout_width="match_parent"
+                    android:padding="@dimen/_10sdp"
                     android:layout_height="wrap_content"
-                    android:hint=""
-                    android:textAllCaps="false"
-                    android:backgroundTint="@color/colorAccent"/>
+                    android:textColorHint="@color/colorDivider"
+                    android:hint="Work Order Valid Upto*"
+                    />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="@dimen/_10sdp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -423,13 +491,12 @@
                 android:text="I accept Terms and Conditions"
                 android:textColorHighlight="@color/colorAccent"/>
         </LinearLayout>
-
         <Button
             android:id="@+id/btnRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_15sdp"
-            android:text="Register"
+            android:text="Submit"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textAllCaps="false"
             android:layout_gravity="center"
@@ -450,5 +517,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/id"
             android:visibility="gone"/>
+    </LinearLayout>
     </LinearLayout>
 </ScrollView>

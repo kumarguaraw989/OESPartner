@@ -21,6 +21,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.oespartner.Activity.UpdatePartnerPersonActivity;
 import com.example.oespartner.Activity.UpdateVisitorGatePassActivity;
 import com.example.oespartner.Model.PartnerPersonModel;
 import com.example.oespartner.Model.VisitorGatePassModel;
@@ -153,7 +154,7 @@ public class PartnerPersonAdapter extends RecyclerView.Adapter<PartnerPersonAdap
                     for(int i=0;i<jsonArray.length();i++){
                         JSONObject jsonObject=jsonArray.getJSONObject(i);
                         Log.e("response1",jsonObject.toString());
-                        Intent intent=new Intent(context, UpdateVisitorGatePassActivity.class);
+                        Intent intent=new Intent(context, UpdatePartnerPersonActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         intent.putExtra("response",jsonObject.toString());
                         context.startActivity(intent);

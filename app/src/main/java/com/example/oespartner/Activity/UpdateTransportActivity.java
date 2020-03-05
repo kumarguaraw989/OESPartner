@@ -5,7 +5,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +29,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.appizona.yehiahd.fastsave.FastSave;
 import com.example.oespartner.App_Helper.Constants;
+import com.example.oespartner.Model.AddChamberDetailsModel;
 import com.example.oespartner.Model.Data;
 import com.example.oespartner.R;
 import com.example.oespartner.WebService.ApiClient;
@@ -40,6 +43,7 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -53,8 +57,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class UpdateTransportActivity extends AppCompatActivity {
-    ArrayList<String> SelectVehicle=new ArrayList<>();
-ImageView imgBack;
+    ArrayList<String> SelectVehicle = new ArrayList<>();
+    ImageView imgBack;
     String id2;
     Button btnRegister;
     @BindView(R.id.spnVehical)
@@ -84,7 +88,7 @@ ImageView imgBack;
     @BindView(R.id.btnChooseFile3)
     Button btnChooseFile3;
     @BindView(R.id.tvchoosenFile3)
-   TextView tvchoosenFile3;
+    TextView tvchoosenFile3;
     @BindView(R.id.edtDateValidUpto4)
     EditText edtDateValidUpto4;
     @BindView(R.id.edtReferenceNo4)
@@ -106,7 +110,9 @@ ImageView imgBack;
     @BindView(R.id.edtReferenceNo6)
     EditText edtReferenceNo6;
     @BindView(R.id.btnAddChamberDetails)
-    ImageButton btnAddChamberDetails;
+    TextView btnAddChamberDetails;
+    @BindView(R.id.btnRemoveChamberDetails)
+    TextView btnRemoveChamberDetails;
     @BindView(R.id.edtNoOfChambers)
     EditText edtNoOfChambers;
     @BindView(R.id.edtCapacity)
@@ -129,7 +135,10 @@ ImageView imgBack;
     ProgressBar loading;
     MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
     ArrayList<String> SelectVichelName = new ArrayList<>();
-   String email,role;
+    String email, role;
+    List<AddChamberDetailsModel> myList;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -138,9 +147,16 @@ ImageView imgBack;
         btnRegister = findViewById(R.id.btnRegister);
         ButterKnife.bind(this);
         getSupportActionBar().hide();
+        final EditText edtNo = findViewById(R.id.No);
+        final EditText edtcapacity = findViewById
+                (R.id.edtcapacity);
+        final EditText edtDlLevel = findViewById
+                (R.id.edtdlLevel);
+        final EditText edPlLevel = findViewById
+                (R.id.edtplLevel);
         Data data_model = FastSave.getInstance().getObject("login_data", Data.class);
-        email=data_model.getEmail();
-        role=data_model.getRole();
+        email = data_model.getEmail();
+        role = data_model.getRole();
         imgBack.setOnClickListener(v -> onBackPressed());
         edtDateValidUpto.setOnClickListener(view -> Constants.DateDialog(edtDateValidUpto, UpdateTransportActivity.this));
         edtDateValidUpto2.setOnClickListener(view -> Constants.DateDialog(edtDateValidUpto2, UpdateTransportActivity.this));
@@ -151,8 +167,7 @@ ImageView imgBack;
         edtValidUptoPvValve.setOnClickListener(view -> Constants.DateDialog(edtValidUptoPvValve, UpdateTransportActivity.this));
         edtDateValidUptofire.setOnClickListener(view -> Constants.DateDialog(edtDateValidUptofire, UpdateTransportActivity.this));
         edtDateValidUptohealth.setOnClickListener(view -> Constants.DateDialog(edtDateValidUptohealth, UpdateTransportActivity.this));
-
-
+        final ViewGroup tes = (ViewGroup) findViewById(R.id.layout_addchambers);
 
 
         Intent intent = getIntent();
@@ -172,7 +187,7 @@ ImageView imgBack;
             edtDateValidUpto3.setText(jsonObject.get("calibration_valid_upto").toString());
             edtDateValidUpto4.setText(jsonObject.get("fitness_valid_upto").toString());
             edtDateValidUpto5.setText(jsonObject.get("insurance_valid_upto").toString());
-           //dtDateValidUpto6.setText(jsonObject.get("").toString());
+            //dtDateValidUpto6.setText(jsonObject.get("").toString());
 
             tv_tvFileChoosen.setText(jsonObject.get("vehicle_copy").toString());
             tvChoosenFile2.setText(jsonObject.get("explosive_copy").toString());
@@ -193,18 +208,70 @@ ImageView imgBack;
             edtDateValidUptohealth.setText(jsonObject.get("tank_health_valid").toString());
 
 
+            btnRemoveChamberDetails.setOnClickListener
+                    (v -> tes.removeViewAt(0));
+            btnAddChamberDetails.setOnClickListener(v -> {
+                AddChamberDetailsModel mylist1=new AddChamberDetailsModel();
+                final View extend = LayoutInflater.from(v.getContext()).inflate(R.layout.item_chamber_add, tes, false);
+                tes.addView(extend);
+                mylist1.setNo(edtNo.getText().toString());
+                mylist1.setCapacity(edtcapacity.getText().toString());
+                mylist1.setDlLenght(edtDlLevel.getText().toString());
+                System.out.println(edtNo.getText().toString());
+                System.out.println(edtcapacity.getText().toString());
+                System.out.println(edtDlLevel.getText().toString());
+                myList.add(mylist1);
+            });
+            edtNoOfChambers.setOnClickListener(v -> {
+                int totalval=0;
+                for (int i=0;i<myList.size();i++){
+                    AddChamberDetailsModel list=myList.get(i);
+                    String val=list.getNo();
+                    Log.e("val",val);
+                    Log.e("capacity",list.getCapacity());
+                    Log.e("dl",list.getDlLenght());
+                    totalval=Integer.valueOf(val)+totalval;
+                }
+                Log.e("totalval",String.valueOf(totalval));
+                edtNoOfChambers.setText(String.valueOf(totalval));
+            });
+            edtCapacity.setOnClickListener(v -> {
+                int totalval=0;
+                for (int i=0;i<myList.size();i++){
+                    AddChamberDetailsModel list=myList.get(i);
+                    String val=list.getCapacity();
+                    Log.e("val",val);
+                    Log.e("capacity",list.getCapacity());
+                    Log.e("dl",list.getDlLenght());
+                    totalval=Integer.valueOf(val)+totalval;
+                }
+                Log.e("totalvaldllevel",String.valueOf(totalval));
+                edtCapacity.setText(String.valueOf(totalval));
+            });
+            edtTotalDipRoadLength.setOnClickListener(v -> {
+                int totalval=0;
+                for (int i=0;i<myList.size();i++){
+                    AddChamberDetailsModel list=myList.get(i);
+                    String val=list.getDlLenght();
+                    Log.e("val",val);
+                    Log.e("capacity",list.getCapacity());
+                    Log.e("dl",list.getDlLenght());
+                    totalval=Integer.valueOf(val)+totalval;
+                }
+                Log.e("totalvaldllevel",String.valueOf(totalval));
+                edtTotalDipRoadLength.setText(String.valueOf(totalval));
+            });
 
-
-            spnVehical.setAdapter(new ArrayAdapter<>(UpdateTransportActivity.this,android.R.layout.simple_spinner_dropdown_item,SelectVehicle));
+            spnVehical.setAdapter(new ArrayAdapter<>(UpdateTransportActivity.this, android.R.layout.simple_spinner_dropdown_item, SelectVehicle));
             SelectVichelName.add(jsonObject.get("branch").toString());
             SelectVichelName.add("Select Anyone");
-            StringRequest stringRequest=new StringRequest(Request.Method.POST, Config.Spinner_VehicleApi, response -> {
-                Log.e("response-->" ,response);
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, Config.Spinner_VehicleApi, response -> {
+                Log.e("response-->", response);
                 try {
-                    JSONArray jsonArray=new JSONArray(response.toString());
-                    for (int j=0; j<jsonArray.length(); ++j){
-                        JSONObject jsonObject1=jsonArray.getJSONObject(j);
-                        String catogery=jsonObject1.getString("vehicle_no");
+                    JSONArray jsonArray = new JSONArray(response.toString());
+                    for (int j = 0; j < jsonArray.length(); ++j) {
+                        JSONObject jsonObject1 = jsonArray.getJSONObject(j);
+                        String catogery = jsonObject1.getString("vehicle_no");
                         SelectVichelName.add(catogery);
                     }
 
@@ -214,28 +281,27 @@ ImageView imgBack;
                 }
             }, error -> {
 
-            }){
+            }) {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String,String> params=new HashMap<String, String>();
-                    params.put("email",email);
-                    params.put("role",role);
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("email", email);
+                    params.put("role", role);
                     return params;
                 }
 
             };
-            RequestQueue queue2= Volley.newRequestQueue(this);
+            RequestQueue queue2 = Volley.newRequestQueue(this);
             queue2.add(stringRequest);
-            id2=jsonObject.get("id").toString();
+            id2 = jsonObject.get("id").toString();
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
 
-
         btnRegister.setOnClickListener(view -> {
-             builder.addFormDataPart("email", Objects.requireNonNull(email))
+            builder.addFormDataPart("email", Objects.requireNonNull(email))
                     .addFormDataPart("role", Objects.requireNonNull(role))
                     .addFormDataPart("vehicle_name", Objects.requireNonNull(spnVehical.getSelectedItem().toString()))
                     .addFormDataPart("vehicle_type", Objects.requireNonNull(edtVehicalType.getText().toString()))
@@ -326,7 +392,6 @@ ImageView imgBack;
     }
 
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -352,7 +417,7 @@ ImageView imgBack;
                 ByteArrayOutputStream bos = new ByteArrayOutputStream();
                 bmp.compress(Bitmap.CompressFormat.JPEG, 100, bos);
                 RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), bos.toByteArray());
-                MultipartBody.Part body = MultipartBody.Part.createFormData("explosive_copy[]",System.currentTimeMillis() + ".jpg", requestFile);
+                MultipartBody.Part body = MultipartBody.Part.createFormData("explosive_copy[]", System.currentTimeMillis() + ".jpg", requestFile);
                 builder.addPart(body);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -376,7 +441,7 @@ ImageView imgBack;
                 ByteArrayOutputStream bos = new ByteArrayOutputStream();
                 bmp.compress(Bitmap.CompressFormat.JPEG, 100, bos);
                 RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), bos.toByteArray());
-                MultipartBody.Part body = MultipartBody.Part.createFormData("fitness_copy[]",System.currentTimeMillis() + ".jpg", requestFile);
+                MultipartBody.Part body = MultipartBody.Part.createFormData("fitness_copy[]", System.currentTimeMillis() + ".jpg", requestFile);
                 builder.addPart(body);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -388,7 +453,7 @@ ImageView imgBack;
                 ByteArrayOutputStream bos = new ByteArrayOutputStream();
                 bmp.compress(Bitmap.CompressFormat.JPEG, 100, bos);
                 RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), bos.toByteArray());
-                MultipartBody.Part body = MultipartBody.Part.createFormData("insurance_copy[]",System.currentTimeMillis() + ".jpg", requestFile);
+                MultipartBody.Part body = MultipartBody.Part.createFormData("insurance_copy[]", System.currentTimeMillis() + ".jpg", requestFile);
                 builder.addPart(body);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -429,7 +494,7 @@ ImageView imgBack;
             }
     }
 
-    }
+}
 
 
 

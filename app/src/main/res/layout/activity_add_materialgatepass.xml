@@ -322,6 +322,90 @@
                 app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
         </RelativeLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@drawable/border_spinner" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/btnAddMaterial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_40sdp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:drawableTop="@drawable/ic_chamber_add"
+                android:text="Add"
+                android:textColor="#000"
+                android:textSize="@dimen/_8sdp" />
+
+            <TextView
+                android:id="@+id/btnRemoveMaterial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_40sdp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="#000"
+                android:drawableTop="@drawable/ic_cancel_black_24dp"
+                android:text="Remove"
+                android:textSize="@dimen/_8sdp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Material Name"
+                android:textColor="@color/ColorBlack" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:text="Specification"
+                android:textColor="@color/ColorBlack" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:text="Unit"
+                android:textColor="@color/ColorBlack" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Qty"
+                android:textColor="@color/ColorBlack"/>
+        </LinearLayout>
+
+        <include layout="@layout/item_chamber_add" />
+
+
+
+
+
+
+
+
         <ProgressBar
             android:id="@+id/progress_bar"
             android:layout_width="wrap_content"
@@ -336,6 +420,18 @@
             android:layout_marginRight="@dimen/_50sdp"
             android:layout_marginTop="@dimen/_13sdp"
             android:text="Add"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:textColor="@color/whiteTextColor"
+            android:backgroundTint="@color/colorPrimary"/>
+        <Button
+            android:id="@+id/btnupdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_50sdp"
+            android:layout_marginRight="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_13sdp"
+            android:text="Update"
             android:textStyle="bold"
             android:textAllCaps="false"
             android:textColor="@color/whiteTextColor"

@@ -71,7 +71,7 @@ public class AuthorizedSignatoryAdapter extends RecyclerView.Adapter<AuthorizedS
         holder.txtBranchId.setText(authorizedSignatoryModels.get(position).getBranch());
         holder.txtPersonName.setText(authorizedSignatoryModels.get(position).getPerson_name());
         holder.txtValidity.setText(authorizedSignatoryModels.get(position).getValid_upto());
-        holder.id.setText(authorizedSignatoryModels.get(position).getId());
+
         holder.btn_popup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,7 +88,7 @@ public class AuthorizedSignatoryAdapter extends RecyclerView.Adapter<AuthorizedS
                             break;
 
                         case R.id.edit:
-                            Log.e("id", authorizedSignatoryModels.get(position).getId());
+                            //Log.e("id", authorizedSignatoryModels.get(position).getId());
                             editAuthorizedSignatory(authorizedSignatoryModels.get(position).getId());
 
 
@@ -116,7 +116,7 @@ public class AuthorizedSignatoryAdapter extends RecyclerView.Adapter<AuthorizedS
 
     public class MyviewHolder extends RecyclerView.ViewHolder {
         TextView txtClientId,txtBranchId,txtPersonName,txtValidity;
-        EditText id;
+
         ImageView btn_popup;
         public MyviewHolder(View itemView) {
             super(itemView);
@@ -124,7 +124,7 @@ public class AuthorizedSignatoryAdapter extends RecyclerView.Adapter<AuthorizedS
             txtBranchId = (TextView) itemView.findViewById(R.id.txtBranchId);
             txtPersonName = (TextView) itemView.findViewById(R.id.txtPersonName);
             txtValidity = (TextView) itemView.findViewById(R.id.txtValidity);
-            id = (EditText) itemView.findViewById(R.id.id);
+
             btn_popup = itemView.findViewById(R.id.btn_popup);
         }
     }

@@ -1,37 +1,25 @@
 package com.example.oespartner.Activity;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatEditText;
-import androidx.core.app.ActivityCompat;
 
-import android.Manifest;
-import android.content.ContentValues;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.appizona.yehiahd.fastsave.FastSave;
 import com.example.oespartner.App_Helper.Constants;
-import com.example.oespartner.Model.AddPartnerPersonModel;
 import com.example.oespartner.Model.Data;
 import com.example.oespartner.R;
 import com.example.oespartner.WebService.ApiClient;
@@ -40,9 +28,8 @@ import com.shashank.sony.fancytoastlib.FancyToast;
 
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+
+import java.util.ArrayList;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -57,122 +44,394 @@ import retrofit2.Response;
 
 public class AddPartnerPersonActivity extends AppCompatActivity {
     ImageView imgBack;
-    Spinner nationality;
-    EditText AadharNo,PanNo,PoliceVerification;
-    LinearLayout layoutuploadAadharPan ,layoutindia,layoutothers;
-
-    @BindView(R.id.edtDateofBirth) EditText edtDateofBirth;
-    @BindView(R.id.edtDateVisaValidity) EditText edtDateVisaValidity;
-    @BindView(R.id.edtDateofissueP) EditText edtDateofissueP;
-
-    @BindView(R.id.person_name) EditText person_name;
-    @BindView(R.id.phone) EditText phone;
-    @BindView(R.id.email1) EditText email1;
-    @BindView(R.id.father_name) EditText father_name;
-    @BindView(R.id.age) EditText age;
-
-
-    @BindView(R.id.spntitle)Spinner spntitle;
-    @BindView(R.id.spnGender)Spinner spnGender;
-    @BindView(R.id.spnBloodGrp)Spinner spnBloodGrp;
-
+    EditText PoliceVerification;
+    LinearLayout layoutuploadAadharPan, layoutindia, layoutothers;
+    @BindView(R.id.edtDateofBirth)
+    EditText edtDateofBirth;
+    @BindView(R.id.edtDateVisaValidity)
+    EditText edtDateVisaValidity;
+    @BindView(R.id.edtState)
+    EditText edtState;
+    @BindView(R.id.person_name)
+    EditText person_name;
+    @BindView(R.id.phone)
+    EditText phone;
+    @BindView(R.id.email1)
+    EditText email1;
+    @BindView(R.id.father_name)
+    EditText father_name;
+    @BindView(R.id.age)
+    EditText age;
+    @BindView(R.id.edtAddress)
+    EditText edtAddress;
+    @BindView(R.id.edtIdentificationMark)
+    EditText edtIdentificationMark;
+    @BindView(R.id.edtPostOffice)
+    EditText edtPostOffice;
+    @BindView(R.id.edtVillage)
+    EditText edtVillage;
+    @BindView(R.id.spnWearGlass)
+    Spinner spnWearGlass;
+    @BindView(R.id.edtPoliceStation)
+    EditText edtPoliceStation;
+    @BindView(R.id.edtpPoliceStation)
+    EditText edtpPoliceStation;
+    @BindView(R.id.spntitle)
+    Spinner spntitle;
+    @BindView(R.id.spnGender)
+    Spinner spnGender;
+    @BindView(R.id.spnBloodGrp)
+    Spinner spnBloodGrp;
+    @BindView(R.id.edtDistrict)
+    EditText edtDistrict;
     @BindView(R.id.btnSubmit)
     Button btnSubmit;
-
+    @BindView(R.id.edtMobile)
+    EditText edtMobile;
     @BindView(R.id.photo)
     ImageView photo;
-
-
+    @BindView(R.id.edtPinNo)
+    EditText edtPinNo;
     @BindView(R.id.progress_bar)
     ProgressBar progress_bar;
-    ImageView imageView ;
+    @BindView(R.id.weatherStaying)
+    Spinner weatherStaying;
+    @BindView(R.id.pAddress)
+    EditText pAddress;
+    @BindView(R.id.edtpVillage)
+    EditText edtpVillage;
+    @BindView(R.id.edtEmployee_detail)
+    EditText edtEmployee_detail;
+    @BindView(R.id.edtpPostOffice)
+    EditText edtpPostOffice;
+    @BindView(R.id.edtPState)
+    EditText edtPState;
+    @BindView(R.id.edtPDistrict)
+    EditText edtPDistrict;
+    @BindView(R.id.edtPpinNo)
+    EditText edtPpinNo;
+    @BindView(R.id.edtPMobile)
+    EditText edtPMobile;
+    @BindView(R.id.edtDob)
+    EditText edtDob;
+    @BindView(R.id.edtpf)
+    EditText edtpf;
+    @BindView(R.id.edtParticularPlace)
+    EditText edtParticularPlace;
+    @BindView(R.id.edtschool_name_address)
+    EditText edtschool_name_address;
+    @BindView(R.id.edtQualification)
+    EditText edtQualification;
+    @BindView(R.id.edtDuration)
+    EditText edtDuration;
+    @BindView(R.id.edtReferenceName1)
+    EditText edtReferenceName1;
+    @BindView(R.id.edtreferencePhone1)
+    EditText edtreferencePhone1;
+    @BindView(R.id.edtreferenceName2)
+    EditText getEdtReferenceName2;
+    @BindView(R.id.edtReferencePhone2)
+    EditText edtReferencePhone2;
+    @BindView(R.id.edtBankName)
+    EditText edtBankName;
+    @BindView(R.id.edtAccountNo)
+    EditText edtAccountNo;
+    @BindView(R.id.edtIfscCode)
+    EditText edtIfscCode;
+    @BindView(R.id.spinArested)
+    Spinner spinArested;
+    @BindView(R.id.edtcaseDetails)
+    EditText edtcaseDetails;
+    @BindView(R.id.spinNationality)
+    Spinner spinNationality;
+    @BindView(R.id.edtAadharNo)
+    EditText edtAadharNo;
+    @BindView(R.id.edtPanNo2)
+    EditText edtPanNo2;
+    @BindView(R.id.btn_uploadAadhar)
+    Button upload_aadhar;
+    @BindView(R.id.btn_upload_pan)
+    Button btn_upload_pan;
+    @BindView(R.id.spnValidPoliceVerification)
+    Spinner spnValidPoliceVerification;
+    @BindView(R.id.edtReference_policeverification)
+    EditText edtReference_policeverification;
+    @BindView(R.id.edtDateofissue)
+    EditText edtDateofissue;
+    @BindView(R.id.upload_signature)
+    Button btn_uploadSignature;
+    @BindView(R.id.btn_uploadPoliceVerification)
+    Button btn_uploadPoliceVerification;
+    @BindView(R.id.upload_BiometricSignature)
+    Button upload_BiometricSignature;
+    @BindView(R.id.edtPassportNo_)
+    EditText edtPassportNo;
+    @BindView(R.id.edtVisaNo)
+    EditText edtVisaNo;
+    @BindView(R.id.edtExpertInField)
+    EditText edtExpertInField;
+    @BindView(R.id.chkDeclaration)
+    CheckBox chkDeclaration;
+    String DecAcepted;
+    @BindView(R.id.edtPowerLeftEye)
+    EditText edtPowerLeftEye;
+    @BindView(R.id.edtPowerRightEye)
+    EditText edtPowerRightEye;
+    @BindView(R.id.spnLeftEyeVision)
+    Spinner spnLeftEyeVision;
+    @BindView(R.id.spnRightEyeVision)
+    Spinner spnRightEyeVision;
+    @BindView(R.id.layout_partenerpersonglassyes)
+    LinearLayout layout_partenerpersonglassyes;
+    ArrayList<String> SelectVesionLeft=new ArrayList<>();
+    ArrayList<String> SelectVesionRight=new ArrayList<>();
     MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
-
-    private static final int SELECT_PHOTO = 200;
-    private static final int CAMERA_REQUEST = 1888;
-    final int MY_PERMISSIONS_REQUEST_WRITE = 103;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_partner_person);
         ButterKnife.bind(this);
         getSupportActionBar().hide();
-        nationality=findViewById(R.id.spinNationality);
-        AadharNo=findViewById(R.id.edtAadharNo);
-        PanNo=findViewById(R.id.edtPanNo);
-        PoliceVerification=findViewById(R.id.edtReference_policeverification);
-        layoutuploadAadharPan=findViewById(R.id.layout_AadharPanupload);
-        layoutindia=findViewById(R.id.layout_india);
-        layoutothers=findViewById(R.id.layoutothers);
+        PoliceVerification = findViewById(R.id.edtReference_policeverification);
+        layoutuploadAadharPan = findViewById(R.id.layout_AadharPanupload);
+        layoutindia = findViewById(R.id.layout_india);
+        layoutothers = findViewById(R.id.layoutothers);
+        if (chkDeclaration.isChecked()) {
+            DecAcepted = "Declared";
+        } else {
+            DecAcepted = "NotDeclared";
+        }
         setupSpinners();
-
+        Data data_model = FastSave.getInstance().getObject("login_data", Data.class);
+        String email = data_model.getEmail();
+        String role = data_model.getRole();
 
         edtDateofBirth.setOnClickListener(view -> Constants.DateDialog(edtDateofBirth, AddPartnerPersonActivity.this));
         edtDateVisaValidity.setOnClickListener(view -> Constants.DateDialog(edtDateVisaValidity, AddPartnerPersonActivity.this));
-        edtDateofissueP.setOnClickListener(view -> Constants.DateDialog(edtDateofissueP, AddPartnerPersonActivity.this));
+        edtDateofissue.setOnClickListener(v -> Constants.DateDialog(edtDateofissue, AddPartnerPersonActivity.this));
 
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_WRITE);
-        }
+        SelectVesionLeft.add("Select");
+        spnLeftEyeVision.setAdapter(new ArrayAdapter<>(AddPartnerPersonActivity.this,android.R.layout.simple_spinner_dropdown_item,SelectVesionLeft));
+        String[] leftVision = {"6/3","6/6","6/7.5","6/9.5","6/12","6/15","6/18"};
+        spnLeftEyeVision.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, leftVision));
 
-
-
-
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String title1 = spntitle.getSelectedItem().toString();
-                String person_name1 = person_name.getText().toString();
-                String phone1 = phone.getText().toString();
-                String email11 = email1.getText().toString();
-                String father_name1 = father_name.getText().toString();
-                String dob1 = edtDateofBirth.getText().toString();
-                String age1 = age.getText().toString();
-                String blood_group1 = spnBloodGrp.getSelectedItem().toString();
-                String gender1 = spnGender.getSelectedItem().toString();
-                if(title1.equals("")){
-                    FancyToast.makeText(AddPartnerPersonActivity.this,"Enter First Name",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
-                    return;
+        SelectVesionRight.add("Select");
+        spnRightEyeVision.setAdapter(new ArrayAdapter<>(AddPartnerPersonActivity.this,android.R.layout.simple_spinner_dropdown_item,SelectVesionRight));
+        String[] rightVision={"6/3","6/6","6/7.5","6/9.5","6/12","6/15","6/18"};
+        spnRightEyeVision.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,rightVision));
+        btnSubmit.setOnClickListener(v -> {
+            progress_bar.setVisibility(View.VISIBLE);
+            builder.addFormDataPart("session_email", Objects.requireNonNull(email))
+                    .addFormDataPart("email", Objects.requireNonNull(email1.getText().toString()))
+                    .addFormDataPart("role", Objects.requireNonNull(role))
+                    .addFormDataPart("title", Objects.requireNonNull(spntitle.getSelectedItem().toString()))
+                    .addFormDataPart("person_name", Objects.requireNonNull(person_name.getText().toString()))
+                    .addFormDataPart("phone", Objects.requireNonNull(phone.getText().toString()))
+                    .addFormDataPart("father_name", Objects.requireNonNull(father_name.getText().toString()))
+                    .addFormDataPart("dob", Objects.requireNonNull(edtDateofBirth.getText().toString()))
+                    .addFormDataPart("age", Objects.requireNonNull(age.getText().toString()))
+                    .addFormDataPart("gender", Objects.requireNonNull(spnGender.getSelectedItem().toString()))
+                    .addFormDataPart("blood_group", Objects.requireNonNull(spnBloodGrp.getSelectedItem().toString()))
+                    .addFormDataPart("wear_glass", Objects.requireNonNull(spnWearGlass.getSelectedItem().toString()))
+                    .addFormDataPart("left_eye_power",Objects.requireNonNull(edtPowerLeftEye.getText().toString()))
+                    .addFormDataPart("right_eye_power",Objects.requireNonNull(edtPowerRightEye.getText().toString()))
+                    .addFormDataPart("left_eye",Objects.requireNonNull(spnLeftEyeVision.getSelectedItem().toString()))
+                    .addFormDataPart("right_eye",Objects.requireNonNull(spnRightEyeVision.getSelectedItem().toString()))
+                    .addFormDataPart("mark", Objects.requireNonNull(edtIdentificationMark.getText().toString()))
+                    .addFormDataPart("address", Objects.requireNonNull(edtAddress.getText().toString()))
+                    .addFormDataPart("village", Objects.requireNonNull(edtVillage.getText().toString()))
+                    .addFormDataPart("post_office", Objects.requireNonNull(edtPostOffice.getText().toString()))
+                    .addFormDataPart("police_station", Objects.requireNonNull(edtPoliceStation.getText().toString()))
+                    .addFormDataPart("state", Objects.requireNonNull(edtState.getText().toString()))
+                    .addFormDataPart("visa_no", Objects.requireNonNull(edtVisaNo.getText().toString()))
+                    .addFormDataPart("district", Objects.requireNonNull(edtDistrict.getText().toString()))
+                    .addFormDataPart("pin_no", Objects.requireNonNull(edtPinNo.getText().toString()))
+                    .addFormDataPart("mobile", Objects.requireNonNull(edtMobile.getText().toString()))
+                    .addFormDataPart("whether_staying", Objects.requireNonNull(weatherStaying.getSelectedItem().toString()))
+                    .addFormDataPart("validity_of_visa", Objects.requireNonNull(edtDateVisaValidity.getText().toString()))
+                    .addFormDataPart("p_address", Objects.requireNonNull(pAddress.getText().toString()))
+                    .addFormDataPart("p_village", Objects.requireNonNull(edtpVillage.getText().toString()))
+                    .addFormDataPart("p_post_office", Objects.requireNonNull(edtpPostOffice.getText().toString()))
+                    .addFormDataPart("p_police_station", Objects.requireNonNull(edtpPoliceStation.getText().toString()))
+                    .addFormDataPart("passport_no", Objects.requireNonNull(edtPassportNo.getText().toString()))
+                    .addFormDataPart("p_state", Objects.requireNonNull(edtPState.getText().toString()))
+                    .addFormDataPart("p_district", Objects.requireNonNull(edtPDistrict.getText().toString()))
+                    .addFormDataPart("p_pin_no", Objects.requireNonNull(edtPpinNo.getText().toString()))
+                    .addFormDataPart("p_mobile", Objects.requireNonNull(edtPMobile.getText().toString()))
+                    .addFormDataPart("place_of_birth", Objects.requireNonNull(edtDob.getText().toString()))
+                    .addFormDataPart("particular_place", Objects.requireNonNull(edtParticularPlace.getText().toString()))
+                    .addFormDataPart("qualification", Objects.requireNonNull(edtQualification.getText().toString()))
+                    .addFormDataPart("school_name_address", Objects.requireNonNull(edtschool_name_address.getText().toString()))
+                    .addFormDataPart("employee_detail", Objects.requireNonNull(edtEmployee_detail.getText().toString()))
+                    .addFormDataPart("duration", Objects.requireNonNull(edtDuration.getText().toString()))
+                    .addFormDataPart("pf", Objects.requireNonNull(edtpf.getText().toString()))
+                    .addFormDataPart("expert_field", Objects.requireNonNull(edtExpertInField.getText().toString()))
+                    .addFormDataPart("reference_name1", Objects.requireNonNull(edtReferenceName1.getText().toString()))
+                    .addFormDataPart("reference_phone1", Objects.requireNonNull(edtreferencePhone1.getText().toString()))
+                    .addFormDataPart("reference_name2", Objects.requireNonNull(getEdtReferenceName2.getText().toString()))
+                    .addFormDataPart("reference_phone2", Objects.requireNonNull(edtReferencePhone2.getText().toString()))
+                    .addFormDataPart("bank_name", Objects.requireNonNull(edtBankName.getText().toString()))
+                    .addFormDataPart("account_no", Objects.requireNonNull(edtAccountNo.getText().toString()))
+                    .addFormDataPart("ifsci_code", Objects.requireNonNull(edtIfscCode.getText().toString()))
+                    .addFormDataPart("ever_arrested", Objects.requireNonNull(spinArested.getSelectedItem().toString()))
+                    .addFormDataPart("case_details", Objects.requireNonNull(edtcaseDetails.getText().toString()))
+                    .addFormDataPart("nationality", Objects.requireNonNull(spinNationality.getSelectedItem().toString()))
+                    .addFormDataPart("aadhar_no", Objects.requireNonNull(edtAadharNo.getText().toString()))
+                    .addFormDataPart("declaration_by_person", Objects.requireNonNull(DecAcepted))
+                    .addFormDataPart("pan", Objects.requireNonNull(edtPanNo2.getText().toString()))
+                    .addFormDataPart("valid_police", Objects.requireNonNull(spnValidPoliceVerification.getSelectedItem().toString()))
+                    .addFormDataPart("reference_no", Objects.requireNonNull(edtReference_policeverification.getText().toString()))
+                    .addFormDataPart("issuance_date", Objects.requireNonNull(edtDateofissue.getText().toString()));
+            RetrofitApi apiService = ApiClient.getRawClient().create(RetrofitApi.class);
+            apiService.AddPartnerPerson(builder.build()).enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(Call<String> call, Response<String> response) {
+                    progress_bar.setVisibility(View.GONE);
+                    FancyToast.makeText(getApplicationContext(), "Added Successfull", FancyToast.LENGTH_LONG, FancyToast.INFO, false).show();
                 }
 
+                @Override
+                public void onFailure(Call<String> call, Throwable t) {
 
-                else{
-                    progress_bar.setVisibility(View.VISIBLE);
-                    Data data_model= FastSave.getInstance().getObject("login_data",Data.class);
-
-                    postVisitorGatePass(data_model.getEmail(),  data_model.getRole(),  title1,  person_name1,  phone1, email11,  photo,
-                            father_name1,  dob1,  age1, blood_group1, gender1);
-                    onBackPressed();
                 }
-            }
-        });
-        photo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                selectImage();
-            }
-        });
-        setTitle();
-        //back();
+            });
 
+        });
+        photo.setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(Intent.createChooser(intent.putExtra(intent.EXTRA_ALLOW_MULTIPLE, true), "Select Picture"), 1);
+        });
+
+        upload_aadhar.setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(Intent.createChooser(intent.putExtra(intent.EXTRA_ALLOW_MULTIPLE, true), "Select Picture"), 2);
+
+        });
+
+        btn_upload_pan.setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(Intent.createChooser(intent.putExtra(intent.EXTRA_ALLOW_MULTIPLE, true), "Select Picture"), 3);
+        });
+        btn_uploadSignature.setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(Intent.createChooser(intent.putExtra(intent.EXTRA_ALLOW_MULTIPLE, true), "Select Picture"), 4);
+        });
+        btn_uploadPoliceVerification.setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(Intent.createChooser(intent.putExtra(intent.EXTRA_ALLOW_MULTIPLE, true), "Select Picture"), 5);
+
+        });
+        upload_BiometricSignature.setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(Intent.createChooser(intent.putExtra(intent.EXTRA_ALLOW_MULTIPLE, true), "Select Picture"), 6);
+
+        });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-    void setupSpinners(){
-        nationality.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        if (data == null) return;
+
+        if (requestCode == 1) {
+            try {
+                Bitmap bmp = BitmapFactory.decodeStream(getContentResolver().openInputStream(Objects.requireNonNull(Objects.requireNonNull(data).getData())));
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                bmp.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+                RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), bos.toByteArray());
+                MultipartBody.Part body = MultipartBody.Part.createFormData("photo[]", System.currentTimeMillis() + ".jpg", requestFile);
+                builder.addPart(body);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (requestCode == 2)
+            try {
+                Bitmap bmp = BitmapFactory.decodeStream(getContentResolver().openInputStream(Objects.requireNonNull(Objects.requireNonNull(data).getData())));
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                bmp.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+                RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), bos.toByteArray());
+                MultipartBody.Part body = MultipartBody.Part.createFormData("aadhar_copy[]", System.currentTimeMillis() + ".jpg", requestFile);
+                builder.addPart(body);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        if (requestCode == 3)
+            try {
+                Bitmap bmp = BitmapFactory.decodeStream(getContentResolver().openInputStream(Objects.requireNonNull(Objects.requireNonNull(data).getData())));
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                bmp.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+                RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), bos.toByteArray());
+                MultipartBody.Part body = MultipartBody.Part.createFormData("pan_copy[]", System.currentTimeMillis() + ".jpg", requestFile);
+                builder.addPart(body);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        if (requestCode == 4)
+            try {
+                Bitmap bmp = BitmapFactory.decodeStream(getContentResolver().openInputStream(Objects.requireNonNull(Objects.requireNonNull(data).getData())));
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                bmp.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+                RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), bos.toByteArray());
+                MultipartBody.Part body = MultipartBody.Part.createFormData("signature[]", System.currentTimeMillis() + ".jpg", requestFile);
+                builder.addPart(body);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        if (requestCode == 5)
+            try {
+                Bitmap bmp = BitmapFactory.decodeStream(getContentResolver().openInputStream(Objects.requireNonNull(Objects.requireNonNull(data).getData())));
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                bmp.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+                RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), bos.toByteArray());
+                MultipartBody.Part body = MultipartBody.Part.createFormData("police_varification_upload[]", System.currentTimeMillis() + ".jpg", requestFile);
+                builder.addPart(body);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        if (requestCode == 6)
+            try {
+                Bitmap bmp = BitmapFactory.decodeStream(getContentResolver().openInputStream(Objects.requireNonNull(Objects.requireNonNull(data).getData())));
+                ByteArrayOutputStream bos = new ByteArrayOutputStream();
+                bmp.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+                RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), bos.toByteArray());
+                MultipartBody.Part body = MultipartBody.Part.createFormData("biometric_signature[]", System.currentTimeMillis() + ".jpg", requestFile);
+                builder.addPart(body);
+            } catch(Exception e){
+                e.printStackTrace();
+            }
+    }
+
+    void setupSpinners() {
+        spinNationality.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                if (position == 0){
+                if (position == 0) {
                     layoutindia.setVisibility(View.INVISIBLE);
-                    layoutothers.setVisibility(View.INVISIBLE);
-                }
-                else if (position == 1){
+                    layoutothers.setVisibility(View.GONE);
+                } else if (position == 1) {
                     layoutindia.setVisibility(View.VISIBLE);
-                    layoutothers.setVisibility(View.INVISIBLE);
-                }else if (position == 2){
-                    layoutindia.setVisibility(View.INVISIBLE);
+                    layoutothers.setVisibility(View.GONE);
+                } else if (position == 2) {
+                    layoutindia.setVisibility(View.GONE);
                     layoutothers.setVisibility(View.VISIBLE);
                 }
             }
@@ -182,223 +441,25 @@ public class AddPartnerPersonActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
-
-    }
-
-    private void postVisitorGatePass(String email, String role, String title, String person_name, String phone, String email1, ImageView photo,
-                                     String father_name, String dob, String age, String gender, String blood_group) {
-        //LoginModel model = sh.getLoginModel(getString(R.string.login_model));
-        //String userid = model.getId();
-        Data data_model= FastSave.getInstance().getObject("login_data",Data.class);
-        data_model.getEmail();
-        data_model.getRole();
-        RequestBody imgFile = null;
-        File imagPh = new File(String.valueOf(photo));
-        //  Log.e("***********", "*************" + fileUrl);
-        if (imagPh != null && (photo!=null && !photo.equals("")))
-            imgFile = RequestBody.create(MediaType.parse("image/*"), imagPh);
-        RequestBody requestemail = RequestBody.create(MediaType.parse("text/plain"), email);
-        RequestBody requestrole = RequestBody.create(MediaType.parse("text/plain"), role);
-        RequestBody requesttitle = RequestBody.create(MediaType.parse("text/plain"), title);
-        RequestBody requestperson_name = RequestBody.create(MediaType.parse("text/plain"), person_name);
-        RequestBody requestphone = RequestBody.create(MediaType.parse("text/plain"), phone);
-        RequestBody requestemail1 = RequestBody.create(MediaType.parse("text/plain"), email1);
-        RequestBody requestfather_name= RequestBody.create(MediaType.parse("text/plain"), father_name);
-        RequestBody requestdob= RequestBody.create(MediaType.parse("text/plain"), dob);
-        RequestBody requestage= RequestBody.create(MediaType.parse("text/plain"), age);
-        RequestBody requesttgender= RequestBody.create(MediaType.parse("text/plain"), gender);
-        RequestBody requestblood_group= RequestBody.create(MediaType.parse("text/plain"), blood_group);
-
-        RetrofitApi apiService = ApiClient.getClient().create(RetrofitApi.class);
-        //Data data_model= FastSave.getInstance().getObject("login_data",Data.class);
-        Call<AddPartnerPersonModel> call = apiService.AddPartnerPerson(  requestemail,  requestrole,  requesttitle,  requestperson_name,
-                requestphone,requestemail1,imgFile,requestfather_name,requestdob,requestage,requesttgender,requestblood_group
-        );
-        call.enqueue(new Callback<AddPartnerPersonModel>() {
+        spnWearGlass.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onResponse(Call<AddPartnerPersonModel> call, Response<AddPartnerPersonModel> response) {
-                progress_bar.setVisibility(View.GONE);
-                FancyToast.makeText(AddPartnerPersonActivity.this,"Data submitted successfully",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
-                finish();
-
-
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) {
+                    layout_partenerpersonglassyes.setVisibility(View.GONE);
+                }
+                else if (position == 1){
+                    layout_partenerpersonglassyes.setVisibility(View.VISIBLE);
+                }else if (position == 2){
+                    layout_partenerpersonglassyes.setVisibility(View.GONE);
+                }
             }
 
             @Override
-            public void onFailure(Call<AddPartnerPersonModel> call, Throwable t) {
-                progress_bar.setVisibility(View.GONE);
+            public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
-    }
 
-
-    private void setTitle() {
-        TextView title = (TextView) findViewById(R.id.txttitle);
-        title.setText(getString(R.string.choose_files));
-    }
-
-
-    Uri fileUri;
-
-    private void selectImage() {
-        final CharSequence[] options = {getString(R.string.take_photo), getString(R.string.choose_from_gallery), getString(R.string.cancel)};
-        AlertDialog.Builder builder = new AlertDialog.Builder(AddPartnerPersonActivity.this);
-        builder.setTitle(getString(R.string.add_photo));
-
-        builder.setItems(options, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int item) {
-                if (options[item].equals(getString(R.string.take_photo))) {
-                    /*Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(cameraIntent, CAMERA_REQUEST);*/
-                    String fileName = System.currentTimeMillis() + ".jpg";
-                    ContentValues values = new ContentValues();
-                    values.put(MediaStore.Images.Media.TITLE, fileName);
-                    fileUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-                    startActivityForResult(intent, CAMERA_REQUEST);
-                } else if (options[item].equals(getString(R.string.choose_from_gallery))) {
-                    openGallery();
-                } else if (options[item].equals(getString(R.string.cancel))) {
-                    dialog.dismiss();
-                }
-            }
-        });
-        builder.show();
-    }
-
-    private void openGallery() {
-        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-        photoPickerIntent.setType("image/*");
-        startActivityForResult(photoPickerIntent, SELECT_PHOTO);
-    }
-
-    String imageImagePath = "";
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
-            try {
-                imageImagePath = getPath(fileUri);
-                File file=new File(imageImagePath);
-                resize(file,"");
-                Bitmap b = decodeUri(fileUri);
-                photo.setImageBitmap(b);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        } else if (requestCode == SELECT_PHOTO) {
-            if (resultCode == RESULT_OK) {
-                Uri selectedImage = data.getData();
-                if (selectedImage != null) {
-                    photo.setImageURI(selectedImage);
-                    imageImagePath = getPath(selectedImage);
-                    File file=new File(imageImagePath);
-                    resize(file,"");
-
-                }
-            }
-        }
-    }
-    private Bitmap decodeUri(Uri selectedImage) throws FileNotFoundException {
-        BitmapFactory.Options o = new BitmapFactory.Options();
-
-        o.inJustDecodeBounds = true;
-
-        BitmapFactory.decodeStream(getContentResolver()
-                .openInputStream(selectedImage), null, o);
-
-        final int REQUIRED_SIZE = 72;
-
-        int width_tmp = o.outWidth, height_tmp = o.outHeight;
-
-        int scale = 1;
-
-        while (true) {
-            if (width_tmp / 2 < REQUIRED_SIZE || height_tmp / 2 < REQUIRED_SIZE) {
-                break;
-            }
-            width_tmp /= 2;
-
-            height_tmp /= 2;
-
-            scale *= 2;
-        }
-
-        BitmapFactory.Options o2 = new BitmapFactory.Options();
-
-        o2.inSampleSize = scale;
-
-        Bitmap bitmap = BitmapFactory.decodeStream(getContentResolver()
-                .openInputStream(selectedImage), null, o2);
-
-        return bitmap;
-    }
-
-    @SuppressWarnings("deprecation")
-    private String getPath(Uri selectedImaeUri) {
-        String[] projection = {MediaStore.Images.Media.DATA};
-
-        Cursor cursor = managedQuery(selectedImaeUri, projection, null, null,
-                null);
-
-        if (cursor != null) {
-            cursor.moveToFirst();
-
-            int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-
-            return cursor.getString(columnIndex);
-        }
-
-        return selectedImaeUri.getPath();
-    }
-
-    BitmapFactory.Options bmOptions;
-    Bitmap bitmap;
-    public void resize(File file, String benchMark) {
-        try {
-            bmOptions = new BitmapFactory.Options();
-            bmOptions.inJustDecodeBounds = false;
-            bmOptions.inPreferredConfig = Bitmap.Config.RGB_565;
-            bmOptions.inDither = true;
-            bitmap = BitmapFactory.decodeFile(imageImagePath, bmOptions);
-            int w = bitmap.getWidth();
-            int h = bitmap.getHeight();
-            Log.e("width & Height", "width " + bitmap.getWidth());
-            if (bitmap.getWidth() > 1200) {
-                w = bitmap.getWidth() * 30 / 100;
-                h = bitmap.getHeight() * 30 / 100;
-            }
-
-            Log.e("width & Height", "width " + w + " height " + h);
-            bitmap = Bitmap.createScaledBitmap(bitmap, w, h, true);
-
-            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 90, bytes);
-            try {
-                Log.e("Compressing", "Compressing");
-                FileOutputStream fo = new FileOutputStream(file);
-                fo.write(bytes.toByteArray());
-                fo.close();
-            } catch (Exception e) {
-                Log.e("Exception", "Image Resizing" + e.getMessage());
-            }
-        } catch (
-                Exception e
-        ) {
-            Log.e("Exception", "Exception in resizing image");
-        }
     }
 }
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,18 +16,16 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:paddingBottom="40dp"
-            android:src="@drawable/oeslogo" />
+            android:layout_height="match_parent"
+             android:src="@mipmap/ic_logo_round"
+            android:contentDescription="TODO" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="OES Partner"
+            android:text="@string/app_name"
             android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+             android:textStyle="bold" />
 
         <ProgressBar
             android:id="@+id/splashProgress"

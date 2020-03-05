@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">OESPartner</string>
+    <string name="app_name">OES Partner</string>
 
     <string name="action_settings">Settings</string>
     <string name="drawer_open"></string>
@@ -82,6 +82,7 @@
     <string name="login_phone_hint">Phone No</string>
     <string name="login_pin_hint">Password</string>
     <string name="action_Logout">Logout</string>
+    <string name="login">Login</string>
 
     <string-array name="country_arrays">
         <item>Select Country</item>
@@ -110,9 +111,14 @@
 
     </string-array>
     <string-array name="bloodgroup_arrays">
-        <item>A</item>
+        <item>O-</item>
+        <item> O+</item>
+        <item> A-</item>
+        <item> A+</item>
+        <item>B-</item>
         <item>B+</item>
-        <item>AB</item>
+        <item>AB-</item>
+        <item>AB+</item>
 
     </string-array>
 
@@ -184,8 +190,7 @@
         <item>Supervisor</item>
         <item>Driver</item>
         <item>Helper</item>
-        <item>Contract</item>
-        <item>Labour</item>
+        <item>Contract Labour</item>
         <item>Electrician</item>
         <item>Security</item>
         <item>Other</item>

@@ -16,7 +16,7 @@
             android:id="@+id/edtAadharNo"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_width="match_parent"
-            android:inputType="number"
+            android:inputType="text"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:padding="@dimen/_10sdp"
@@ -24,10 +24,10 @@
             android:hint="Aadhar No."/>
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/edtPanNo"
+            android:id="@+id/edtPanNo2"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_width="match_parent"
-            android:inputType="number"
+            android:inputType="text"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:padding="@dimen/_10sdp"
@@ -75,6 +75,7 @@
                     android:textColor="@color/primaryTextColor"
                     android:text="Upload Pan No."/>
                 <Button
+                    android:id="@+id/btn_upload_pan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Choose Files"
@@ -117,7 +118,7 @@
                 android:padding="@dimen/_5sdp"
                 android:gravity="center|left"
                 android:textColor="@color/whiteTextColor"
-                android:id="@+id/edtDateofissueP"
+                android:id="@+id/edtDateofissue"
                 android:drawablePadding="10dp"
                 android:background="@drawable/edit_text_background"
                 android:drawableRight="@drawable/ic_calendar"
@@ -143,6 +144,7 @@
                     android:textColor="@color/primaryTextColor"
                     android:text="Upload copy of Police Verification"/>
                 <Button
+                    android:id="@+id/btn_uploadPoliceVerification"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Choose Files"
@@ -153,25 +155,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/primaryTextColor"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:text="Upload Signature"/>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Choose Files"
-            android:textColor="@color/whiteTextColor"
-            android:backgroundTint="@color/colorPrimary"
-            android:textAllCaps="false"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginRight="@dimen/_10sdp"
-            />
-
-
 
         <TextView
             android:layout_marginTop="@dimen/_10sdp"
@@ -188,6 +171,7 @@
             android:background="@drawable/border_spinner"
             android:layout_marginTop="@dimen/_15sdp">
             <Spinner
+                android:id="@+id/spnValidPoliceVerification"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_25sdp"
                 android:background="@null"

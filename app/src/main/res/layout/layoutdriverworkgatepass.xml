@@ -13,9 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_20sdp"
         android:gravity="center"
-        android:textColor="@color/colorDivider"
+        android:textColor="@color/redcolor"
         android:textStyle="normal"
-        android:text="License Verification" />
+        android:text="License Verification *" />
 
     <View
         android:layout_width="match_parent"
@@ -30,6 +30,7 @@
     <EditText
         android:layout_marginTop="@dimen/_10sdp"
         android:id="@+id/edtDlNo"
+        android:textColorHint="@color/colorDivider"
         android:layout_width="@dimen/_120sdp"
         android:layout_height="@dimen/_40sdp"
         android:gravity="center"
@@ -43,6 +44,7 @@
             android:layout_height="wrap_content"
             android:text="Licence Valid Upto."
             android:textStyle="italic"
+            android:textColor="@color/colorblack"
             android:layout_alignParentEnd="true"/>
         <EditText
             android:layout_below="@+id/tv1"
@@ -74,13 +76,14 @@
             <Spinner
                 android:id="@+id/spnVihicalNo"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_25sdp"
+                android:layout_height="wrap_content"
                 android:background="@null"
                 android:minHeight="@dimen/_35sdp"
                 android:dropDownSelector="@color/colorAccent"
                 android:imeOptions="actionDone"
                 android:paddingRight="@dimen/_1sdp"
                 android:paddingLeft="@dimen/_1sdp"
+                android:padding="@dimen/_20sdp"
                 android:spinnerMode="dropdown"
                 android:textColor="@color/ColorBlack"
                 android:theme="@style/ThemeOverlay.AppCompat.Light"
@@ -98,7 +101,8 @@
      <RelativeLayout
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_width="match_parent"
-        android:gravity="center"
+         android:padding="@dimen/_8sdp"
+        android:gravity="center_horizontal"
         android:layout_height="wrap_content">
         <EditText
             android:layout_marginTop="@dimen/_10sdp"
@@ -106,8 +110,8 @@
             android:layout_width="@dimen/_120sdp"
             android:layout_height="@dimen/_40sdp"
             android:gravity="center"
-            android:inputType="text"
-             android:background="@drawable/border_spinner"
+            android:textColorHint="@color/colorDivider"
+              android:background="@drawable/border_spinner"
             android:hint="Helper Name" />
 
         <TextView
@@ -138,15 +142,16 @@
     <RelativeLayout
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_width="match_parent"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:layout_height="wrap_content">
         <EditText
             android:layout_marginTop="@dimen/_10sdp"
             android:id="@+id/edtTrainingCertificateno"
-            android:layout_width="@dimen/_150sdp"
+            android:layout_width="wrap_content"
             android:layout_height="@dimen/_40sdp"
             android:gravity="center"
             android:inputType="text"
+            android:textColorHint="@color/colorDivider"
              android:background="@drawable/border_spinner"
             android:hint="Training Certificate no." />
 
@@ -163,7 +168,7 @@
             android:layout_below="@+id/tv3"
             android:layout_alignParentEnd="true"
             android:layout_width="@dimen/_100sdp"
-            android:background="@drawable/edittext_border"
+            android:background="@drawable/edit_text_background"
             android:layout_height="@dimen/_50sdp"
             android:text="Choose Files"
             android:textAllCaps="false"
@@ -172,7 +177,7 @@
 
     <TextView
         android:id="@+id/tv4"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Training Valid Upto"
         android:textStyle="italic"

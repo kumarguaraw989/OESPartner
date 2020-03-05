@@ -49,8 +49,7 @@ public class Constants {
             @SuppressLint("SetTextI18n")
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-//                editText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-                ;
+                editText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                 editText.setText(Constants.changeDateFormat((monthOfYear + 1) + "-" + dayOfMonth + "-" + year, "mm-dd-yyyy", "dd/mm/yyyy"));
                 dpDialog.dismiss();
 //                sendingEndDate = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;

@@ -146,6 +146,8 @@ public class AddTransportActivity extends AppCompatActivity {
                 (R.id.edtdlLevel);
         final EditText edPlLevel = findViewById
                 (R.id.edtplLevel);
+
+
         ButterKnife.bind(this);
         getSupportActionBar().hide();
         myList=new ArrayList<>();
@@ -217,10 +219,6 @@ public class AddTransportActivity extends AppCompatActivity {
             Log.e("totalvaldllevel",String.valueOf(totalval));
             edtTotalDipRoadLength.setText(String.valueOf(totalval));
         });
-
-
-
-
         SelectVichelName.add("Select Anyone");
         StringRequest stringRequest=new StringRequest(Request.Method.POST,Config.Spinner_VehicleApi, response -> {
            Log.e("response-->" ,response);
@@ -231,7 +229,6 @@ public class AddTransportActivity extends AppCompatActivity {
                     String catogery=jsonObject1.getString("vehicle_no");
                     SelectVichelName.add(catogery);
                 }
-
                 spnVehical.setAdapter(new ArrayAdapter<>(AddTransportActivity.this, android.R.layout.simple_spinner_dropdown_item, SelectVichelName));
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -26,6 +26,7 @@ import com.example.oespartner.Model.VisitorGatePassModel;
 import com.example.oespartner.Model.WorkGatePassModel;
 import com.example.oespartner.R;
 import com.example.oespartner.WebService.ApiClient;
+import com.example.oespartner.WebService.Config;
 import com.example.oespartner.WebService.RetrofitApi;
 
 import org.json.JSONArray;
@@ -59,11 +60,9 @@ public class MaterialGatePassAdapter extends RecyclerView.Adapter<MaterialGatePa
 
     @Override
     public MaterialGatePassAdapter.MyviewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_material_gatepass,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_material_gatepass, parent, false);
         return new MyviewHolder(view);
     }
-
-
 
 
     @Override
@@ -110,7 +109,7 @@ public class MaterialGatePassAdapter extends RecyclerView.Adapter<MaterialGatePa
 
     @Override
     public int getItemCount() {
-        if(materialGatePassModels != null){
+        if (materialGatePassModels != null) {
             return materialGatePassModels.size();
         }
         return 0;
@@ -118,14 +117,15 @@ public class MaterialGatePassAdapter extends RecyclerView.Adapter<MaterialGatePa
     }
 
     public class MyviewHolder extends RecyclerView.ViewHolder {
-        TextView txtId,txtDateTime,txtCategory,VehicleNo,txtType,txtReason,txtStatus;
+        TextView txtId, txtDateTime, txtCategory, VehicleNo, txtType, txtReason, txtStatus;
         ImageView btn_popup;
+
         public MyviewHolder(View itemView) {
             super(itemView);
-            txtId = (TextView) itemView.findViewById(R.id.txtId);
-            txtDateTime = (TextView) itemView.findViewById(R.id.txtDateTime);
-            txtCategory = (TextView) itemView.findViewById(R.id.txtCategory);
-            VehicleNo = (TextView) itemView.findViewById(R.id.VehicleNo);
+            txtId = itemView.findViewById(R.id.txtId);
+            txtDateTime = itemView.findViewById(R.id.txtDateTime);
+            txtCategory = itemView.findViewById(R.id.txtCategory);
+            VehicleNo = itemView.findViewById(R.id.VehicleNo);
             txtType = (TextView) itemView.findViewById(R.id.txtType);
             txtReason = (TextView) itemView.findViewById(R.id.txtReason);
             txtStatus = (TextView) itemView.findViewById(R.id.txtStatus);
@@ -135,75 +135,41 @@ public class MaterialGatePassAdapter extends RecyclerView.Adapter<MaterialGatePa
 
     public void deleteMaterialGatePass(String id) {
         RetrofitApi apiService = ApiClient.getClient().create(RetrofitApi.class);
-        Call<MaterialGatePassModel> call = apiService.DeleteMaterialGatePass( id);
+        Call<MaterialGatePassModel> call = apiService.DeleteMaterialGatePass(id);
         call.enqueue(new Callback<MaterialGatePassModel>() {
             @Override
             public void onResponse(Call<MaterialGatePassModel> call, Response<MaterialGatePassModel> response) {
             }
-
             @Override
             public void onFailure(Call<MaterialGatePassModel> call, Throwable t) {
             }
         });
     }
-
-
-//    public void editMaterialGatePass(String id) {
-//        RetrofitApi apiService = ApiClient.getClient().create(RetrofitApi.class);
-//        Call<AddMaterialGatePassModel> call = apiService.EditMaterialGatePass( id);
-//        call.enqueue(new Callback<AddMaterialGatePassModel>() {
-//            @Override
-//            public void onResponse(Call<AddMaterialGatePassModel> call, Response<AddMaterialGatePassModel> response) {
-//                //materialGatePassModels.ma(response.body().get());
-//                AddMaterialGatePassModel addMaterialGatePassModel = response.body();
-//                Log.d("Section", "posts loaded from API");
-//            }
-//
-//            @Override
-//            public void onFailure(Call<AddMaterialGatePassModel> call, Throwable t) {
-//            }
-//        });
-//    }
-
-
     public void editMaterialGatePass(String id) {
-        String editVisitorGatePass_url = "http://oestech.com/management/vehicle_management/index.php/home_api/get_material_gatepass";
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, editVisitorGatePass_url, new com.android.volley.Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.e("response", response);
-                try {
-                    JSONArray jsonArray = new JSONArray(response);
-                    for(int i=0;i<jsonArray.length();i++){
-                        JSONObject jsonObject=jsonArray.getJSONObject(i);
-                        Log.e("response1",jsonObject.toString());
-                        Intent intent=new Intent(context,UpdateMaterialgatepassActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.putExtra("response",jsonObject.toString());
-                        context.startActivity(intent);
-
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Config.editVisitorGatePass_url, response -> {
+            Log.e("response", response);
+            try {
+                JSONArray jsonArray = new JSONArray(response);
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    Log.e("response1", jsonObject.toString());
+                    Intent intent = new Intent(context, UpdateMaterialgatepassActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("response", jsonObject.toString());
+                    context.startActivity(intent);
                 }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        }, new com.android.volley.Response.ErrorListener() {
+        }, error -> Log.e("error",error.getMessage())) {
             @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
                 params.put("id", id);
                 return params;
             }
-
         };
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(stringRequest);
     }
-
-
 }
