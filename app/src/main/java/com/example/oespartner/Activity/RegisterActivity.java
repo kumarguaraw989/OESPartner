@@ -62,10 +62,11 @@ public class RegisterActivity extends AppCompatActivity {
     EditText edtVendoecodeSupplier, edtFirmnameSupplier, edtGstnoSupplier, edtPanSupplier, edtEsiregistrationSupplier, edtPfregistrationSupplier, edtLabourregistrationSupplier, edtFirmemailSupplier, edtOfficeaddressSupplier;
     //edit text ids only for transporter
     EditText edtDelaercodeTransporter, edtFirmnameTransporter, edtGstnoTransporter, edtPannoTransporter, edtEstregistrationTransporter, edtPfregistrationTransporter, edtLabourregistrationTransporter, edtFirmemailTransporter, edtOfficeAddressTransporter;
-    private Spinner SelectRole, SelectClient;
+    private Spinner SelectRole, SelectClient, SelectBranch;
     MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
     ArrayList<String> SelectUserType = new ArrayList<>();
     ArrayList<String> SelectClientType = new ArrayList<>();
+    ArrayList<String> SelectBranchType = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,10 +78,12 @@ public class RegisterActivity extends AppCompatActivity {
         txtRegister = findViewById(R.id.txtRegister);
         SelectRole = findViewById(R.id.spnSelectUser);
         SelectClient = findViewById(R.id.spin_client);
+        SelectBranch = findViewById(R.id.spin_branch);
         btnUploadPhoto = findViewById(R.id.btnPhoto);
         btnUploadSignature = findViewById(R.id.btnSignature);
-        SelectUserType.add("Select user");
+        SelectUserType.add("Select Category");
         SelectClientType.add("Select client");
+        SelectBranchType.add("Select Branch");
         //all edit text id is here
         name = findViewById(R.id.edtName);
         email = findViewById(R.id.edtEmail);
@@ -160,6 +163,21 @@ public class RegisterActivity extends AppCompatActivity {
         register_supplier = findViewById(R.id.layout_register_supplier);
         register_transporter = findViewById(R.id.layout_register_transporter);
         //API CALLING FOR SPINNER1
+        StringRequest stringRequest1 = new StringRequest(Config.URL_ClientBranch, response -> {
+            try {
+                JSONArray jsonArray = new JSONArray(response);
+                for (int i = 0; i < jsonArray.length(); ++i) {
+                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                    String catogery = jsonObject1.getString("branch");
+                    SelectBranchType.add(catogery);
+                }
+                SelectBranch.setAdapter(new ArrayAdapter<>(RegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, SelectBranchType));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }, error -> Log.e("error", error.toString()));
+        RequestQueue queue = Volley.newRequestQueue(this);
+        queue.add(stringRequest1);
         StringRequest stringRequest = new StringRequest(Config.URL_role, response -> {
             try {
                 JSONArray jsonArray = new JSONArray(response);
@@ -173,8 +191,8 @@ public class RegisterActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }, error -> Log.e("error", error.toString()));
-        RequestQueue queue = Volley.newRequestQueue(this);
-        queue.add(stringRequest);
+        RequestQueue queue1 = Volley.newRequestQueue(this);
+        queue1.add(stringRequest);
         SelectRole.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
@@ -188,40 +206,35 @@ public class RegisterActivity extends AppCompatActivity {
                     register_contractor.setVisibility(View.GONE);
                     register_consumer.setVisibility(View.GONE);
                     register_supplier.setVisibility(View.GONE);
-                }
-                else if (position == 2) {
+                } else if (position == 2) {
                     register_supplier.setVisibility(View.VISIBLE);
                     register_security.setVisibility(View.GONE);
                     register_Dealer.setVisibility(View.GONE);
                     register_contractor.setVisibility(View.GONE);
                     register_consumer.setVisibility(View.GONE);
                     register_transporter.setVisibility(View.GONE);
-                }
-                else  if (position == 3) {
+                } else if (position == 3) {
                     register_consumer.setVisibility(View.VISIBLE);
                     register_supplier.setVisibility(View.GONE);
                     register_security.setVisibility(View.GONE);
                     register_Dealer.setVisibility(View.GONE);
                     register_contractor.setVisibility(View.GONE);
                     register_transporter.setVisibility(View.GONE);
-                }
-                else  if (position == 4) {
+                } else if (position == 4) {
                     register_contractor.setVisibility(View.VISIBLE);
                     register_consumer.setVisibility(View.GONE);
                     register_supplier.setVisibility(View.GONE);
                     register_security.setVisibility(View.GONE);
                     register_Dealer.setVisibility(View.GONE);
                     register_transporter.setVisibility(View.GONE);
-                }
-                else if (position == 5) {
+                } else if (position == 5) {
                     register_Dealer.setVisibility(View.VISIBLE);
                     register_contractor.setVisibility(View.GONE);
                     register_consumer.setVisibility(View.GONE);
                     register_supplier.setVisibility(View.GONE);
                     register_security.setVisibility(View.GONE);
                     register_transporter.setVisibility(View.GONE);
-                }
-                else if (position == 6) {
+                } else if (position == 6) {
                     register_security.setVisibility(View.VISIBLE);
                     register_contractor.setVisibility(View.GONE);
                     register_consumer.setVisibility(View.GONE);
@@ -244,7 +257,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
         //API CALLING FOR SPINNER2
-        StringRequest stringRequest1 = new StringRequest(Config.URL_CLient, response -> {
+        StringRequest stringRequest2 = new StringRequest(Config.URL_CLient, response -> {
             try {
                 JSONArray jsonArray = new JSONArray(response);
                 for (int i = 0; i < jsonArray.length(); ++i) {
@@ -256,9 +269,9 @@ public class RegisterActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }, error -> Log.e("Gronzo", error.toString()));
-        RequestQueue queue1 = Volley.newRequestQueue(this);
-        queue1.add(stringRequest1);
+        }, error -> Log.e("error", error.toString()));
+        RequestQueue queue2 = Volley.newRequestQueue(this);
+        queue2.add(stringRequest2);
         SelectClient.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -302,7 +315,7 @@ public class RegisterActivity extends AppCompatActivity {
             } else {
                 loading.setVisibility(View.VISIBLE);
                 btnRegister.setVisibility(View.GONE);
-                builder.addFormDataPart("otp_code",Objects.requireNonNull("1234"))
+                builder.addFormDataPart("otp_code", Objects.requireNonNull("1234"))
                         .addFormDataPart("role", Objects.requireNonNull(SelectRole.getSelectedItem().toString()))
                         .addFormDataPart("client", Objects.requireNonNull(SelectClient.getSelectedItem().toString()))
                         .addFormDataPart("name", Objects.requireNonNull(name.getText()).toString())
@@ -370,7 +383,7 @@ public class RegisterActivity extends AppCompatActivity {
                 apiService.registration(builder.build()).enqueue(new Callback<String>() {
                     @Override
                     public void onResponse(Call<String> call, Response<String> response) {
-                        Log.e("response-->",response.body());
+                        Log.e("response-->", response.body());
                         loading.setVisibility(View.GONE);
                         Toast.makeText(getApplicationContext(), "Registration Successfully", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(RegisterActivity.this, OtpActivity.class));

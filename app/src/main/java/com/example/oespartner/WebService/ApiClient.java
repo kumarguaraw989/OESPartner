@@ -8,7 +8,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class ApiClient {
 
-    public static final String BASE_URL ="http://oestech.com/management/vehicle_management/index.php/home_api/";
+    public static final String BASE_URL ="http://oestech.com/oes/vehicle_management/index.php/home_api/";
     private static Retrofit retrofit;
 
     static HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();

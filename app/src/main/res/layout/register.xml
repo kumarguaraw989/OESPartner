@@ -30,8 +30,9 @@
                 <Spinner
                     android:id="@+id/spnSelectUser"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_25sdp"
+                    android:layout_height="wrap_content"
                     android:background="@null"
+
                     android:minHeight="@dimen/_35sdp"
                     android:dropDownSelector="@color/colorAccent"
                     android:imeOptions="actionDone"
@@ -63,7 +64,7 @@
                 <Spinner
                     android:id="@+id/spin_client"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_25sdp"
+                    android:layout_height="wrap_content"
                     android:background="@null"
                     android:minHeight="@dimen/_35sdp"
                     android:dropDownSelector="@color/colorAccent"
@@ -85,6 +86,39 @@
                     android:layout_centerVertical="true"
                     app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
             </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_spinner"
+                android:layout_marginTop="@dimen/_15sdp">
+
+                <Spinner
+                    android:id="@+id/spin_branch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:minHeight="@dimen/_35sdp"
+                    android:dropDownSelector="@color/colorAccent"
+                    android:imeOptions="actionDone"
+                    android:paddingRight="@dimen/_1sdp"
+                    android:paddingLeft="@dimen/_1sdp"
+                    android:spinnerMode="dropdown"
+                    android:textColor="@color/ColorBlack"
+                    android:theme="@style/ThemeOverlay.AppCompat.Light"
+                    android:textColorHint="@color/ColorBlack"
+                    android:textSize="@dimen/_12sdp"
+                    />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/_2sdp"
+                    android:layout_marginEnd="@dimen/_2sdp"
+                    android:layout_centerVertical="true"
+                    app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+            </RelativeLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/parent"
                 android:layout_marginTop="@dimen/signup_text_margin_top">
@@ -93,7 +127,7 @@
                     style="@style/modifiedEditText"
                     android:inputType="text"
                     android:maxLines="1"
-                    android:hint="Name*"/>
+                    android:hint="Name *"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -116,6 +150,7 @@
                     style="@style/modifiedEditText"
                     android:inputType="phone"
                     android:maxLines="1"
+                    android:visibility="gone"
                     android:hint="@string/login_phone_hint"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -123,6 +158,7 @@
                 style="@style/parent"
                 android:layout_marginTop="@dimen/signup_text_margin_top">
                 <EditText
+                    android:visibility="gone"
                     android:id="@+id/edtPingenerate"
                     style="@style/modifiedEditText"
                     android:hint="@string/login_password_hint"
