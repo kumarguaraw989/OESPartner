@@ -1,10 +1,8 @@
-package com.example.oespartner.Model;
+package com.example.oespartner.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
 public class Data {
-
     @SerializedName("admin_id")
     @Expose
     private String adminId;
@@ -23,6 +21,9 @@ public class Data {
     @SerializedName("firm_name")
     @Expose
     private String firmName;
+    @SerializedName("firm_email")
+    @Expose
+    private Object firmEmail;
     @SerializedName("name")
     @Expose
     private String name;
@@ -32,6 +33,15 @@ public class Data {
     @SerializedName("phone")
     @Expose
     private String phone;
+    @SerializedName("partner_pic")
+    @Expose
+    private String partnerPic;
+    @SerializedName("partner_id")
+    @Expose
+    private String partnerId;
+    @SerializedName("vendor_code")
+    @Expose
+    private String vendorCode;
     @SerializedName("message")
     @Expose
     private String message;
@@ -87,6 +97,14 @@ public class Data {
         this.firmName = firmName;
     }
 
+    public Object getFirmEmail() {
+        return firmEmail;
+    }
+
+    public void setFirmEmail(Object firmEmail) {
+        this.firmEmail = firmEmail;
+    }
+
     public String getName() {
         return name;
     }
@@ -111,6 +129,30 @@ public class Data {
         this.phone = phone;
     }
 
+    public String getPartnerPic() {
+        return partnerPic;
+    }
+
+    public void setPartnerPic(String partnerPic) {
+        this.partnerPic = partnerPic;
+    }
+
+    public String getPartnerId() {
+        return partnerId;
+    }
+
+    public void setPartnerId(String partnerId) {
+        this.partnerId = partnerId;
+    }
+
+    public String getVendorCode() {
+        return vendorCode;
+    }
+
+    public void setVendorCode(String vendorCode) {
+        this.vendorCode = vendorCode;
+    }
+
     public String getMessage() {
         return message;
     }
@@ -128,3 +170,5 @@ public class Data {
     }
 
 }
+
+

@@ -1,9 +1,8 @@
-package com.example.oespartner.Model;
+package com.example.oespartner.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class VehicleNoModel {
-
+public class AddVehicleNo {
     @SerializedName("id")
     private String id;
 
@@ -13,22 +12,10 @@ public class VehicleNoModel {
     @SerializedName("vehicle_type")
     private String vehicle_type;
 
-    @SerializedName("status")
-    private String status;
-
-    public VehicleNoModel(String id, String vehicle_no, String vehicle_type,String status) {
+    public AddVehicleNo(String id, String vehicle_no, String vehicle_type) {
         this.id = id;
         this.vehicle_no = vehicle_no;
         this.vehicle_type = vehicle_type;
-        this.status=status;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getId() {

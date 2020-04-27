@@ -1,4 +1,4 @@
-package com.example.oespartner.Model;
+package com.example.oespartner.model;
 
 public class AddPartnerPersonModel {
 

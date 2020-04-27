@@ -11,6 +11,7 @@
     <color name="colorPrimaryDarkSplash">#1E9FF2</color>
     <color name="colorAccentSplash">#fd1b38</color>
     <color name="colorWhite">#ffffff</color>
+    <color name="colorgreen">#6ED117</color>
 
     <!--colors for modern ui-->
     <color name="whiteTextColor">#fff</color>
@@ -20,6 +21,7 @@
     <color name="ColorBlack">#000000</color>
     <color name="colorblack">#000000</color>
     <color name="colorDivider">#A9A9A9</color>
+    <color name="colorGray">#808080</color>
 
 
     <!--colros for card-->

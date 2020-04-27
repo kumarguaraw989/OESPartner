@@ -1,4 +1,4 @@
-package com.example.oespartner.Model;
+package com.example.oespartner.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 public class PersonNameModel {

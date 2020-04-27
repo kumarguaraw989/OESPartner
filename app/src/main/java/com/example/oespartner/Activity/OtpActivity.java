@@ -1,6 +1,5 @@
 package com.example.oespartner.Activity;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,21 +7,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.oespartner.MainActivity;
-import com.example.oespartner.Model.OtpModel;
 import com.example.oespartner.R;
-import com.example.oespartner.WebService.ApiClient;
 import com.example.oespartner.WebService.Config;
-import com.example.oespartner.WebService.RetrofitApi;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 import org.json.JSONException;
@@ -31,11 +24,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Random;
 
-import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
 public class OtpActivity extends AppCompatActivity {
     EditText edtphone, edtverify_otp;
     Button BtngetOtp, BtnverifyOtp;

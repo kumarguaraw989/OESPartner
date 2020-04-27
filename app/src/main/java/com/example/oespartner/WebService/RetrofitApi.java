@@ -1,25 +1,25 @@
 package com.example.oespartner.WebService;
 
 
-import com.android.volley.toolbox.StringRequest;
-import com.example.oespartner.Model.AddAuthorizedSignatoryModel;
-import com.example.oespartner.Model.AddMaterialGatePassModel;
-import com.example.oespartner.Model.AddPartnerPersonModel;
-import com.example.oespartner.Model.AddVehicleNo;
-import com.example.oespartner.Model.AddVisitorGatePassModel;
-import com.example.oespartner.Model.AddWorkGatePassModel;
-import com.example.oespartner.Model.AuthorizedSignatoryModel;
-import com.example.oespartner.Model.LoginResult;
-import com.example.oespartner.Model.MaterialGatePassModel;
-import com.example.oespartner.Model.OtpModel;
-import com.example.oespartner.Model.PartnerPersonModel;
-import com.example.oespartner.Model.TransportModel;
-import com.example.oespartner.Model.VehicleNoModel;
-import com.example.oespartner.Model.VisitorGatePassModel;
-import com.example.oespartner.Model.WorkGatePassModel;
-import com.google.gson.JsonObject;
+import com.example.oespartner.model.AddAuthorizedSignatoryModel;
+import com.example.oespartner.model.AddMaterialGatePassModel;
+import com.example.oespartner.model.AddVehicleNo;
+import com.example.oespartner.model.AddVisitorGatePassModel;
+import com.example.oespartner.model.AddWorkGatePassModel;
+import com.example.oespartner.model.AuthorizedSignatoryModel;
+import com.example.oespartner.model.BranchModel;
+import com.example.oespartner.model.ClientModel;
+import com.example.oespartner.model.LoginResult;
+import com.example.oespartner.model.MaterialGatePassModel;
+import com.example.oespartner.model.OtpModel;
+import com.example.oespartner.model.PartnerPersonModel;
+import com.example.oespartner.model.PersonModel;
+import com.example.oespartner.model.TransportModel;
+import com.example.oespartner.model.VehicleNoModel;
+import com.example.oespartner.model.VisitorGatePassModel;
+import com.example.oespartner.model.WorkGatePassModel;
 
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.RequestBody;
@@ -27,9 +27,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.Part;
 
 public interface RetrofitApi {
 
@@ -39,11 +37,11 @@ public interface RetrofitApi {
 
     @POST("login")
     @FormUrlEncoded
-    Call<LoginResult> login( @Field("phone") String phone, @Field("pin") String pin);
+    Call<LoginResult> login(@Field("phone") String phone, @Field("pin") String pin);
+
 
     @POST("registration/add_info")
     Call<String> registration(@Body RequestBody body);
-
 
     @FormUrlEncoded
     @POST("visitor_gatepass")
@@ -103,7 +101,11 @@ public interface RetrofitApi {
             @Field("reason") String reason,
             @Field("belong_to") String belong_to,
             @Field("returnable_nonreturnable") String returnable_nonreturnable,
-            @Field("date_time") String date_time);
+            @Field("date_time") String date_time,
+            @Field("material_name") ArrayList<String> material_name,
+            @Field("specification") ArrayList<String> specification,
+            @Field("unit") ArrayList<String> unit,
+            @Field("qty") ArrayList<String> qty);
 
 
     @FormUrlEncoded
@@ -125,35 +127,38 @@ public interface RetrofitApi {
             @Field("person_id") String personId);
 
 
-    @FormUrlEncoded
-    @POST("add_work_gatepass")
-    Call<AddWorkGatePassModel> AddWorkGatePass(
-            @Field("email") String email,
-            @Field("role") String role,
-            @Field("client") String client,
-            @Field("branch") String branch,
-            @Field("person_name") String person_name,
-            @Field("person_id") String person_id,
-            @Field("designation") String designation,
-            @Field("work_reference_no") String work_reference_no,
-            @Field("work_description") String work_description,
-            @Field("work_valid_upto") String work_valid_upto,
-            @Field("police_verify") String police_verify,
-            @Field("visa_validity") String visa_validity,
-            @Field("declaration") String declaration,
-            @Field("j_declaration") String j_declaration,
-            @Field("h_declaration") String h_declaration,
-            @Field("stakeholder_id") String stakeholder_id,
-            @Field("p_valid_upto") String p_valid_upto,
-            @Field("driving_license_no") String driving_license_no,
-            @Field("license_valid_upto") String license_valid_upto ,
-            @Field("vehicle_no") String vehicle_no ,
-            @Field("helper_name") String helper_name ,
-            @Field("eye_test_date") String eye_test_date ,
-            @Field("training_certificate_no") String training_certificate_no,
-            @Field("training_valid_upto") String training_valid_upto,
-             @Field("id") String id);
+    /*    @FormUrlEncoded
+        @POST("add_work_gatepass")
+        Call<AddWorkGatePassModel> AddWorkGatePass(
+                @Field("email") String email,
+                @Field("role") String role,
+                @Field("client") String client,
+                @Field("branch") String branch,
+                @Field("person_name") String person_name,
+                @Field("person_id") String person_id,
+                @Field("designation") String designation,
+                @Field("work_reference_no") String work_reference_no,
+                @Field("work_description") String work_description,
+                @Field("work_valid_upto") String work_valid_upto,
+                @Field("police_verify") String police_verify,
+                @Field("declaration") String declaration,
+                @Field("j_declaration") String j_declaration,
+                @Field("h_declaration") String h_declaration,
+                @Field("stakeholder_id") String stakeholder_id,
+                @Field("p_valid_upto") String p_valid_upto,
+                @Field("driving_license_no") String driving_license_no,
+                @Field("license_valid_upto") String license_valid_upto ,
+                @Field("vehicle_no") String vehicle_no ,
+                @Field("helper_name") String helper_name ,
+                @Field("eye_test_date") String eye_test_date ,
+                @Field("training_certificate_no") String training_certificate_no,
+                @Field("training_valid_upto") String training_valid_upto,
+                @Field("security_reference_no") String security_reference_no,
+                @Field("id") String id);*/
 
+
+    @POST("add_work_gatepass")
+    Call<String> AddWorkGatePass(@Body RequestBody body);
 
     @FormUrlEncoded
     @POST("add_authorised_signatory")
@@ -201,12 +206,10 @@ public interface RetrofitApi {
             @Field(" person_name") String person_name,
             @Field("designation") String designation,
             @Field("license_valid_upto") String license_valid_upto,
-            @Field("stakeholder_id") String stakeholder_id,
             @Field("person_id") String person_id,
             @Field("work_reference_no") String work_reference_no,
             @Field("work_description") String work_description,
             @Field("work_valid_upto") String work_valid_upto,
-            @Field("visa_validity") String visa_validity,
             @Field("declaration") String declaration,
             @Field("j_declaration") String j_declaration,
             @Field("h_declaration") String h_declaration,
@@ -342,5 +345,20 @@ public interface RetrofitApi {
     Call<AddVehicleNo> EditVehicleNo(
             @Field("id") String id);
 
+    @FormUrlEncoded
+    @POST("get_branch")
+    Call<ArrayList<BranchModel>> getBranch(
+            @Field("client") String client
+    );
+
+    @POST("get_company")
+    Call<ArrayList<ClientModel>> getCompany();
+
+    @FormUrlEncoded
+    @POST("partner_person")
+    Call<ArrayList<PersonModel>> getPersonId(
+            @Field("email") String email,
+            @Field("role") String role
+    );
 
 }

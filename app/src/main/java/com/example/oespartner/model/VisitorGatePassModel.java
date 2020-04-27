@@ -1,8 +1,11 @@
-package com.example.oespartner.Model;
+package com.example.oespartner.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class WorkGatePassModel {
+public class VisitorGatePassModel {
+
+    @SerializedName("person_id")
+    private String Person_id;
 
     @SerializedName("client")
     private String client;
@@ -10,17 +13,11 @@ public class WorkGatePassModel {
     @SerializedName("branch")
     private String branch;
 
-    @SerializedName("stakeholder_id")
-    private String stakeholder_id;
-
-    @SerializedName("person_id")
-    private String person_id;
-
     @SerializedName("person_name")
     private String person_name;
 
-    @SerializedName("p_valid_upto")
-    private String p_valid_upto;
+    @SerializedName("visit_date")
+    private String visit_date;
 
     @SerializedName("status")
     private String status;
@@ -28,15 +25,15 @@ public class WorkGatePassModel {
     @SerializedName("id")
     private String id;
 
-    public WorkGatePassModel(String client, String branch, String stakeholder_id, String person_id, String person_name, String p_valid_upto, String status, String id) {
+    public VisitorGatePassModel(String person_id, String client, String branch, String person_name, String visit_date,String status,String id) {
+        Person_id = person_id;
         this.client = client;
         this.branch = branch;
-        this.stakeholder_id = stakeholder_id;
-        this.person_id = person_id;
         this.person_name = person_name;
-        this.p_valid_upto = p_valid_upto;
+        this.visit_date = visit_date;
         this.status = status;
         this.id=id;
+
     }
 
     public String getId() {
@@ -45,6 +42,14 @@ public class WorkGatePassModel {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getPerson_id() {
+        return Person_id;
+    }
+
+    public void setPerson_id(String person_id) {
+        Person_id = person_id;
     }
 
     public String getClient() {
@@ -63,22 +68,6 @@ public class WorkGatePassModel {
         this.branch = branch;
     }
 
-    public String getStakeholder_id() {
-        return stakeholder_id;
-    }
-
-    public void setStakeholder_id(String stakeholder_id) {
-        this.stakeholder_id = stakeholder_id;
-    }
-
-    public String getPerson_id() {
-        return person_id;
-    }
-
-    public void setPerson_id(String person_id) {
-        this.person_id = person_id;
-    }
-
     public String getPerson_name() {
         return person_name;
     }
@@ -87,12 +76,12 @@ public class WorkGatePassModel {
         this.person_name = person_name;
     }
 
-    public String getP_valid_upto() {
-        return p_valid_upto;
+    public String getVisit_date() {
+        return visit_date;
     }
 
-    public void setP_valid_upto(String p_valid_upto) {
-        this.p_valid_upto = p_valid_upto;
+    public void setVisit_date(String visit_date) {
+        this.visit_date = visit_date;
     }
 
     public String getStatus() {
@@ -102,4 +91,9 @@ public class WorkGatePassModel {
     public void setStatus(String status) {
         this.status = status;
     }
+
+
+
+
+
 }

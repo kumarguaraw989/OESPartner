@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -23,13 +22,12 @@ import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.appizona.yehiahd.fastsave.FastSave;
 import com.example.oespartner.App_Helper.Constants;
-import com.example.oespartner.Model.AddChamberDetailsModel;
-import com.example.oespartner.Model.Data;
+import com.example.oespartner.model.AddChamberDetailsModel;
+import com.example.oespartner.model.Data;
 import com.example.oespartner.R;
 import com.example.oespartner.WebService.ApiClient;
 import com.example.oespartner.WebService.Config;
@@ -139,13 +137,13 @@ public class AddTransportActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_transport);
         imgBack = (ImageView) findViewById(R.id.imgBack);
         btnRegister = findViewById(R.id.btnRegister);
-        final EditText edtNo = findViewById(R.id.No);
+        final EditText edtNo = findViewById(R.id.material_name);
         final EditText edtcapacity = findViewById
-                (R.id.edtcapacity);
+                (R.id.edtSpecification);
         final EditText edtDlLevel = findViewById
-                (R.id.edtdlLevel);
+                (R.id.edtUnit);
         final EditText edPlLevel = findViewById
-                (R.id.edtplLevel);
+                (R.id.edtQty);
 
 
         ButterKnife.bind(this);

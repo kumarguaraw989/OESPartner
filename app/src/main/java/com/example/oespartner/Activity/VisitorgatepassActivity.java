@@ -1,5 +1,4 @@
 package com.example.oespartner.Activity;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,17 +6,13 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.appizona.yehiahd.fastsave.FastSave;
 import com.example.oespartner.Adapter.VisitorGatePassAdapter;
-import com.example.oespartner.App_Helper.PrefManager;
-import com.example.oespartner.Model.Data;
-import com.example.oespartner.Model.VisitorGatePassModel;
+import com.example.oespartner.model.Data;
+import com.example.oespartner.model.VisitorGatePassModel;
 import com.example.oespartner.R;
 import com.example.oespartner.WebService.ApiClient;
 import com.example.oespartner.WebService.RetrofitApi;
@@ -28,7 +23,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 public class VisitorgatepassActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
     ImageView imgAdd, imgBack;
     RecyclerView recyclerview;

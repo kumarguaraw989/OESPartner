@@ -1,14 +1,13 @@
 package com.example.oespartner.Activity;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatTextView;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,14 +17,14 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.appizona.yehiahd.fastsave.FastSave;
-import com.example.oespartner.Model.AddMaterialGatePassModel;
-import com.example.oespartner.Model.Data;
+import com.example.oespartner.model.AddMaterialGatePassModel;
+import com.example.oespartner.model.Data;
 import com.example.oespartner.R;
 import com.example.oespartner.WebService.ApiClient;
 import com.example.oespartner.WebService.Config;
@@ -37,25 +36,33 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-
 public class AddMaterialgatepassActivity extends AppCompatActivity {
     ImageView imgBack;
-    Button btnAdd,btnUpdate;
-    Spinner select_client, branch_name, material_gatepass, vehical_load, reasonformaterialgatepass, materialbelongsto, material_returnable;
-    AppCompatEditText stakeholder, partenername, vehical_no, others;
+    Button btnAdd, btnUpdate;
+    Spinner branch_name, material_gatepass, vehical_load, reasonformaterialgatepass, materialbelongsto, material_returnable;
+    AppCompatEditText partenername, vehical_no, others;
+    AppCompatTextView stakeholder;
     RelativeLayout materialbelong_layout, materialreturn_layout;
+    EditText material_name, edtSpecification, edtUnit, edtQty;
+    ArrayList<String> material_list = new ArrayList<>();
+    ArrayList<String> edtSpecification1 = new ArrayList<>();
+    ArrayList<String> edtUnit1 = new ArrayList<>();
+    ArrayList<String> edtQty1 = new ArrayList<>();
     ProgressBar progress_bar;
     String date_time;
+    @BindView(R.id.client_name)
+    TextView Clinet_name;
     String email, role;
     ArrayList<String> SelectClientBranch = new ArrayList<>();
     ArrayList<String> SelectClient = new ArrayList<>();
@@ -65,22 +72,27 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_materialgatepass);
         getSupportActionBar().hide();
         Data data_model = FastSave.getInstance().getObject("login_data", Data.class);
-        email=data_model.getEmail();
-        role=data_model.getRole();
-        TextView btnAddMaterial=findViewById(R.id.btnAddMaterial);
-        TextView btnRemoveMaterial=findViewById(R.id.btnRemoveMaterial);
+        email = data_model.getEmail();
+        ButterKnife.bind(this);
+        role = data_model.getRole();
+        material_name = findViewById(R.id.material_name);
+        edtSpecification = findViewById(R.id.edtSpecification);
+        edtUnit = findViewById(R.id.edtUnit);
+        edtQty = findViewById(R.id.edtQty);
+        TextView btnAddMaterial = findViewById(R.id.btnAddMaterial);
+        TextView btnRemoveMaterial = findViewById(R.id.btnRemoveMaterial);
         imgBack = (ImageView) findViewById(R.id.imgBack);
         btnAdd = (Button) findViewById(R.id.btnAdd);
-        btnUpdate=findViewById(R.id.btnupdate);
+        btnUpdate = findViewById(R.id.btnupdate);
         materialbelong_layout = findViewById(R.id.Relative_maerialbelongstto);
         materialreturn_layout = findViewById(R.id.materialreturn_layout);
         imgBack = (ImageView) findViewById(R.id.imgBack);
         btnAdd = (Button) findViewById(R.id.btnAdd);
         imgBack.setOnClickListener(v -> onBackPressed());
-        select_client = findViewById(R.id.select_client);
         branch_name = findViewById(R.id.branch_name);
         material_gatepass = findViewById(R.id.material_gatepass);
         stakeholder = findViewById(R.id.edtStakeholder);
+        stakeholder.setText(data_model.getVendorCode());
         partenername = findViewById(R.id.partener_name);
         vehical_no = findViewById(R.id.vehicle_no);
         vehical_load = findViewById(R.id.vehical_load);
@@ -99,105 +111,97 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
         progress_bar = (ProgressBar) findViewById(R.id.progress_bar);
         Date date = new Date();
         DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.DEFAULT, Locale.getDefault());
-        date_time =  dateFormat.format(date);
+        date_time = dateFormat.format(date);
+        //array list of material name
+        material_list.add(material_name.getText().toString());
+        edtSpecification1.add(edtSpecification.getText().toString());
+        edtQty1.add(edtQty.getText().toString());
+        edtUnit1.add(edtUnit.getText().toString());
         SelectClientBranch.add("Select Branch");
-        StringRequest stringRequest = new StringRequest(Config.URL_ClientBranch, response -> {
+        StringRequest request = new StringRequest(Request.Method.POST, Config.URL_ClientBranch, response -> {
+            Log.e("branch", response);
             try {
                 JSONArray jsonArray = new JSONArray(response);
-                for (int i = 0; i < jsonArray.length(); ++i) {
+                for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                    String catogery = jsonObject1.getString("branch");
-                    SelectClientBranch.add(catogery);
+                    SelectClientBranch.add(jsonObject1.get("branch").toString());
                 }
                 branch_name.setAdapter(new ArrayAdapter<>(AddMaterialgatepassActivity.this, android.R.layout.simple_spinner_dropdown_item, SelectClientBranch));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }, error -> Log.e("Error", error.toString()));
-        RequestQueue queue = Volley.newRequestQueue(this);
-        queue.add(stringRequest);
-        branch_name.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        }, error -> Log.e("error", error.toString())) {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String dAdress = branch_name.getItemAtPosition(branch_name.getSelectedItemPosition()).toString();
-             }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("client", data_model.getClient());
+                return params;
             }
-        });
-        SelectClient.add("Select Client");
-        StringRequest stringRequest1 = new StringRequest(Config.URL_CLient, response -> {
+        };
+        RequestQueue queue4 = Volley.newRequestQueue(this);
+        queue4.add(request);
+        StringRequest stringRequest1 = new StringRequest(Request.Method.POST, Config.URL_CLient, response -> {
+            Log.e("response", response);
             try {
                 JSONArray jsonArray = new JSONArray(response);
-                for (int i = 0; i < jsonArray.length(); ++i) {
-                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                    String catogery = jsonObject1.getString("company_name");
-                    SelectClient.add(catogery);
-                }
-                select_client.setAdapter(new ArrayAdapter<>(AddMaterialgatepassActivity.this, android.R.layout.simple_spinner_dropdown_item, SelectClient));
+                JSONObject jsonObject = jsonArray.getJSONObject(0);
+                Clinet_name.setText(jsonObject.getString("client_id"));
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }, error -> Log.e("error", error.toString()));
-        RequestQueue queue1 = Volley.newRequestQueue(this);
-        queue1.add(stringRequest1);
-        select_client.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String dAdress = select_client.getItemAtPosition(select_client.getSelectedItemPosition()).toString();
-             }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
+        }, error -> {
 
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("client", data_model.getClient());
+                return params;
             }
-        });
-
+        };
+        RequestQueue requestQueue1 = Volley.newRequestQueue(this);
+        requestQueue1.add(stringRequest1);
         btnAdd.setOnClickListener(v -> {
             String partner_code = stakeholder.getText().toString();
             String partner_name = partenername.getText().toString();
             String vehicle_no = vehical_no.getText().toString();
-            String client = (String) select_client.getSelectedItem();
+            String client = Clinet_name.getText().toString();
             String branch = (String) branch_name.getSelectedItem();
             String gate_pass_type = (String) material_gatepass.getSelectedItem();
             String vehicle_load = (String) vehical_load.getSelectedItem();
             String reason = (String) reasonformaterialgatepass.getSelectedItem();
             String belong_to = (String) materialbelongsto.getSelectedItem();
             String returnable_nonreturnable = (String) material_returnable.getSelectedItem();
-            if (select_client.equals("")) {
+            if (Clinet_name.equals("")) {
                 FancyToast.makeText(AddMaterialgatepassActivity.this, "Empty", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
                 return;
             } else {
                 progress_bar.setVisibility(View.VISIBLE);
                 postMaterialGatePass(email, role, client, branch, gate_pass_type,
-                        partner_code, partner_name, vehicle_no, vehicle_load, reason, belong_to, returnable_nonreturnable, date_time);
+                        partner_code, partner_name, vehicle_no, vehicle_load, reason, belong_to, returnable_nonreturnable, date_time, material_list, edtSpecification1, edtUnit1, edtQty1);
                 onBackPressed();
             }
         });
-
         btnAddMaterial.setOnClickListener(v -> {
             final View extend = LayoutInflater.from(v.getContext()).inflate(R.layout.item_chamber_add, tes, false);
             tes.addView(extend);
         });
-        btnRemoveMaterial.setOnClickListener(v -> tes.removeViewAt(0));
+        btnRemoveMaterial.setOnClickListener(v -> tes.removeViewAt(1));
     }
-
     public void postMaterialGatePass(String email, String role, String client, String branch, String gate_pass_type, String partner_code, String partner_name, String vehicle_no, String vehicle_load, String reason, String belong_to,
-                                     String returnable_nonreturnable, String date_time) {
+                                     String returnable_nonreturnable, String date_time, ArrayList<String> material_name, ArrayList<String> specification, ArrayList<String> unit, ArrayList<String> qty) {
         RetrofitApi apiService = ApiClient.getClient().create(RetrofitApi.class);
-         Call<AddMaterialGatePassModel> call = apiService.AddMaterialGatePass(email,role, client, branch, gate_pass_type,
-                partner_code, partner_name, vehicle_no, vehicle_load, reason, belong_to, returnable_nonreturnable, date_time);
+        Call<AddMaterialGatePassModel> call = apiService.AddMaterialGatePass(email, role, client, branch, gate_pass_type,
+                partner_code, partner_name, vehicle_no, vehicle_load, reason, belong_to, returnable_nonreturnable, date_time, material_name, specification, unit, qty);
         call.enqueue(new Callback<AddMaterialGatePassModel>() {
             @Override
             public void onResponse(Call<AddMaterialGatePassModel> call, Response<AddMaterialGatePassModel> response) {
                 progress_bar.setVisibility(View.GONE);
                 FancyToast.makeText(AddMaterialgatepassActivity.this, "Data submitted successfully", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
-                finish();
-
-            }
-            @Override
-            public void onFailure(Call<AddMaterialGatePassModel> call, Throwable t) {
+                finish(); }
+                @Override
+                public void onFailure(Call<AddMaterialGatePassModel> call, Throwable t) {
                 progress_bar.setVisibility(View.GONE);
             }
         });
@@ -216,7 +220,7 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
                     materialreturn_layout.setVisibility(View.VISIBLE);
                 } else if (position == 6) {
                     others.setVisibility(View.VISIBLE);
-                 }
+                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {

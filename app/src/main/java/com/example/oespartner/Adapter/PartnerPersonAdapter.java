@@ -1,18 +1,15 @@
 package com.example.oespartner.Adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
@@ -22,9 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.oespartner.Activity.UpdatePartnerPersonActivity;
-import com.example.oespartner.Activity.UpdateVisitorGatePassActivity;
-import com.example.oespartner.Model.PartnerPersonModel;
-import com.example.oespartner.Model.VisitorGatePassModel;
+import com.example.oespartner.model.PartnerPersonModel;
 import com.example.oespartner.R;
 import com.example.oespartner.WebService.ApiClient;
 import com.example.oespartner.WebService.RetrofitApi;
@@ -144,25 +139,22 @@ public class PartnerPersonAdapter extends RecyclerView.Adapter<PartnerPersonAdap
     }
 
     public void editPartnerPerson(String id) {
-        String editVisitorGatePass_url = "http://oestech.com/management/vehicle_management/index.php/home_api/get_partner_person";
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, editVisitorGatePass_url, new com.android.volley.Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.e("response", response);
-                try {
-                    JSONArray jsonArray = new JSONArray(response);
-                    for(int i=0;i<jsonArray.length();i++){
-                        JSONObject jsonObject=jsonArray.getJSONObject(i);
-                        Log.e("response1",jsonObject.toString());
-                        Intent intent=new Intent(context, UpdatePartnerPersonActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.putExtra("response",jsonObject.toString());
-                        context.startActivity(intent);
+        String editVisitorGatePass_url = "http://oestech.com/index.php/home_api/update_person_master";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, editVisitorGatePass_url, response -> {
+            Log.e("response", response);
+            try {
+                JSONArray jsonArray = new JSONArray(response);
+                for(int i=0;i<jsonArray.length();i++){
+                    JSONObject jsonObject=jsonArray.getJSONObject(i);
+                    Log.e("response1",jsonObject.toString());
+                    Intent intent=new Intent(context, UpdatePartnerPersonActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("response",jsonObject.toString());
+                    context.startActivity(intent);
 
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         }, new com.android.volley.Response.ErrorListener() {
             @Override

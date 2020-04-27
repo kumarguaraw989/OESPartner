@@ -1,25 +1,11 @@
 package com.example.oespartner.Activity;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.View;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.appizona.yehiahd.fastsave.FastSave;
-import com.example.oespartner.Model.Data;
 import com.example.oespartner.R;
 
 public class WebViewActivity extends Activity {

@@ -30,7 +30,7 @@ public class ExpandableListDataPump {
 
         List<String> list4 = new ArrayList<String>();
         list4.add("Vehicle No.");
-        list4.add("Transport Data");
+//        list4.add("Transport Data");
 
         expandableListDetail.put("Dashboard", menu1);
         expandableListDetail.put("Gate Pass System", list2);

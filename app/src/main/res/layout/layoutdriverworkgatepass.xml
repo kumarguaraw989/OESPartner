@@ -1,203 +1,224 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_driver"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="@dimen/_10sdp"
     android:layout_marginTop="@dimen/_10sdp"
-    android:id="@+id/layout_driver"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="@dimen/_15sdp">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/_20sdp"
         android:gravity="center"
-        android:textColor="@color/redcolor"
-        android:textStyle="normal"
-        android:text="License Verification *" />
+        android:text="License Verification *"
+        android:textColor="@color/ColorBlack"
+        android:textStyle="bold" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:background="@drawable/border_spinner" />
-    <RelativeLayout
-        android:layout_marginTop="@dimen/_10sdp"
+         android:layout_marginTop="@dimen/_5sdp"
+        android:background="@color/ColorBlack" />
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_height="wrap_content">
-    <EditText
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
-        android:id="@+id/edtDlNo"
-        android:textColorHint="@color/colorDivider"
-        android:layout_width="@dimen/_120sdp"
-        android:layout_height="@dimen/_40sdp"
         android:gravity="center"
-          android:inputType="text"
-        android:background="@drawable/border_spinner"
-        android:hint="Driver Licence No." />
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/edtDlNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/border_spinner"
+            android:gravity="center"
+            android:hint="Driver Licence No."
+            android:inputType="text"
+            android:padding="@dimen/_5sdp"
+            android:textColorHint="@color/colorDivider" />
 
         <TextView
             android:id="@+id/tv1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/_5sdp"
             android:text="Licence Valid Upto."
-            android:textStyle="italic"
             android:textColor="@color/colorblack"
-            android:layout_alignParentEnd="true"/>
+            android:textStyle="normal" />
+
         <EditText
+            android:id="@+id/edtDateValidoflicence"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/tv1"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="@dimen/_10sdp"
-            android:id="@+id/edtDateValidoflicence"
+            android:background="@drawable/edit_text_background"
+            android:drawableRight="@drawable/ic_calendar"
             android:focusable="false"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_40sdp"
             android:gravity="center"
             android:inputType="text"
+            android:padding="@dimen/_5sdp"
             android:text="Select Date"
-            android:textColor="@color/whiteTextColor"
-            android:drawableRight="@drawable/ic_calendar"
-            android:background="@drawable/edit_text_background" />
-    </RelativeLayout>
+            android:textColor="@color/whiteTextColor" />
+    </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:gravity="center"
+        android:text="Vehical No : "
+        android:textColor="@color/ColorBlack" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="@drawable/border_spinner">
+
+        <Spinner
+            android:id="@+id/spnVihicalNo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Vehical No : "
-            android:textColor="@color/ColorBlack" />
+            android:background="@null"
+            android:dropDownSelector="@color/colorAccent"
+            android:imeOptions="actionDone"
+            android:minHeight="@dimen/_35sdp"
+            android:padding="@dimen/_5sdp"
+            android:paddingLeft="@dimen/_1sdp"
+            android:paddingRight="@dimen/_1sdp"
+            android:spinnerMode="dropdown"
+            android:textColor="@color/ColorBlack"
+            android:textColorHint="@color/ColorBlack"
+            android:textSize="@dimen/_12sdp"
+            android:theme="@style/ThemeOverlay.AppCompat.Light" />
 
-        <RelativeLayout
-             android:layout_width="match_parent"
+        <ImageView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/border_spinner"
-            android:layout_marginTop="@dimen/_5sdp">
-            <Spinner
-                android:id="@+id/spnVihicalNo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:minHeight="@dimen/_35sdp"
-                android:dropDownSelector="@color/colorAccent"
-                android:imeOptions="actionDone"
-                android:paddingRight="@dimen/_1sdp"
-                android:paddingLeft="@dimen/_1sdp"
-                android:padding="@dimen/_20sdp"
-                android:spinnerMode="dropdown"
-                android:textColor="@color/ColorBlack"
-                android:theme="@style/ThemeOverlay.AppCompat.Light"
-                android:textColorHint="@color/ColorBlack"
-                android:textSize="@dimen/_12sdp" />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/_2sdp"
-                android:layout_marginEnd="@dimen/_2sdp"
-                android:layout_centerVertical="true"
-                app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
-        </RelativeLayout>
-     <RelativeLayout
-        android:layout_marginTop="@dimen/_10sdp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_2sdp"
+            android:layout_marginRight="@dimen/_2sdp"
+            app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+    </RelativeLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-         android:padding="@dimen/_8sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
         android:gravity="center_horizontal"
-        android:layout_height="wrap_content">
+        android:orientation="vertical">
+
         <EditText
-            android:layout_marginTop="@dimen/_10sdp"
             android:id="@+id/edtHelperName"
-            android:layout_width="@dimen/_120sdp"
-            android:layout_height="@dimen/_40sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/border_spinner"
             android:gravity="center"
-            android:textColorHint="@color/colorDivider"
-              android:background="@drawable/border_spinner"
-            android:hint="Helper Name" />
+            android:hint="Helper Name"
+            android:padding="@dimen/_5sdp"
+            android:textColorHint="@color/colorDivider" />
 
         <TextView
             android:id="@+id/tv2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/_10sdp"
             android:text="Last eye test date"
-            android:textStyle="italic"
-            android:layout_alignParentEnd="true"/>
+            android:textStyle="normal" />
+
         <EditText
+            android:id="@+id/edtLastDateofEyeTest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/tv2"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="@dimen/_10sdp"
-            android:id="@+id/edtLastDateofEyeTest"
-            android:focusable="false"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_40sdp"
-            android:gravity="center"
-            android:inputType="text"
-            android:text="Select Date"
-            android:textColor="@color/whiteTextColor"
+            android:background="@drawable/edit_text_background"
             android:drawableRight="@drawable/ic_calendar"
-            android:background="@drawable/edit_text_background" />
-    </RelativeLayout>
-
-
-
-    <RelativeLayout
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_width="match_parent"
-        android:gravity="center_horizontal"
-        android:layout_height="wrap_content">
-        <EditText
-            android:layout_marginTop="@dimen/_10sdp"
-            android:id="@+id/edtTrainingCertificateno"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_40sdp"
+            android:focusable="false"
             android:gravity="center"
             android:inputType="text"
-            android:textColorHint="@color/colorDivider"
-             android:background="@drawable/border_spinner"
-            android:hint="Training Certificate no." />
+            android:padding="@dimen/_5sdp"
+            android:text="Select Date"
+            android:textColor="@color/whiteTextColor" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/edtTrainingCertificateno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/border_spinner"
+            android:gravity="center"
+            android:hint="Training Certificate no."
+            android:inputType="text"
+            android:padding="@dimen/_5sdp"
+            android:textColorHint="@color/colorDivider" />
 
         <TextView
             android:id="@+id/tv3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Report Uploded"
-            android:textStyle="italic"
+            android:layout_alignParentEnd="true"
             android:gravity="center"
-            android:layout_alignParentEnd="true"/>
+            android:text="Report Uploded"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textStyle="normal" />
+
         <Button
             android:id="@+id/btn_uploadreport"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_height="@dimen/_25sdp"
             android:layout_below="@+id/tv3"
-            android:layout_alignParentEnd="true"
-            android:layout_width="@dimen/_100sdp"
             android:background="@drawable/edit_text_background"
-            android:layout_height="@dimen/_50sdp"
             android:text="Choose Files"
-            android:textAllCaps="false"
-            />
-    </RelativeLayout>
+            android:textColor="@color/colorWhite"
+            android:textAllCaps="false" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Training Valid Upto"
-        android:textStyle="italic"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:gravity="center"
+        android:text="Training Valid Upto" />
+
     <EditText
+        android:id="@+id/edtDateoftrainingValid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/tv4"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="@dimen/_10sdp"
-        android:id="@+id/edtDateoftrainingValid"
+        android:background="@drawable/edit_text_background"
+        android:drawableRight="@drawable/ic_calendar"
         android:focusable="false"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_40sdp"
         android:gravity="center"
+        android:padding="@dimen/_5sdp"
         android:inputType="text"
         android:text="Select Date"
-        android:textColor="@color/whiteTextColor"
-        android:drawableRight="@drawable/ic_calendar"
-        android:background="@drawable/edit_text_background" />
-
-
+        android:textColor="@color/whiteTextColor" />
 
 
 </LinearLayout>

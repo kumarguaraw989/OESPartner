@@ -1,6 +1,5 @@
 package com.example.oespartner.App_Helper;
 
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
@@ -15,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import androidx.annotation.RequiresApi;
+
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,6 +35,10 @@ public class Constants {
 
     public static String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     public static String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$";
+    public static String panCard= ("[A-Z]{5}[0-9]{4}[A-Z]{1}");
+    public static String pincode= ("[0-9]{6}");
+    public static String mobileno= ("[0-9]{10}");
+    public static String website= ("^(http://|https://)?(www.)?([a-zA-Z0-9]+).[a-zA-Z0-9]*.[a-z]{3}.?([a-z]+)?$");
     static DatePickerDialog dpDialog,dpDialog2;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -49,19 +53,23 @@ public class Constants {
             @SuppressLint("SetTextI18n")
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                editText.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-                editText.setText(Constants.changeDateFormat((monthOfYear + 1) + "-" + dayOfMonth + "-" + year, "mm-dd-yyyy", "dd/mm/yyyy"));
-                dpDialog.dismiss();
-//                sendingEndDate = year + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
+                if ((monthOfYear + 1) < 10)
+                    editText.setText(String.valueOf(year) + "-0" + String.valueOf(monthOfYear + 1) + "-" + String.valueOf(dayOfMonth));
+                else
+                    editText.setText(String.valueOf(year) + "-" + String.valueOf(monthOfYear + 1) + "-" + String.valueOf(dayOfMonth));
+
+
+
 
             }
 
         };
         dpDialog = new DatePickerDialog(Objects.requireNonNull(context), listener, year, month, day);
-        dpDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+        // dpDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
 
         dpDialog.show();
     }
+
 
 
 //    public static void DateDialog2(final EditText editText, Context context) {
@@ -208,7 +216,6 @@ public class Constants {
 
         return diff;
     }
-
 
 
     private String getCompleteAddressString(Context context, double LATITUDE, double LONGITUDE) {

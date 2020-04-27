@@ -1,12 +1,8 @@
 package com.example.oespartner.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,19 +10,12 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.appizona.yehiahd.fastsave.FastSave;
-import com.example.oespartner.Adapter.TransportAdapter;
-import com.example.oespartner.Adapter.VehicleNoAdapter;
-import com.example.oespartner.Model.AddVehicleNo;
-import com.example.oespartner.Model.Data;
-import com.example.oespartner.Model.TransportModel;
-import com.example.oespartner.Model.VehicleNoModel;
+import com.example.oespartner.model.AddVehicleNo;
+import com.example.oespartner.model.Data;
 import com.example.oespartner.R;
 import com.example.oespartner.WebService.ApiClient;
 import com.example.oespartner.WebService.RetrofitApi;
 import com.shashank.sony.fancytoastlib.FancyToast;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -1,21 +1,28 @@
-package com.example.oespartner.Model;
+package com.example.oespartner.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class AddVehicleNo {
-    @SerializedName("id")
-    private String id;
+public class TransportModel {
 
-    @SerializedName("vehicle_no")
+    @SerializedName("vehicle_name")
     private String vehicle_no;
 
     @SerializedName("vehicle_type")
     private String vehicle_type;
 
-    public AddVehicleNo(String id, String vehicle_no, String vehicle_type) {
-        this.id = id;
+    @SerializedName("vehicle_capacity")
+    private String vehicle_capacity;
+
+    @SerializedName("transport_id")
+    private String id;
+
+
+
+    public TransportModel(String vehicle_no, String vehicle_type, String vehicle_capacity, String id) {
         this.vehicle_no = vehicle_no;
         this.vehicle_type = vehicle_type;
+        this.vehicle_capacity = vehicle_capacity;
+        this.id= id;
     }
 
     public String getId() {
@@ -40,5 +47,13 @@ public class AddVehicleNo {
 
     public void setVehicle_type(String vehicle_type) {
         this.vehicle_type = vehicle_type;
+    }
+
+    public String getVehicle_capacity() {
+        return vehicle_capacity;
+    }
+
+    public void setVehicle_capacity(String vehicle_capacity) {
+        this.vehicle_capacity = vehicle_capacity;
     }
 }

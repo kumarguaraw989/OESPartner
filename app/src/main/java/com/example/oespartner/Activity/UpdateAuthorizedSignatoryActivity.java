@@ -4,13 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,8 +23,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.appizona.yehiahd.fastsave.FastSave;
 import com.example.oespartner.App_Helper.Constants;
-import com.example.oespartner.Model.AddAuthorizedSignatoryModel;
-import com.example.oespartner.Model.Data;
+import com.example.oespartner.model.AddAuthorizedSignatoryModel;
+import com.example.oespartner.model.Data;
 import com.example.oespartner.R;
 import com.example.oespartner.WebService.ApiClient;
 import com.example.oespartner.WebService.Config;
@@ -56,8 +56,8 @@ public class UpdateAuthorizedSignatoryActivity extends AppCompatActivity {
     ImageView ImgBack;
     @BindView(R.id.loading)
     ProgressBar loading;
-    @BindView(R.id.spinClient)
-    Spinner client;
+    @BindView(R.id.client_name)
+    TextView Clinet_name;
     @BindView(R.id.client_branchname)
     Spinner spin_branchname;
     @BindView(R.id.nameof_person)
@@ -101,7 +101,7 @@ public class UpdateAuthorizedSignatoryActivity extends AppCompatActivity {
              String Date2 = edtSignatoryValidupto.getText().toString();
             String WorkOrderReferenceNo = edtWork_orderreference.getText().toString();
             String WorkOrderDescription = edtWork_description.getText().toString();
-            String Client = (String) client.getSelectedItem();
+            String clientName=Clinet_name.getText().toString();
             String BranchName = (String) spin_branchname.getSelectedItem();
             String Designation = (String) spin_designation.getSelectedItem();
             String person_name=(String)spin_nameofperson.getSelectedItem();
@@ -113,7 +113,7 @@ public class UpdateAuthorizedSignatoryActivity extends AppCompatActivity {
             else
             {
                 loading.setVisibility(View.VISIBLE);
-                 postAuthorizesSignatory(id2,email,  role,BranchName, person_name,WorkOrderReferenceNo,WorkOrderDescription,Client,Date2,Designation);
+                 postAuthorizesSignatory(id2,email,  role,BranchName, person_name,WorkOrderReferenceNo,WorkOrderDescription,clientName,Date2,Designation);
                 onBackPressed();
             }
         });
@@ -128,62 +128,72 @@ public class UpdateAuthorizedSignatoryActivity extends AppCompatActivity {
             edtWork_description.setText(jsonObject.get("description").toString());
             declaration1.setText(jsonObject.get("declaration1").toString());
             declaration2.setText(jsonObject.get("declaration2").toString());
-            SelectClient.add(jsonObject.get("client").toString());
-            client.setAdapter(new ArrayAdapter<>(UpdateAuthorizedSignatoryActivity.this,android.R.layout.simple_spinner_dropdown_item,SelectClient));
-            SelectClient.add("Select Client");
-            StringRequest stringRequest1=new StringRequest(Config.URL_CLient, response -> {
+            Clinet_name.setText(jsonObject.get("client_name").toString());
+
+             StringRequest stringRequest1=new StringRequest(Request.Method.POST, Config.URL_CLient, response -> {
+                Log.e("response",response);
                 try {
                     JSONArray jsonArray=new JSONArray(response);
-                    for (int i=0; i<jsonArray.length(); ++i){
-                        JSONObject jsonObject1=jsonArray.getJSONObject(i);
-                        String catogery=jsonObject1.getString("company_name");
-                        SelectClient.add(catogery);
-                    }
-                    client.setAdapter(new ArrayAdapter<>(UpdateAuthorizedSignatoryActivity.this, android.R.layout.simple_spinner_dropdown_item, SelectClient));
+                    JSONObject jsonObject1=jsonArray.getJSONObject(0);
+                    Clinet_name.setText(jsonObject1.getString("client_id"));
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-            }, error -> Log.e("error", error.toString()));
-            RequestQueue queue1= Volley.newRequestQueue(this);
-            queue1.add(stringRequest1);
-            SelectClientBranch.add(jsonObject.get("branch").toString());
-            spin_branchname.setAdapter(new ArrayAdapter<>(UpdateAuthorizedSignatoryActivity.this,android.R.layout.simple_spinner_dropdown_item,SelectClientBranch));
+            }, error -> {
+
+            }){
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("client", data_model.getClient());
+                    return params;
+                }
+            };
+            RequestQueue requestQueue1=Volley.newRequestQueue(this);
+            requestQueue1.add(stringRequest1);
+
             SelectClientBranch.add("Select Branch");
-            StringRequest stringRequest2=new StringRequest(Config.URL_ClientBranch, response -> {
+            StringRequest request = new StringRequest(Request.Method.POST,Config.URL_ClientBranch, response -> {
+                Log.e("branch",response);
                 try {
-                    JSONArray jsonArray=new JSONArray(response);
-                    for (int i=0; i<jsonArray.length(); ++i){
+                    JSONArray jsonArray = new JSONArray(response);
+                    for (int i=0;i<jsonArray.length();i++){
                         JSONObject jsonObject1=jsonArray.getJSONObject(i);
-                        String catogery=jsonObject1.getString("branch");
-                        SelectClientBranch.add(catogery);
+                        SelectClientBranch.add(jsonObject1.get("branch").toString());
                     }
                     spin_branchname.setAdapter(new ArrayAdapter<>(UpdateAuthorizedSignatoryActivity.this, android.R.layout.simple_spinner_dropdown_item, SelectClientBranch));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-            }, error -> Log.e("Gronzo", error.toString()));
-            RequestQueue queue2= Volley.newRequestQueue(this);
-            queue2.add(stringRequest2);
+            }, error -> Log.e("error", error.toString())){
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("client", data_model.getClient());
+                    return params;
+                }
+            };
+            RequestQueue queue4 = Volley.newRequestQueue(this);
+            queue4.add(request);
+
             SelectPersonName.add(jsonObject.get("person_name").toString());
             spin_nameofperson.setAdapter(new ArrayAdapter<>(UpdateAuthorizedSignatoryActivity.this,android.R.layout.simple_spinner_dropdown_item,SelectPersonName));
             SelectPersonName.add("Select Person Name");
-            StringRequest stringRequest3=new StringRequest(Request.Method.POST, Config.URL_PersonName, new com.android.volley.Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    try {
-                        JSONArray jsonArray=new JSONArray(response.toString());
-                        for (int j=0; j<jsonArray.length(); ++j){
-                            JSONObject jsonObject1=jsonArray.getJSONObject(j);
-                            String catogery=jsonObject1.getString("person_name");
-                             SelectPersonName.add(catogery);
-                         }
+            StringRequest stringRequest3=new StringRequest(Request.Method.POST, Config.URL_PersonName, response -> {
+                try {
+                    JSONArray jsonArray=new JSONArray(response.toString());
+                    for (int j=0; j<jsonArray.length(); ++j){
+                        JSONObject jsonObject1=jsonArray.getJSONObject(j);
+                        String catogery=jsonObject1.getString("person_name");
+                         SelectPersonName.add(catogery);
+                     }
 
-                        spin_nameofperson.setAdapter(new ArrayAdapter<>(UpdateAuthorizedSignatoryActivity.this, android.R.layout.simple_spinner_dropdown_item, SelectPersonName));
-                     } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                 }
-            }, error -> Toast.makeText(UpdateAuthorizedSignatoryActivity.this,error.toString(), Toast.LENGTH_SHORT).show()){
+                    spin_nameofperson.setAdapter(new ArrayAdapter<>(UpdateAuthorizedSignatoryActivity.this, android.R.layout.simple_spinner_dropdown_item, SelectPersonName));
+                 } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+             }, error -> Toast.makeText(UpdateAuthorizedSignatoryActivity.this,error.toString(), Toast.LENGTH_SHORT).show()){
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String,String> params=new HashMap<String, String>();
@@ -203,7 +213,7 @@ public class UpdateAuthorizedSignatoryActivity extends AppCompatActivity {
         }
     }
 
-    public void postAuthorizesSignatory(String id2,String email, String role, String branch, String person_name, String reference_no, String description, String client, String valid_upto, String designationnn) {
+    public void postAuthorizesSignatory(String id2, String email, String role, String branch, String person_name, String reference_no, String description, String client, String valid_upto, String designationnn) {
         RetrofitApi apiService = ApiClient.getClient().create(RetrofitApi.class);
          Call<AddAuthorizedSignatoryModel> call = apiService.UpdateAuthorizedSignatory(id2,email, role, branch, person_name, reference_no, description, client, valid_upto, designationnn);
         call.enqueue(new Callback<AddAuthorizedSignatoryModel>() {

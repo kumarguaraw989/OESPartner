@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_10sdp"
     android:fillViewport="true">
     <LinearLayout
         android:id="@+id/layout_india"
@@ -17,10 +18,12 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:inputType="text"
+            android:background="@drawable/border_bloour"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:padding="@dimen/_10sdp"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/colorblack"
             android:hint="Aadhar No."/>
 
         <androidx.appcompat.widget.AppCompatEditText
@@ -31,15 +34,16 @@
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:padding="@dimen/_10sdp"
+            android:background="@drawable/border_bloour"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/colorblack"
             android:hint="Pan No."/>
         <LinearLayout
             android:id="@+id/layout_AadharPanupload"
             android:layout_marginTop="@dimen/_10sdp"
-            android:orientation="horizontal"
-            android:layout_gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
             <LinearLayout
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_width="match_parent"
@@ -47,14 +51,14 @@
                 android:orientation="vertical"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/primaryTextColor"
+                    android:textColor="@color/ColorBlack"
                     android:text="Upload Copy of aadhar"/>
                 <Button
                     android:id="@+id/btn_uploadAadhar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:text="Choose Files"
                     android:textColor="@color/whiteTextColor"
                     android:backgroundTint="@color/colorPrimary"
@@ -72,11 +76,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/primaryTextColor"
+                    android:textColor="@color/ColorBlack"
                     android:text="Upload Pan No."/>
                 <Button
                     android:id="@+id/btn_upload_pan"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Choose Files"
                     android:textColor="@color/whiteTextColor"
@@ -91,26 +95,27 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:inputType="number"
+            android:background="@drawable/border_bloour"
             android:padding="@dimen/_10sdp"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:layout_height="wrap_content"
+            android:textColorHint="@color/ColorBlack"
             android:hint="Reference No of Police Verification"/>
 
         <LinearLayout
             android:id="@+id/layoutDateofissue_policeverification"
-            android:layout_gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingLeft="@dimen/_5sdp"
-            android:paddingTop="@dimen/_10sdp">
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_15sdp">
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Date of issuance of Police Verification"
-                android:textColor="@color/primaryTextColor" />
+                android:textColor="@color/ColorBlack" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -128,8 +133,7 @@
         <LinearLayout
             android:layout_marginTop="@dimen/_10sdp"
             android:orientation="horizontal"
-            android:layout_gravity="center_horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
                 android:id="@+id/layout_uploadpoliceverification"
@@ -141,11 +145,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/primaryTextColor"
+                    android:textColor="@color/ColorBlack"
                     android:text="Upload copy of Police Verification"/>
                 <Button
                     android:id="@+id/btn_uploadPoliceVerification"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Choose Files"
                     android:textColor="@color/whiteTextColor"
@@ -161,24 +165,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Valid Police Verification available?"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorblack"
             android:layout_marginLeft="@dimen/_10sdp"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_8sdp"
             android:layout_marginRight="@dimen/_8sdp"
-            android:background="@drawable/border_spinner"
+            android:background="@drawable/border_bloour"
             android:layout_marginTop="@dimen/_15sdp">
             <Spinner
                 android:id="@+id/spnValidPoliceVerification"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_25sdp"
+                android:layout_height="wrap_content"
                 android:background="@null"
                 android:minHeight="@dimen/_35sdp"
                 android:entries="@array/valid"
                 android:dropDownSelector="@color/colorAccent"
                 android:imeOptions="actionDone"
+                android:padding="@dimen/_8sdp"
                 android:paddingRight="@dimen/_1sdp"
                 android:paddingLeft="@dimen/_1sdp"
                 android:spinnerMode="dropdown"
@@ -195,8 +200,7 @@
                 android:layout_centerVertical="true"
                 app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
         </RelativeLayout>
-        <include
-            layout="@layout/personmasterothers"/>
+
 
 
 

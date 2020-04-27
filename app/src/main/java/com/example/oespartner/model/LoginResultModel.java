@@ -1,4 +1,4 @@
-package com.example.oespartner.Model;
+package com.example.oespartner.model;
 
 import java.util.HashMap;
 import java.util.Map;

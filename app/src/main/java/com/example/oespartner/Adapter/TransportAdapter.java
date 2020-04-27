@@ -19,10 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.oespartner.Activity.UpdateTransportActivity;
-import com.example.oespartner.Activity.UpdateVisitorGatePassActivity;
-import com.example.oespartner.Model.AuthorizedSignatoryModel;
-import com.example.oespartner.Model.TransportModel;
-import com.example.oespartner.Model.VisitorGatePassModel;
+import com.example.oespartner.model.TransportModel;
 import com.example.oespartner.R;
 import com.example.oespartner.WebService.ApiClient;
 import com.example.oespartner.WebService.RetrofitApi;
@@ -38,8 +35,6 @@ import java.util.Map;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-
 public class TransportAdapter extends RecyclerView.Adapter<TransportAdapter.MyviewHolder> {
     Context context;
     List<TransportModel> transportModels;
@@ -84,7 +79,6 @@ public class TransportAdapter extends RecyclerView.Adapter<TransportAdapter.Myvi
                             deleteGatePass(transportModels.get(position).getId());
                             notifyItemRemoved(position);
                             break;
-
                         case R.id.edit:
                             Log.e("id", transportModels.get(position).getId());
                             editTransport(transportModels.get(position).getId());

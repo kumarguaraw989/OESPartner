@@ -18,13 +18,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.oespartner.Activity.UpdateTransportActivity;
 import com.example.oespartner.Activity.UpdateVehicleNoActivity;
-import com.example.oespartner.Model.TransportModel;
-import com.example.oespartner.Model.VehicleNoModel;
+import com.example.oespartner.model.VehicleNoModel;
 import com.example.oespartner.R;
-import com.example.oespartner.WebService.ApiClient;
-import com.example.oespartner.WebService.RetrofitApi;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,10 +29,6 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 public class VehicleNoAdapter extends RecyclerView.Adapter<VehicleNoAdapter.MyviewHolder> {

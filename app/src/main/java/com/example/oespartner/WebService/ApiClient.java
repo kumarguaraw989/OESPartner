@@ -8,7 +8,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class ApiClient {
 
-    public static final String BASE_URL ="http://oestech.com/oes/vehicle_management/index.php/home_api/";
+    public static final String BASE_URL ="http://oestech.com/index.php/home_api/";
     private static Retrofit retrofit;
 
     static HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -34,5 +34,24 @@ public class ApiClient {
         }
         return retrofit;
     }
+
+    public RetrofitApi getRetrofitInstance(){
+        if(retrofit == null){
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+        RetrofitApi api = retrofit.create(RetrofitApi.class);
+        return api;
+    }
+
+    public static Retrofit centralRetrofit = new Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(client)
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .build();
+
+    public RetrofitApi service = centralRetrofit.create(RetrofitApi.class);
 
 }

@@ -29,50 +29,50 @@
                 android:textStyle="bold"
                 android:textColor="@color/whiteTextColor" />
         </androidx.appcompat.widget.Toolbar>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="Client Name *"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:textColor="@color/ColorBlack"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_8sdp"
             android:layout_marginRight="@dimen/_8sdp"
             android:background="@drawable/border_spinner"
-            android:layout_marginTop="@dimen/_15sdp">
-
-            <Spinner
-                android:id="@+id/select_client"
+            android:layout_marginTop="@dimen/_8sdp">
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@null"
-                android:minHeight="@dimen/_35sdp"
-                android:dropDownSelector="@color/colorAccent"
-                android:imeOptions="actionDone"
-                android:paddingRight="@dimen/_1sdp"
-
-                android:paddingLeft="@dimen/_1sdp"
-                android:spinnerMode="dropdown"
+                android:text="IOCL"
+                android:id="@+id/client_name"
                 android:textColor="@color/ColorBlack"
-                android:entries="@array/client_list"
-                android:theme="@style/ThemeOverlay.AppCompat.Light"
-                android:textColorHint="@color/ColorBlack"
-                android:textSize="@dimen/_12sdp"
-
+                android:textStyle="bold"
+                android:padding="@dimen/_10sdp"
+                android:background="@drawable/border_bloour"
                 />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/_2sdp"
-                android:layout_marginEnd="@dimen/_2sdp"
-                android:layout_centerVertical="true"
-                app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
         </RelativeLayout>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Branch Name *"
+            android:layout_marginTop="@dimen/_5sdp"
+             android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:textColor="@color/ColorBlack" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_8sdp"
             android:layout_marginRight="@dimen/_8sdp"
             android:background="@drawable/border_spinner"
-            android:layout_marginTop="@dimen/_15sdp">
-
+            android:layout_marginTop="@dimen/_8sdp">
             <Spinner
                 android:id="@+id/branch_name"
                 android:layout_width="match_parent"
@@ -101,14 +101,22 @@
                 android:layout_centerVertical="true"
                 app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
         </RelativeLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Material Gate Pass Type *"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:textColor="@color/ColorBlack" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_8sdp"
             android:layout_marginRight="@dimen/_8sdp"
             android:background="@drawable/border_spinner"
-            android:layout_marginTop="@dimen/_15sdp">
-
+            android:layout_marginTop="@dimen/_10sdp">
             <Spinner
                 android:id="@+id/material_gatepass"
                 android:layout_width="match_parent"
@@ -124,7 +132,7 @@
                 android:textColor="@color/ColorBlack"
                 android:entries="@array/materialgatepasstype_list"
                 android:theme="@style/ThemeOverlay.AppCompat.Light"
-                android:textColorHint="@color/ColorBlack"
+                android:textColorHint="@color/colorGray"
                 android:textSize="@dimen/_12sdp"
 
                 />
@@ -137,24 +145,57 @@
                 android:layout_centerVertical="true"
                 app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
         </RelativeLayout>
-        <androidx.appcompat.widget.AppCompatEditText
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Partener Code *"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:textColor="@color/ColorBlack" />
+
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/edtStakeholder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/border_bloour"
+            android:padding="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_8sdp"
             android:layout_marginLeft="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_12sdp"
-            android:hint="Stake Holder/Partner code"
-            />
+            android:hint="Partner code"
+            android:textColorHint="@color/colorGray"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Partener Name *"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:textColor="@color/ColorBlack" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/partener_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/border_bloour"
+            android:padding="@dimen/_8sdp"
+            android:textColorHint="@color/colorGray"
             android:layout_marginLeft="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_12sdp"
             android:layout_marginRight="@dimen/_8sdp"
             android:hint="Partner Name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Vehicle No *"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:textColor="@color/ColorBlack" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/vehicle_no"
@@ -163,6 +204,9 @@
             android:layout_marginRight="@dimen/_8sdp"
             android:layout_marginLeft="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_12sdp"
+            android:background="@drawable/border_bloour"
+            android:padding="@dimen/_8sdp"
+            android:textColorHint="@color/colorGray"
             android:hint="Vehicle No"
             />
 
@@ -183,7 +227,6 @@
                 android:dropDownSelector="@color/colorAccent"
                 android:imeOptions="actionDone"
                 android:paddingRight="@dimen/_1sdp"
-
                 android:paddingLeft="@dimen/_1sdp"
                 android:spinnerMode="dropdown"
                 android:textColor="@color/ColorBlack"
@@ -244,6 +287,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Others"
+            android:background="@drawable/border_bloour"
+            android:padding="@dimen/_8sdp"
+            android:textColorHint="@color/colorGray"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:layout_marginLeft="@dimen/_10sdp"/>
@@ -329,10 +375,10 @@
             android:background="@drawable/border_spinner" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:layout_marginTop="@dimen/_5sdp"
+             android:layout_marginTop="@dimen/_5sdp"
             android:orientation="horizontal">
 
             <TextView
@@ -396,16 +442,7 @@
                 android:text="Qty"
                 android:textColor="@color/ColorBlack"/>
         </LinearLayout>
-
         <include layout="@layout/item_chamber_add" />
-
-
-
-
-
-
-
-
         <ProgressBar
             android:id="@+id/progress_bar"
             android:layout_width="wrap_content"

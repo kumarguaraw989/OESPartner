@@ -111,6 +111,7 @@
 
     </string-array>
     <string-array name="bloodgroup_arrays">
+        <item>Select</item>
         <item>O-</item>
         <item> O+</item>
         <item> A-</item>
@@ -182,6 +183,8 @@
         <item>Non-returnable</item>
         <item>Returnable</item>
     </string-array>
+
+
     <string-array name="designation">
         <item>Select One</item>
         <item>Promoter/Partner/Proprietor</item>
@@ -195,6 +198,16 @@
         <item>Security</item>
         <item>Other</item>
     </string-array>
+
+    <string-array name="designationAuthorized">
+        <item>Select</item>
+        <item>Engineer</item>
+        <item>Manager</item>
+        <item>Supervisor</item>
+        <item>Other</item>
+    </string-array>
+
+
 
     <string-array name="gender">
         <item>Male</item>

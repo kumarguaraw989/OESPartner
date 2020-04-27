@@ -20,7 +20,7 @@ import android.widget.Spinner;
 
 import com.appizona.yehiahd.fastsave.FastSave;
 import com.example.oespartner.App_Helper.Constants;
-import com.example.oespartner.Model.Data;
+import com.example.oespartner.model.Data;
 import com.example.oespartner.R;
 import com.example.oespartner.WebService.ApiClient;
 import com.example.oespartner.WebService.RetrofitApi;
@@ -425,7 +425,7 @@ public class AddPartnerPersonActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 if (position == 0) {
-                    layoutindia.setVisibility(View.INVISIBLE);
+                    layoutindia.setVisibility(View.GONE);
                     layoutothers.setVisibility(View.GONE);
                 } else if (position == 1) {
                     layoutindia.setVisibility(View.VISIBLE);
@@ -459,7 +459,6 @@ public class AddPartnerPersonActivity extends AppCompatActivity {
 
             }
         });
-
     }
 }
 

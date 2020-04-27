@@ -1,10 +1,7 @@
 package com.example.oespartner.Activity;
-
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -15,9 +12,11 @@ import com.appizona.yehiahd.fastsave.FastSave;
 import com.example.oespartner.Fragment.ActionBarActivity;
 import com.example.oespartner.Fragment.NavigationDrawerFragment;
 import com.example.oespartner.MainActivity;
-import com.example.oespartner.Model.Data;
+import com.example.oespartner.model.Data;
 import com.example.oespartner.R;
-
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 public class HomeActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -26,8 +25,6 @@ public class HomeActivity extends ActionBarActivity
     private CharSequence mTitle;
     private DrawerLayout mDrawerLayout;
     TextView textDrawerHeading,txtEmail;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +35,7 @@ public class HomeActivity extends ActionBarActivity
         Data data_model= FastSave.getInstance().getObject("login_data",Data.class);
         data_model.getAdminId();
         data_model.getName();
-        data_model.getEmail();
+         data_model.getEmail();
         txtEmail.setText(data_model.getEmail());
         textDrawerHeading.setText(data_model.getName());
         mNavigationDrawerFragment = (NavigationDrawerFragment)

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -13,7 +12,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
-import android.widget.TimePicker;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,8 +24,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.appizona.yehiahd.fastsave.FastSave;
 import com.example.oespartner.App_Helper.Constants;
-import com.example.oespartner.Model.AddVisitorGatePassModel;
-import com.example.oespartner.Model.Data;
+import com.example.oespartner.model.AddVisitorGatePassModel;
+import com.example.oespartner.model.Data;
 import com.example.oespartner.R;
 import com.example.oespartner.WebService.ApiClient;
 import com.example.oespartner.WebService.Config;
@@ -65,11 +64,13 @@ public class UpdateVisitorGatePassActivity extends AppCompatActivity {
     Button btnRegister;
     @BindView(R.id.progress_bar)
     ProgressBar progress_bar;
-    @BindView(R.id.edtFirmName) EditText edtFirmName;
+    @BindView(R.id.tvFirmName)
+    TextView tvFirmName;
     @BindView(R.id.edtAprovalBy) EditText edtAprovalBy;
     @BindView(R.id.edtReason) EditText edtReason;
-    @BindView(R.id.spnClient)
-    Spinner spnClient;
+    @BindView(R.id.client_name)
+    TextView Clinet_name;
+
     @BindView(R.id.spnBranch) Spinner spnBranch;
     @BindView(R.id.spnPersonName) Spinner spnPersonName;
     @BindView(R.id.spnPersonId) Spinner spnPersonId;
@@ -121,13 +122,12 @@ public class UpdateVisitorGatePassActivity extends AppCompatActivity {
         String value = intent.getStringExtra("response");
         try {
             JSONObject jsonObject = new JSONObject(value.toString());
-            edtFirmName.setText(jsonObject.get("firm_name").toString());
+            tvFirmName.setText(jsonObject.get("firm_name").toString());
             edtAprovalBy.setText(jsonObject.get("approval").toString());
             edtReason.setText(jsonObject.get("reason").toString());
             edtDate.setText(jsonObject.get("visit_date").toString());
             edtTime.setText(jsonObject.get("visit_time").toString());
-            SelectClient.add(jsonObject.get("client").toString());
-            spnClient.setAdapter(new ArrayAdapter<>(UpdateVisitorGatePassActivity.this,android.R.layout.simple_spinner_dropdown_item,SelectClient));
+             Clinet_name.setText(jsonObject.get("client").toString());
             SelectClientBranch.add(jsonObject.get("branch").toString());
             spnBranch.setAdapter(new ArrayAdapter<>(UpdateVisitorGatePassActivity.this,android.R.layout.simple_spinner_dropdown_item,SelectClientBranch));
             SelectPersonName.add(jsonObject.get("person_name").toString());
@@ -143,22 +143,28 @@ public class UpdateVisitorGatePassActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        SelectClient.add("Select Anyone");
-        StringRequest stringRequest1=new StringRequest(Config.URL_CLient, response -> {
+        StringRequest stringRequest1=new StringRequest(Request.Method.POST, Config.URL_CLient, response -> {
+            Log.e("response",response);
             try {
                 JSONArray jsonArray=new JSONArray(response);
-                for (int i=0; i<jsonArray.length(); ++i){
-                    JSONObject jsonObject1=jsonArray.getJSONObject(i);
-                    String catogery=jsonObject1.getString("company_name");
-                    SelectClient.add(catogery);
-                }
-                spnClient.setAdapter(new ArrayAdapter<>(UpdateVisitorGatePassActivity.this, android.R.layout.simple_spinner_dropdown_item, SelectClient));
+                JSONObject jsonObject=jsonArray.getJSONObject(0);
+                Clinet_name.setText(jsonObject.getString("client_id"));
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }, error -> Log.e("error", error.toString()));
-        RequestQueue queue1= Volley.newRequestQueue(this);
-        queue1.add(stringRequest1);
+        }, error -> {
+
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("client", data_model.getClient());
+                return params;
+            }
+        };
+        RequestQueue requestQueue1=Volley.newRequestQueue(this);
+        requestQueue1.add(stringRequest1);
         SelectClientBranch.add("Select AnyOne");
         StringRequest stringRequest=new StringRequest(Config.URL_ClientBranch, response -> {
             try {
@@ -176,13 +182,13 @@ public class UpdateVisitorGatePassActivity extends AppCompatActivity {
         RequestQueue queue= Volley.newRequestQueue(this);
         queue.add(stringRequest);
         btnRegister.setOnClickListener(v -> {
-            String firm_name = edtFirmName.getText().toString();
+            String firm_name = tvFirmName.getText().toString();
             String approval = edtAprovalBy.getText().toString();
             String reason = edtReason.getText().toString();
             String visit_date = edtDate.getText().toString();
             String visit_time = edtTime.getText().toString();
             String declaration = chek.getText().toString();
-            String client=(String) spnClient.getSelectedItem();
+            String client=Clinet_name.getText().toString();
             String branch=(String) spnBranch.getSelectedItem();
             String person_name=(String) spnPersonName.getSelectedItem();
             String person_id=(String) spnPersonId.getSelectedItem();
@@ -218,8 +224,7 @@ public class UpdateVisitorGatePassActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            Toast.makeText(UpdateVisitorGatePassActivity.this,response, Toast.LENGTH_SHORT).show();
-        }, error -> Toast.makeText(UpdateVisitorGatePassActivity.this,error.toString(), Toast.LENGTH_SHORT).show()){
+         }, error -> Toast.makeText(UpdateVisitorGatePassActivity.this,error.toString(), Toast.LENGTH_SHORT).show()){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params=new HashMap<String, String>();

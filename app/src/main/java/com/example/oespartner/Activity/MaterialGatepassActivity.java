@@ -8,13 +8,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.appizona.yehiahd.fastsave.FastSave;
 import com.example.oespartner.Adapter.MaterialGatePassAdapter;
-import com.example.oespartner.Model.Data;
-import com.example.oespartner.Model.MaterialGatePassModel;
+import com.example.oespartner.model.Data;
+import com.example.oespartner.model.MaterialGatePassModel;
 import com.example.oespartner.R;
 import com.example.oespartner.WebService.ApiClient;
 import com.example.oespartner.WebService.RetrofitApi;

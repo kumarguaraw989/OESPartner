@@ -39,4 +39,8 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
     implementation 'com.github.yehiahd:FastSave-Android:1.0.6'
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
+    implementation 'com.jjoe64:graphview:4.2.1'
+    implementation 'com.github.Prashant-Chandel:IOS-progressbar-for--android:-SNAPSHOT'
+
 }

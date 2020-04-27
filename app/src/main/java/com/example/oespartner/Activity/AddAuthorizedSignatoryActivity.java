@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -21,9 +22,11 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.appizona.yehiahd.fastsave.FastSave;
+import com.example.iosprogressbarforandroid.IOSProgressHUD;
 import com.example.oespartner.App_Helper.Constants;
-import com.example.oespartner.Model.AddAuthorizedSignatoryModel;
-import com.example.oespartner.Model.Data;
+import com.example.oespartner.MainActivity;
+import com.example.oespartner.model.AddAuthorizedSignatoryModel;
+import com.example.oespartner.model.Data;
 import com.example.oespartner.R;
 import com.example.oespartner.WebService.ApiClient;
 import com.example.oespartner.WebService.Config;
@@ -52,8 +55,8 @@ public class AddAuthorizedSignatoryActivity extends AppCompatActivity {
     ImageView ImgBack;
     @BindView(R.id.loading)
     ProgressBar loading;
-    @BindView(R.id.spinClient)
-    Spinner client;
+    @BindView(R.id.client_name)
+    TextView Clinet_name;
     @BindView(R.id.client_branchname)
     Spinner spin_branchname;
     @BindView(R.id.nameof_person)
@@ -62,6 +65,7 @@ public class AddAuthorizedSignatoryActivity extends AppCompatActivity {
     Spinner spin_designation;
     @BindView(R.id.edtDate)
     EditText edtWorkValidUpto;
+
     @BindView(R.id.edtDate2)
     EditText edtSignatoryValidupto;
     @BindView(R.id.edtWorkrefno)
@@ -72,6 +76,8 @@ public class AddAuthorizedSignatoryActivity extends AppCompatActivity {
     AppCompatCheckBox declaration1;
     @BindView(R.id.check_declaration2)
     AppCompatCheckBox declaration2;
+    @BindView(R.id.othersaddwork)
+    EditText othersaddwork;
     ArrayList<String> SelectClientBranch = new ArrayList<>();
     ArrayList<String> SelectClient = new ArrayList<>();
     ArrayList<String> SelectPersonName = new ArrayList<>();
@@ -85,60 +91,69 @@ public class AddAuthorizedSignatoryActivity extends AppCompatActivity {
         update.setVisibility(View.GONE);
         edtWorkValidUpto.setOnClickListener(view -> Constants.DateDialog(edtWorkValidUpto, AddAuthorizedSignatoryActivity.this));
         edtSignatoryValidupto.setOnClickListener(view -> Constants.DateDialog(edtSignatoryValidupto, AddAuthorizedSignatoryActivity.this));
-        SelectClient.add("Select Client");
-        StringRequest stringRequest=new StringRequest(Config.URL_CLient, response -> {
+        Data data_model = FastSave.getInstance().getObject("login_data", Data.class);
+        StringRequest stringRequest1=new StringRequest(Request.Method.POST, Config.URL_CLient, response -> {
+            Log.e("response",response);
             try {
                 JSONArray jsonArray=new JSONArray(response);
-                for (int i=0; i<jsonArray.length(); ++i){
-                    JSONObject jsonObject1=jsonArray.getJSONObject(i);
-                    String catogery=jsonObject1.getString("company_name");
-                    SelectClient.add(catogery);
-                }
-                client.setAdapter(new ArrayAdapter<>(AddAuthorizedSignatoryActivity.this, android.R.layout.simple_spinner_dropdown_item, SelectClient));
+                JSONObject jsonObject=jsonArray.getJSONObject(0);
+                Clinet_name.setText(jsonObject.getString("client_id"));
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }, error -> Log.e("error", error.toString()));
-        RequestQueue queue= Volley.newRequestQueue(this);
-        queue.add(stringRequest);
-        client.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        }, error -> {
+
+        }){
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String dAdress=client.getItemAtPosition(client.getSelectedItemPosition()).toString();
-             }
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("client", data_model.getClient());
+                return params;
+            }
+        };
+        RequestQueue requestQueue1=Volley.newRequestQueue(this);
+        requestQueue1.add(stringRequest1);
+        spin_designation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position==4){
+                    othersaddwork.setVisibility(View.VISIBLE);
+                }else {
+                    othersaddwork.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
 
+
         SelectClientBranch.add("Select Branch");
-        StringRequest stringRequest1=new StringRequest(Config.URL_ClientBranch, response -> {
+        StringRequest request = new StringRequest(Request.Method.POST,Config.URL_ClientBranch, response -> {
+            Log.e("branch",response);
             try {
-                JSONArray jsonArray=new JSONArray(response);
-                for (int i=0; i<jsonArray.length(); ++i){
+                JSONArray jsonArray = new JSONArray(response);
+                for (int i=0;i<jsonArray.length();i++){
                     JSONObject jsonObject1=jsonArray.getJSONObject(i);
-                    String catogery=jsonObject1.getString("branch");
-                    SelectClientBranch.add(catogery);
+                    SelectClientBranch.add(jsonObject1.get("branch").toString());
                 }
                 spin_branchname.setAdapter(new ArrayAdapter<>(AddAuthorizedSignatoryActivity.this, android.R.layout.simple_spinner_dropdown_item, SelectClientBranch));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }, error -> Log.e("Gronzo", error.toString()));
-        RequestQueue queue1= Volley.newRequestQueue(this);
-        queue1.add(stringRequest1);
-        spin_branchname.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        }, error -> Log.e("error", error.toString())){
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String dAdress=spin_branchname.getItemAtPosition(spin_branchname.getSelectedItemPosition()).toString();
-             }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("client", data_model.getClient());
+                return params;
             }
-        });
-
+        };
+        RequestQueue queue4 = Volley.newRequestQueue(this);
+        queue4.add(request);
         SelectPersonName.add("Select Person Name");
         StringRequest stringRequest3=new StringRequest(Request.Method.POST, Config.URL_PersonName, new com.android.volley.Response.Listener<String>() {
             @Override
@@ -160,8 +175,8 @@ public class AddAuthorizedSignatoryActivity extends AppCompatActivity {
              }
         }, error -> Toast.makeText(AddAuthorizedSignatoryActivity.this,error.toString(), Toast.LENGTH_SHORT).show()){
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params=new HashMap<String, String>();
+            protected Map<String, String> getParams() {
+                Map<String,String> params= new HashMap<>();
                 Data data_model=FastSave.getInstance().getObject("login_data",Data.class);
                 params.put("email",data_model.getEmail());
                 params.put("role",data_model.getRole());
@@ -186,7 +201,7 @@ public class AddAuthorizedSignatoryActivity extends AppCompatActivity {
             String Date2 = edtSignatoryValidupto.getText().toString();
             String WorkOrderReferenceNo = edtWork_orderreference.getText().toString();
             String WorkOrderDescription = edtWork_description.getText().toString();
-            String Client = (String) client.getSelectedItem();
+            String clientName=Clinet_name.getText().toString();
             String BranchName = (String) spin_branchname.getSelectedItem();
             String Designation = (String) spin_designation.getSelectedItem();
             String person_name=(String)spin_nameofperson.getSelectedItem();
@@ -198,8 +213,7 @@ public class AddAuthorizedSignatoryActivity extends AppCompatActivity {
             else
             {
                 loading.setVisibility(View.VISIBLE);
-                Data data_model= FastSave.getInstance().getObject("login_data",Data.class);
-                postAuthorizesSignatory(data_model.getEmail(),  data_model.getRole(),BranchName, person_name,WorkOrderReferenceNo,WorkOrderDescription,Client,Date2,Designation);
+                 postAuthorizesSignatory(data_model.getEmail(),  data_model.getRole(),BranchName, person_name,WorkOrderReferenceNo,WorkOrderDescription,clientName,Date2,Designation);
                 onBackPressed();
             }
         });

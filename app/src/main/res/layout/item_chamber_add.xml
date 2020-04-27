@@ -14,28 +14,28 @@
         android:layout_marginTop="@dimen/_10sdp"
         android:orientation="horizontal">
         <EditText
-            android:id="@+id/No"
+            android:id="@+id/material_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/border_spinner"
             android:textColor="@color/ColorBlack" />
         <EditText
-            android:id="@+id/edtcapacity"
+            android:id="@+id/edtSpecification"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/border_spinner"
             android:textColor="@color/ColorBlack" />
         <EditText
-            android:id="@+id/edtdlLevel"
+            android:id="@+id/edtUnit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/border_spinner"
             android:textColor="@color/ColorBlack" />
         <EditText
-            android:id="@+id/edtplLevel"
+            android:id="@+id/edtQty"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

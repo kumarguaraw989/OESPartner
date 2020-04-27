@@ -98,126 +98,111 @@ public class NavigationDrawerFragment extends Fragment {
 
         mDrawerListView.setAdapter(new ExpandableListAdapter(getActivity(), expandableListTitle, expandableListDetail));
 
-        mDrawerListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+        mDrawerListView.setOnGroupExpandListener(groupPosition -> {
 
-            @Override
-            public void onGroupExpand(int groupPosition) {
-
-            }
         });
 
 
-        mDrawerListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                boolean retVal = true;
+        mDrawerListView.setOnGroupClickListener((parent, v, groupPosition, id) -> {
+            boolean retVal = true;
 
-                if (groupPosition == ExpandableListAdapter.ITEM1) {
+            if (groupPosition == ExpandableListAdapter.ITEM1) {
 
-                    Intent intent= new Intent(getActivity(), HomeActivity.class);
-                          startActivity(intent);
+                Intent intent= new Intent(getActivity(), HomeActivity.class);
+                      startActivity(intent);
 
-                } else if (groupPosition == ExpandableListAdapter.ITEM2) {
-                    retVal = false;
-                }
-                else if (groupPosition == ExpandableListAdapter.ITEM3) {
-                    retVal = false;
-                    // call some activity here
-                }
+            } else if (groupPosition == ExpandableListAdapter.ITEM2) {
+                retVal = false;
+            }
+            else if (groupPosition == ExpandableListAdapter.ITEM3) {
+                retVal = false;
+                // call some activity here
+            }
 
-                else if (groupPosition == ExpandableListAdapter.ITEM4) {
-                    Intent intent= new Intent(getActivity(), MaterialGatepassActivity.class);
+            else if (groupPosition == ExpandableListAdapter.ITEM4) {
+                Intent intent= new Intent(getActivity(), MaterialGatepassActivity.class);
+                startActivity(intent);
+                // call some activity here
+
+            }
+            else if (groupPosition == ExpandableListAdapter.ITEM5) {
+                retVal = false;
+                // call some activity here
+            }
+
+
+
+            return retVal;
+        });
+
+        mDrawerListView.setOnChildClickListener((parent, v, groupPosition, childPosition, id) -> {
+
+            if (groupPosition == ExpandableListAdapter.ITEM2) {
+                if (childPosition == ExpandableListAdapter.SUBITEM1_1) {
+                    Intent intent =new Intent(getContext(), VisitorgatepassActivity.class);
                     startActivity(intent);
-                    // call some activity here
+                    // call activity here
 
                 }
-                else if (groupPosition == ExpandableListAdapter.ITEM5) {
-                    retVal = false;
-                    // call some activity here
+                else if (childPosition == ExpandableListAdapter.SUBITEM1_2) {
+                    Intent intent =new Intent(getContext(), WorkgatepassActivity.class);
+                    startActivity(intent);
+                    // call activity here
+
+                }
+                else if (childPosition == ExpandableListAdapter.SUBITEM1_3) {
+
+                    // call activity here
+
+                }
+                else if (childPosition == ExpandableListAdapter.SUBITEM1_4) {
+
+                    // call activity here
+                }
+            } else if (groupPosition == ExpandableListAdapter.ITEM3) {
+                if (childPosition == ExpandableListAdapter.SUBITEM2_1) {
+                    Intent intent =new Intent(getContext(), AuthorizedSignatoryActivity.class);
+                    startActivity(intent);
+                    // call activity here
+
+                }
+                else if (childPosition == ExpandableListAdapter.SUBITEM2_2) {
+                    Intent intent =new Intent(getContext(), PartnerPersonActivity.class);
+                    startActivity(intent);
+                    // call activity here
+
+                }
+                else if (childPosition == ExpandableListAdapter.SUBITEM2_3) {
+
+                    // call activity here
+
+                }
+                else if (childPosition == ExpandableListAdapter.SUBITEM2_4) {
+
+                    // call activity here
+
                 }
 
 
 
-                return retVal;
+
             }
-        });
+            else if (groupPosition == ExpandableListAdapter.ITEM5) {
 
-        mDrawerListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+                if (childPosition == ExpandableListAdapter.SUBITEM3_1) {
+                    Intent intent = new Intent(getContext(), VehicleNoActivity.class);
+                    startActivity(intent);
+                    // call activity here
 
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v,
-                                        int groupPosition, int childPosition, long id) {
+                } else if (childPosition == ExpandableListAdapter.SUBITEM3_2) {
 
-                if (groupPosition == ExpandableListAdapter.ITEM2) {
-                    if (childPosition == ExpandableListAdapter.SUBITEM1_1) {
-                        Intent intent =new Intent(getContext(),   VisitorgatepassActivity.class);
-                        startActivity(intent);
-                        // call activity here
-
-                    }
-                    else if (childPosition == ExpandableListAdapter.SUBITEM1_2) {
-                        Intent intent =new Intent(getContext(),   WorkgatepassActivity.class);
-                        startActivity(intent);
-                        // call activity here
-
-                    }
-                    else if (childPosition == ExpandableListAdapter.SUBITEM1_3) {
-
-                        // call activity here
-
-                    }
-                    else if (childPosition == ExpandableListAdapter.SUBITEM1_4) {
-
-                        // call activity here
-
-                    }
-
-
-                } else if (groupPosition == ExpandableListAdapter.ITEM3) {
-
-                    if (childPosition == ExpandableListAdapter.SUBITEM2_1) {
-                        Intent intent =new Intent(getContext(),   AuthorizedSignatoryActivity.class);
-                        startActivity(intent);
-                        // call activity here
-
-                    }
-                    else if (childPosition == ExpandableListAdapter.SUBITEM2_2) {
-                        Intent intent =new Intent(getContext(),   PartnerPersonActivity.class);
-                        startActivity(intent);
-                        // call activity here
-
-                    }
-                    else if (childPosition == ExpandableListAdapter.SUBITEM2_3) {
-
-                        // call activity here
-
-                    }
-                    else if (childPosition == ExpandableListAdapter.SUBITEM2_4) {
-
-                        // call activity here
-
-                    }
-
-
-
+                    Intent intent = new Intent(getContext(), TransportActivity.class);
+                    startActivity(intent);
+                    // call activity here
 
                 }
-                else if (groupPosition == ExpandableListAdapter.ITEM5) {
-
-                    if (childPosition == ExpandableListAdapter.SUBITEM3_1) {
-                        Intent intent = new Intent(getContext(), VehicleNoActivity.class);
-                        startActivity(intent);
-                        // call activity here
-
-                    } else if (childPosition == ExpandableListAdapter.SUBITEM3_2) {
-
-                        Intent intent = new Intent(getContext(), TransportActivity.class);
-                        startActivity(intent);
-                        // call activity here
-
-                    }
-                }
-                return true;
             }
+            return true;
         });
 
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
@@ -265,14 +250,11 @@ public class NavigationDrawerFragment extends Fragment {
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
                 getActionBar().setIcon(R.drawable.ic_drawer);
-
                 if (!isAdded()) {
                     return;
                 }
-
                 getActivity().supportInvalidateOptionsMenu(); // calls onPrepareOptionsMenu()
             }
-
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
@@ -281,9 +263,6 @@ public class NavigationDrawerFragment extends Fragment {
                 if (!isAdded()) {
                     return;
                 }
-
-
-
                 getActivity().supportInvalidateOptionsMenu(); // calls onPrepareOptionsMenu()
             }
         };

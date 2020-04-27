@@ -14,8 +14,8 @@ import android.widget.ImageView;
 
 import com.appizona.yehiahd.fastsave.FastSave;
 import com.example.oespartner.Adapter.TransportAdapter;
-import com.example.oespartner.Model.Data;
-import com.example.oespartner.Model.TransportModel;
+import com.example.oespartner.model.Data;
+import com.example.oespartner.model.TransportModel;
 import com.example.oespartner.R;
 import com.example.oespartner.WebService.ApiClient;
 import com.example.oespartner.WebService.RetrofitApi;

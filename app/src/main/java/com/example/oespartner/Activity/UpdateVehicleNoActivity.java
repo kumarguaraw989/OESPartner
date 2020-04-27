@@ -11,8 +11,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.appizona.yehiahd.fastsave.FastSave;
-import com.example.oespartner.Model.AddVehicleNo;
-import com.example.oespartner.Model.Data;
+import com.example.oespartner.model.AddVehicleNo;
+import com.example.oespartner.model.Data;
 import com.example.oespartner.R;
 import com.example.oespartner.WebService.ApiClient;
 import com.example.oespartner.WebService.RetrofitApi;

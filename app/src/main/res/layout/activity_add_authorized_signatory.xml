@@ -29,64 +29,47 @@
                 android:textStyle="bold"
                 android:textColor="@color/whiteTextColor" />
         </androidx.appcompat.widget.Toolbar>
-
-        <TextView
-            android:id="@+id/tv1"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_margin="@dimen/_20sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Client*"
-            android:textColor="@color/colorPrimary"
-            android:layout_marginLeft="@dimen/_10sdp"/>
+            android:text="Client Name *"
+            android:textColor="@color/ColorBlack" />
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_8sdp"
-            android:layout_marginRight="@dimen/_8sdp"
             android:background="@drawable/border_spinner"
-            android:layout_marginTop="@dimen/_15sdp">
-            <Spinner
-                android:id="@+id/spinClient"
+            android:layout_marginTop="@dimen/_5sdp">
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_25sdp"
-                android:background="@null"
-                android:minHeight="@dimen/_35sdp"
-                android:dropDownSelector="@color/colorAccent"
-                android:imeOptions="actionDone"
-                android:paddingRight="@dimen/_1sdp"
-                android:paddingLeft="@dimen/_1sdp"
-                android:spinnerMode="dropdown"
-                android:textColor="@color/ColorBlack"
-                android:theme="@style/ThemeOverlay.AppCompat.Light"
-                android:textColorHint="@color/ColorBlack"
-                android:textSize="@dimen/_12sdp" />
-            <ImageView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/_2sdp"
-                android:layout_marginEnd="@dimen/_2sdp"
-                android:layout_centerVertical="true"
-                app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+                android:text=""
+                android:id="@+id/client_name"
+                android:textColor="@color/ColorBlack"
+                android:textStyle="bold"
+                android:padding="@dimen/_10sdp"
+                android:background="@drawable/border_bloour"
+                />
         </RelativeLayout>
-        <TextView
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Client Branch Name*"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:textColor="@color/colorPrimary"/>
+            android:text="Client Branch Name *"
+            android:textColor="@color/ColorBlack" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_8sdp"
-            android:layout_marginRight="@dimen/_8sdp"
             android:background="@drawable/border_spinner"
-            android:layout_marginTop="@dimen/_15sdp">
+            android:layout_marginTop="@dimen/_5sdp">
             <Spinner
                 android:id="@+id/client_branchname"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_25sdp"
+                android:layout_height="wrap_content"
                 android:background="@null"
                 android:minHeight="@dimen/_35sdp"
                 android:dropDownSelector="@color/colorAccent"
@@ -95,7 +78,6 @@
                 android:paddingLeft="@dimen/_1sdp"
                 android:spinnerMode="dropdown"
                 android:textColor="@color/ColorBlack"
-                android:entries="@array/client_list"
                 android:theme="@style/ThemeOverlay.AppCompat.Light"
                 android:textColorHint="@color/ColorBlack"
                 android:textSize="@dimen/_12sdp" />
@@ -109,63 +91,21 @@
                 app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
         </RelativeLayout>
 
-        <TextView
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Name of Person *"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:textColor="@color/colorPrimary"/>
+            android:text="Name Of Person*"
+            android:textColor="@color/ColorBlack" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_8sdp"
-            android:layout_marginRight="@dimen/_8sdp"
             android:background="@drawable/border_spinner"
-            android:layout_marginTop="@dimen/_15sdp">
+            android:layout_marginTop="@dimen/_5sdp">
             <Spinner
                 android:id="@+id/nameof_person"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_25sdp"
-                android:background="@null"
-                android:minHeight="@dimen/_35sdp"
-                android:dropDownSelector="@color/colorAccent"
-                android:imeOptions="actionDone"
-                android:paddingRight="@dimen/_1sdp"
-                android:paddingLeft="@dimen/_1sdp"
-                android:spinnerMode="dropdown"
-                android:textColor="@color/ColorBlack"
-                android:entries="@array/client_list"
-                android:theme="@style/ThemeOverlay.AppCompat.Light"
-                android:textColorHint="@color/ColorBlack"
-                android:textSize="@dimen/_12sdp" />
-            <ImageView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/_2sdp"
-                android:layout_marginEnd="@dimen/_2sdp"
-                android:layout_centerVertical="true"
-                app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
-        </RelativeLayout>
-        <TextView
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Designation *"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:textColor="@color/colorPrimary"/>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_8sdp"
-            android:layout_marginRight="@dimen/_8sdp"
-            android:background="@drawable/border_spinner"
-            android:layout_marginTop="@dimen/_15sdp">
-            <Spinner
-                android:id="@+id/designation"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_25sdp"
                 android:background="@null"
                 android:minHeight="@dimen/_35sdp"
                 android:dropDownSelector="@color/colorAccent"
@@ -174,7 +114,6 @@
                 android:paddingLeft="@dimen/_1sdp"
                 android:spinnerMode="dropdown"
                 android:textColor="@color/ColorBlack"
-                android:entries="@array/designation"
                 android:theme="@style/ThemeOverlay.AppCompat.Light"
                 android:textColorHint="@color/ColorBlack"
                 android:textSize="@dimen/_12sdp" />
@@ -188,6 +127,53 @@
                 app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
         </RelativeLayout>
 
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Designation *"
+            android:textColor="@color/ColorBlack" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_spinner"
+            android:layout_marginTop="@dimen/_5sdp">
+            <Spinner
+                android:id="@+id/designation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:minHeight="@dimen/_35sdp"
+                android:dropDownSelector="@color/colorAccent"
+                android:imeOptions="actionDone"
+                android:paddingRight="@dimen/_1sdp"
+                android:paddingLeft="@dimen/_1sdp"
+                android:entries="@array/designationAuthorized"
+                android:spinnerMode="dropdown"
+                android:textColor="@color/ColorBlack"
+                android:theme="@style/ThemeOverlay.AppCompat.Light"
+                android:textColorHint="@color/ColorBlack"
+                android:textSize="@dimen/_12sdp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_2sdp"
+                android:layout_centerVertical="true"
+                app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+        </RelativeLayout>
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Others"
+            android:visibility="gone"
+            android:id="@+id/othersaddwork"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:textColorHint="@color/colorGray"
+            android:textColor="@color/colorblack"
+            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -347,5 +333,6 @@ I hereby authorise Mr/ Mrs/Ms Name of Person as my Authorise representative. He 
             android:backgroundTint="@color/colorAccent"
             android:layout_marginBottom="@dimen/_10sdp"
             android:textColor="@color/whiteTextColor"/>
+    </LinearLayout>
     </LinearLayout>
 </ScrollView>

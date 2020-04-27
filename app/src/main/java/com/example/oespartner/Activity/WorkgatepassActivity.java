@@ -9,15 +9,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.appizona.yehiahd.fastsave.FastSave;
-import com.example.oespartner.Adapter.PartnerPersonAdapter;
 import com.example.oespartner.Adapter.WorkGatePassAdapter;
-import com.example.oespartner.Model.Data;
-import com.example.oespartner.Model.PartnerPersonModel;
-import com.example.oespartner.Model.WorkGatePassModel;
+import com.example.oespartner.model.Data;
+import com.example.oespartner.model.WorkGatePassModel;
 import com.example.oespartner.R;
 import com.example.oespartner.WebService.ApiClient;
 import com.example.oespartner.WebService.RetrofitApi;

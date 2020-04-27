@@ -19,7 +19,9 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.oespartner.MainActivity;
@@ -27,6 +29,8 @@ import com.example.oespartner.R;
 import com.example.oespartner.WebService.ApiClient;
 import com.example.oespartner.WebService.Config;
 import com.example.oespartner.WebService.RetrofitApi;
+import com.example.oespartner.model.BranchModel;
+import com.example.oespartner.model.ClientModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,6 +38,8 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import okhttp3.MediaType;
@@ -44,12 +50,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
+
     LinearLayout register_security, register_Dealer, register_contractor, register_consumer, register_supplier, register_transporter;
     Button btnRegister, btnUploadPhoto, btnUploadSignature;
     TextView txtRegister;
     ProgressBar loading;
     //edit text ids common for all
-    EditText name, email, phone, pingenerate, designation, bloodgroup, biomatricdata, aadharno;
+    EditText name, email, designation, bloodgroup, biomatricdata, aadharno;
     //edit text ids only for security
     EditText edtSecurityGst, edtDepartmentSecurity, edtPanSecurity, edtEsiRegistrationSecurity, edtPfRegistration, edtLabourRegistrationSecurity, edtFirmEmailSecurity, edtAddressecurtiy;
     //edit text ids only for dealer
@@ -82,13 +89,12 @@ public class RegisterActivity extends AppCompatActivity {
         btnUploadPhoto = findViewById(R.id.btnPhoto);
         btnUploadSignature = findViewById(R.id.btnSignature);
         SelectUserType.add("Select Category");
-        SelectClientType.add("Select client");
-        SelectBranchType.add("Select Branch");
+
         //all edit text id is here
         name = findViewById(R.id.edtName);
         email = findViewById(R.id.edtEmail);
-        phone = findViewById(R.id.edtPhoneNo);
-        pingenerate = findViewById(R.id.edtPingenerate);
+        //phone = findViewById(R.id.edtPhoneNo);
+       // pingenerate = findViewById(R.id.edtPingenerate);
         designation = findViewById(R.id.edtDesignation);
         bloodgroup = findViewById(R.id.edtBloodgroup);
         biomatricdata = findViewById(R.id.edtBiomatricdata);
@@ -157,27 +163,26 @@ public class RegisterActivity extends AppCompatActivity {
         edtOfficeaddressConsumer = findViewById(R.id.edtOfficeaddressConsumer);
         //all layouts id are here
         register_security = findViewById(R.id.include_registersecurity);
-        register_Dealer = findViewById(R.id.layout_register_contractor);
+        register_Dealer = findViewById(R.id.layout_register_dealer);
         register_contractor = findViewById(R.id.layout_register_contractor);
         register_consumer = findViewById(R.id.layout_register_consumer);
         register_supplier = findViewById(R.id.layout_register_supplier);
         register_transporter = findViewById(R.id.layout_register_transporter);
         //API CALLING FOR SPINNER1
-        StringRequest stringRequest1 = new StringRequest(Config.URL_ClientBranch, response -> {
-            try {
-                JSONArray jsonArray = new JSONArray(response);
-                for (int i = 0; i < jsonArray.length(); ++i) {
-                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                    String catogery = jsonObject1.getString("branch");
-                    SelectBranchType.add(catogery);
-                }
-                SelectBranch.setAdapter(new ArrayAdapter<>(RegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, SelectBranchType));
-            } catch (JSONException e) {
-                e.printStackTrace();
+        new ApiClient().getRetrofitInstance().getCompany().enqueue(new Callback<ArrayList<ClientModel>>(){
+            @Override
+            public void onResponse(Call<ArrayList<ClientModel>> call, Response<ArrayList<ClientModel>> response) {
+                SelectClientType.clear();
+                for (int i = 0; i < response.body().size(); i++)
+                    SelectClientType.add(response.body().get(i).getCompanyName());
+                SelectClient.setAdapter(new ArrayAdapter<>(RegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, SelectClientType));
             }
-        }, error -> Log.e("error", error.toString()));
-        RequestQueue queue = Volley.newRequestQueue(this);
-        queue.add(stringRequest1);
+            @Override
+            public void onFailure(Call<ArrayList<ClientModel>> call, Throwable t) {
+
+            }
+        });
+
         StringRequest stringRequest = new StringRequest(Config.URL_role, response -> {
             try {
                 JSONArray jsonArray = new JSONArray(response);
@@ -193,6 +198,7 @@ public class RegisterActivity extends AppCompatActivity {
         }, error -> Log.e("error", error.toString()));
         RequestQueue queue1 = Volley.newRequestQueue(this);
         queue1.add(stringRequest);
+
         SelectRole.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
@@ -252,37 +258,29 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
+            public void onNothingSelected(AdapterView<?> adapterView) {}
 
-            }
         });
-        //API CALLING FOR SPINNER2
-        StringRequest stringRequest2 = new StringRequest(Config.URL_CLient, response -> {
-            try {
-                JSONArray jsonArray = new JSONArray(response);
-                for (int i = 0; i < jsonArray.length(); ++i) {
-                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                    String catogery = jsonObject1.getString("company_name");
-                    SelectClientType.add(catogery);
-                }
-                SelectClient.setAdapter(new ArrayAdapter<>(RegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, SelectClientType));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }, error -> Log.e("error", error.toString()));
-        RequestQueue queue2 = Volley.newRequestQueue(this);
-        queue2.add(stringRequest2);
         SelectClient.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String dAdress = SelectClient.getItemAtPosition(SelectClient.getSelectedItemPosition()).toString();
+                new ApiClient().getRetrofitInstance().getBranch(SelectClient.getItemAtPosition(SelectClient.getSelectedItemPosition()).toString()).enqueue(new Callback<ArrayList<BranchModel>>() {
+                    @Override
+                    public void onResponse(Call<ArrayList<BranchModel>> call, Response<ArrayList<BranchModel>> response) {
+                        SelectBranchType.clear();
+                        SelectBranchType.add(response.body().get(0).getBranch());
+                        SelectBranch.setAdapter(new ArrayAdapter<>(RegisterActivity.this, android.R.layout.simple_spinner_dropdown_item, SelectBranchType));
+                    }
+
+                    @Override
+                    public void onFailure(Call<ArrayList<BranchModel>> call, Throwable t) { }
+                });
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
+            public void onNothingSelected(AdapterView<?> adapterView) {}
         });
+
         btnRegister.setOnClickListener(v -> {
             if (SelectRole.getSelectedItem().toString().trim().equals("Select user")) {
                 Toast.makeText(RegisterActivity.this, "Usertype is empty!", Toast.LENGTH_SHORT).show();
@@ -294,13 +292,7 @@ public class RegisterActivity extends AppCompatActivity {
             } else if (email.getText().toString().trim().isEmpty()) {
                 email.setError("email is required!");
                 email.requestFocus();
-            } else if (phone.getText().toString().trim().isEmpty()) {
-                phone.setError("phone is required!");
-                phone.requestFocus();
-            } else if (pingenerate.getText().toString().trim().isEmpty()) {
-                pingenerate.setError("pin is required!");
-                pingenerate.requestFocus();
-            } else if (designation.getText().toString().trim().isEmpty()) {
+            }  else if (designation.getText().toString().trim().isEmpty()) {
                 designation.setError("designation is required!");
                 designation.requestFocus();
             } else if (bloodgroup.getText().toString().trim().isEmpty()) {
@@ -320,12 +312,10 @@ public class RegisterActivity extends AppCompatActivity {
                         .addFormDataPart("client", Objects.requireNonNull(SelectClient.getSelectedItem().toString()))
                         .addFormDataPart("name", Objects.requireNonNull(name.getText()).toString())
                         .addFormDataPart("email", Objects.requireNonNull(email.getText()).toString())
-                        .addFormDataPart("mobile", Objects.requireNonNull(phone.getText()).toString())
-                        .addFormDataPart("password", Objects.requireNonNull(pingenerate.getText()).toString())
                         .addFormDataPart("partner_designation", Objects.requireNonNull(designation.getText()).toString())
                         .addFormDataPart("blood", Objects.requireNonNull(bloodgroup.getText().toString()))
                         .addFormDataPart("biomatricdata", Objects.requireNonNull(biomatricdata.getText().toString()))
-                        .addFormDataPart("aadhar_no", Objects.requireNonNull(aadharno.getText().toString()))
+                        .addFormDataPart("biomatricdata", Objects.requireNonNull(aadharno.getText().toString()))
                         .addFormDataPart("gst_no", Objects.requireNonNull(edtSecurityGst.getText().toString()))
                         .addFormDataPart("department", Objects.requireNonNull(edtDepartmentSecurity.getText().toString()))
                         .addFormDataPart("pan", Objects.requireNonNull(edtPanSecurity.getText().toString()))
@@ -419,6 +409,8 @@ public class RegisterActivity extends AppCompatActivity {
             startActivity(i);
         });
     }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
