@@ -17,6 +17,7 @@
     <string name="fa_chevron_right">&#xf054;</string>
     <string name="fa_chevron_down">&#xf078;</string>
 
+    <string name="WorkOrderReferenceNo">Work Order Reference No*</string>
 
     <string name="register">REGISTER</string>
     <string name="login_email_hint">Email</string>

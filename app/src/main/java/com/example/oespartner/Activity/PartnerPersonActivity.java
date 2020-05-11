@@ -65,6 +65,7 @@ public class PartnerPersonActivity extends AppCompatActivity implements SwipeRef
                 }
                 @Override
                 public void onFailure(Call<List<PartnerPersonModel>> call, Throwable t) {
+                    swipeRefreshLayout.setRefreshing(false);
                     Log.d("TAG","Response = "+t.toString());
                 }
             });
@@ -73,6 +74,7 @@ public class PartnerPersonActivity extends AppCompatActivity implements SwipeRef
     @Override
     public void onRefresh() {
         swipeRefreshLayout.setRefreshing(false);
+        partnerPersonModels.clear();
     }
 }
 

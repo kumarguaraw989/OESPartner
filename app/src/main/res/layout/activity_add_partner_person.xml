@@ -8,6 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorWhite"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
@@ -36,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:orientation="vertical">
 
@@ -50,7 +51,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Title"
-                    android:textColor="@color/ColorBlack" />
+                    android:textColor="@color/fifty_transparent_black" />
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spntitle"
@@ -61,25 +62,24 @@
                     android:padding="@dimen/_8sdp" />
             </LinearLayout>
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Name of Person*"
-                    android:textColor="@color/ColorBlack" />
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Name of Person*"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_profile">
 
                 <EditText
                     android:id="@+id/person_name"
+                    android:background="@color/transparent"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp" />
-            </LinearLayout>
+                    android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -87,49 +87,51 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:orientation="vertical">
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Phone No"
-                    android:textColor="@color/ColorBlack" />
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Phone No"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_stay_primary_portrait_black_24dp">
 
                 <EditText
                     android:id="@+id/phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp" />
-            </LinearLayout>
+                    android:background="@color/transparent"
+                    android:inputType="phone" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Email ID"
-                    android:textColor="@color/ColorBlack" />
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Email ID"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_email_black_24dp">
 
                 <EditText
                     android:id="@+id/email1"
+                    android:background="@color/transparent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp" />
-            </LinearLayout>
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -137,7 +139,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:orientation="horizontal">
 
@@ -145,12 +147,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/border_spinner"
                 android:orientation="vertical"
                 android:paddingTop="@dimen/_10sdp">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
                     android:text="Upload Photo"
                     android:textColor="@color/ColorBlack" />
 
@@ -166,7 +170,7 @@
                         android:id="@+id/photo"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
-                        android:background="@drawable/ripple_button"
+                        android:background="@drawable/a"
                         android:padding="@dimen/_5sdp"
                         android:text="Choose File"
                         android:textAllCaps="false"
@@ -188,53 +192,57 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Fathers Name"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
+
+                <EditText
+                    android:id="@+id/father_name"
+                    android:background="@color/transparent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Fathers Name"
-                    android:textColor="@color/ColorBlack" />
-
-                <EditText
-                    android:id="@+id/father_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Date of Birth "
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:text="Date of Birth *"
                     android:textColor="@color/ColorBlack" />
 
                 <EditText
                     android:id="@+id/edtDateofBirth"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/edit_text_background"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_spinner"
                     android:drawableRight="@drawable/ic_calendar"
                     android:drawablePadding="10dp"
                     android:focusable="false"
                     android:gravity="center|left"
-                    android:padding="@dimen/_5sdp"
+                    android:padding="@dimen/_8sdp"
                     android:text="Select Date"
-                    android:textColor="@color/whiteTextColor" />
+                    android:textColor="@color/ColorBlack" />
             </LinearLayout>
 
 
@@ -245,41 +253,41 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:orientation="vertical">
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/others_layout"
+                style="@style/Platform.MaterialComponents"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Age"
-                    android:textColor="@color/ColorBlack" />
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Age"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
 
                 <EditText
                     android:id="@+id/age"
+                    android:background="@color/transparent"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp" />
-            </LinearLayout>
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
+                android:layout_marginTop="@dimen/_20sdp"
+                android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Gender"
-                    android:textColor="@color/ColorBlack" />
+                    android:textColor="@color/fifty_transparent_black" />
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spnGender"
@@ -298,21 +306,20 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
+                android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Blood Group"
-                    android:textColor="@color/ColorBlack" />
+                    android:textColor="@color/fifty_transparent_black" />
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spnBloodGrp"
@@ -326,14 +333,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
+                android:layout_marginTop="@dimen/_20sdp"
+                android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Whether wear Glass"
-                    android:textColor="@color/ColorBlack" />
+                    android:textColor="@color/fifty_transparent_black" />
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spnWearGlass"
@@ -348,28 +355,27 @@
 
         <include layout="@layout/partnerpersonwearglassyes" />
 
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Platform.MaterialComponents"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_40sdp"
             android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginRight="@dimen/_10sdp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:paddingTop="@dimen/_10sdp">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Identification Mark"
-                android:textColor="@color/ColorBlack" />
+            android:background="@drawable/border_spinner"
+            android:hint="Identification Mark"
+            android:textColorHint="@color/colorGray"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
+            app:startIconDrawable="@drawable/ic_done_black_24dp">
 
             <EditText
                 android:id="@+id/edtIdentificationMark"
+                android:background="@color/transparent"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/border_bloour"
-                android:padding="@dimen/_8sdp" />
-        </LinearLayout>
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <View
             android:id="@+id/myview"
@@ -383,7 +389,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Present Address"
-            android:textColor="@color/colorblack"
+            android:textColor="@color/fifty_transparent_black"
             android:textSize="15sp" />
 
         <LinearLayout
@@ -391,216 +397,243 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Address"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
+
+                <EditText
+                    android:background="@color/transparent"
+                    android:id="@+id/edtAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Platform.MaterialComponents"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:background="@drawable/border_spinner"
+            android:hint="Police Station"
+            android:textColorHint="@color/colorGray"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
+            app:startIconDrawable="@drawable/ic_done_black_24dp">
+
+            <EditText
+                android:id="@+id/edtPoliceStation"
+                android:background="@color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_15sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:orientation="vertical">
 
-
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Address"
-                    android:textColor="@color/ColorBlack" />
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Post Office"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
 
                 <EditText
-                    android:id="@+id/edtAddress"
+                    android:id="@+id/edtPostOffice"
+                    android:background="@color/transparent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Village/Town"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
+
+                <EditText
+                    android:id="@+id/edtVillage"
+                    android:background="@color/transparent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Pin No:"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
+
+                <EditText
+                    android:id="@+id/edtPinNo"
+                    android:background="@color/transparent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Mobile No:"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
+
+                <EditText
+                    android:id="@+id/edtMobile"
+                    android:background="@color/transparent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp" />
-            </LinearLayout>
+                    android:inputType="phone" />
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:layout_marginRight="@dimen/_10sdp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:paddingTop="@dimen/_10sdp">
+            android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Police Station"
-                android:textColor="@color/ColorBlack" />
+                 android:layout_marginTop="@dimen/_20sdp"
+                 android:text="State*"
+                android:textColor="@color/fifty_transparent_black" />
 
-            <EditText
-                android:id="@+id/edtPoliceStation"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/border_bloour"
-                android:drawablePadding="10dp"
-                android:gravity="center|left"
-                android:padding="@dimen/_5sdp"
-                android:textColor="@color/ColorBlack" />
-        </LinearLayout>
+                 android:layout_marginTop="@dimen/_8sdp"
+                 android:background="@drawable/border_spinner">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:orientation="vertical">
+                <Spinner
+                    android:id="@+id/spn_state"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:dropDownSelector="@color/colorAccent"
+                    android:imeOptions="actionDone"
+                    android:minHeight="@dimen/_35sdp"
+                    android:paddingLeft="@dimen/_1sdp"
+                    android:paddingRight="@dimen/_1sdp"
+                    android:spinnerMode="dropdown"
+                    android:textColor="@color/ColorBlack"
+                    android:textColorHint="@color/ColorBlack"
+                    android:textSize="@dimen/_12sdp"
+                    android:theme="@style/ThemeOverlay.AppCompat.Light"
 
-            <LinearLayout
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_2sdp"
+                    android:layout_marginRight="@dimen/_2sdp"
+                    app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="District *"
+                android:textColor="@color/fifty_transparent_black" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Post Office"
-                    android:textColor="@color/ColorBlack" />
-
-                <EditText
-                    android:id="@+id/edtPostOffice"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp"
-                    android:textColor="@color/ColorBlack" />
-            </LinearLayout>
-
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@drawable/border_spinner">
 
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
+                <Spinner
+                    android:id="@+id/spn_district"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Village/Town"
-                    android:textColor="@color/ColorBlack" />
+                    android:background="@null"
+                    android:dropDownSelector="@color/colorAccent"
+                    android:imeOptions="actionDone"
+                    android:minHeight="@dimen/_35sdp"
+                    android:paddingLeft="@dimen/_1sdp"
+                    android:paddingRight="@dimen/_1sdp"
+                    android:spinnerMode="dropdown"
+                    android:textColor="@color/ColorBlack"
+                    android:textColorHint="@color/ColorBlack"
+                    android:textSize="@dimen/_12sdp"
+                    android:theme="@style/ThemeOverlay.AppCompat.Light"
 
-                <EditText
-                    android:id="@+id/edtVillage"
-                    android:layout_width="match_parent"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp" />
-            </LinearLayout>
-        </LinearLayout>
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_2sdp"
+                    android:layout_marginRight="@dimen/_2sdp"
+                    app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+            </RelativeLayout>
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Pin No:"
-                    android:textColor="@color/ColorBlack" />
-
-                <EditText
-                    android:id="@+id/edtPinNo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp"
-                    android:textColor="@color/ColorBlack" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Mobile No:"
-                    android:textColor="@color/ColorBlack" />
-
-                <EditText
-                    android:id="@+id/edtMobile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/_5sdp"
-                    android:background="@drawable/border_bloour"
-                    android:drawablePadding="10dp"
-                    android:padding="@dimen/_8sdp"
-                    android:textColor="@color/ColorBlack" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="State"
-                    android:textColor="@color/ColorBlack" />
-
-                <EditText
-                    android:id="@+id/edtState"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="District"
-                    android:textColor="@color/ColorBlack" />
-
-                <EditText
-                    android:id="@+id/edtDistrict"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp" />
-            </LinearLayout>
         </LinearLayout>
 
         <View
@@ -628,7 +661,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Weather Staying more than 5 years at Present address"
-                    android:textColor="@color/ColorBlack" />
+                    android:textColor="@color/fifty_transparent_black" />
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/weatherStaying"
@@ -647,30 +680,28 @@
                 android:layout_marginTop="@dimen/_5sdp"
                 android:gravity="center"
                 android:text="Permanent Address"
-                android:textColor="@color/ColorBlack"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textColor="@color/whiteTextColor"
+                android:textSize="15sp" />
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Address"
-                    android:textColor="@color/ColorBlack" />
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Address"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
 
                 <EditText
                     android:id="@+id/pAddress"
+                    android:background="@color/transparent"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp" />
-            </LinearLayout>
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -682,50 +713,45 @@
             android:layout_marginRight="@dimen/_10sdp"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Village/Town"
-                    android:textColor="@color/ColorBlack" />
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Village/Town"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
 
                 <EditText
+                    android:background="@color/transparent"
                     android:id="@+id/edtpVillage"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp" />
-            </LinearLayout>
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Mobile No."
-                    android:textColor="@color/ColorBlack" />
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Mobile No."
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
 
                 <EditText
+                    android:background="@color/transparent"
                     android:id="@+id/edtPMobile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:drawablePadding="@dimen/_10sdp"
-                    android:gravity="center|left"
                     android:inputType="phone"
-                    android:padding="@dimen/_8sdp"
-                    android:textColor="@color/whiteTextColor" />
-            </LinearLayout>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -733,52 +759,47 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:orientation="vertical">
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Post Office"
-                    android:textColor="@color/ColorBlack" />
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Post Office"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
 
                 <EditText
                     android:id="@+id/edtpPostOffice"
+                    android:background="@color/transparent"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp" />
-            </LinearLayout>
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Police Station"
-                    android:textColor="@color/ColorBlack" />
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Police Station"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
 
                 <EditText
+                    android:background="@color/transparent"
                     android:id="@+id/edtpPoliceStation"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:drawablePadding="10dp"
-                    android:gravity="center|left"
-                    android:padding="@dimen/_8sdp"
-                    android:textColor="@color/whiteTextColor" />
-            </LinearLayout>
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -786,51 +807,47 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:orientation="vertical">
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="State"
-                    android:textColor="@color/ColorBlack" />
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="State"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
 
                 <EditText
                     android:id="@+id/edtPState"
+                    android:background="@color/transparent"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp" />
-            </LinearLayout>
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="District"
-                    android:textColor="@color/ColorBlack" />
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="District"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
 
                 <EditText
+                    android:background="@color/transparent"
                     android:id="@+id/edtPDistrict"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:drawablePadding="10dp"
-                    android:padding="@dimen/_8sdp" />
-            </LinearLayout>
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -841,45 +858,44 @@
             android:layout_marginRight="@dimen/_10sdp"
             android:orientation="vertical">
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Pin no."
-                    android:textColor="@color/ColorBlack" />
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Pin no."
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
 
                 <EditText
                     android:id="@+id/edtPpinNo"
+                    android:background="@color/transparent"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp" />
-            </LinearLayout>
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Place of Birth"
-                    android:textColor="@color/ColorBlack" />
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Place of Birth"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
 
                 <EditText
                     android:id="@+id/edtDob"
+                    android:background="@color/transparent"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp" />
-            </LinearLayout>
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -891,46 +907,44 @@
             android:layout_marginRight="@dimen/_10sdp"
             android:orientation="vertical">
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Qualification"
-                    android:textColor="@color/ColorBlack" />
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Qualification"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
 
                 <EditText
                     android:id="@+id/edtQualification"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp" />
-            </LinearLayout>
+                    android:background="@color/transparent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Particular of Place (s) person resided during last 5 Years"
-                    android:textColor="@color/ColorBlack" />
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Particular of Place (s) person resided during last 5 Years"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
 
                 <EditText
                     android:id="@+id/edtParticularPlace"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp" />
-            </LinearLayout>
+                    android:background="@color/transparent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -942,44 +956,43 @@
             android:layout_marginRight="@dimen/_10sdp"
             android:orientation="vertical">
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Name and Address of School"
-                    android:textColor="@color/ColorBlack" />
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Name and Address of School"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
 
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp" />
-            </LinearLayout>
+                    android:background="@color/transparent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Name and Address of School"
-                    android:textColor="@color/ColorBlack" />
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Name and Address of School"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
 
                 <EditText
+                    android:background="@color/transparent"
                     android:id="@+id/edtschool_name_address"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp" />
-            </LinearLayout>
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -990,63 +1003,68 @@
             android:layout_marginRight="@dimen/_10sdp"
             android:orientation="vertical">
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Earlier Employer Details (If any)"
-                    android:textColor="@color/ColorBlack" />
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Earlier Employer Details (If any)"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
 
                 <EditText
+                    android:background="@color/transparent"
                     android:id="@+id/edtEmployee_detail"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp" />
-            </LinearLayout>
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Duration"
-                    android:textColor="@color/ColorBlack" />
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Duration"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
 
                 <EditText
+                    android:background="@color/transparent"
                     android:id="@+id/edtDuration"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp" />
-            </LinearLayout>
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:gravity="center"
-            android:text="PF No of Last Employer"
-            android:textColor="@color/ColorBlack" />
 
-        <EditText
-            android:id="@+id/edtpf"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Platform.MaterialComponents"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_40sdp"
             android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginRight="@dimen/_10sdp"
-            android:background="@drawable/border_bloour"
-            android:padding="@dimen/_8sdp" />
+            android:background="@drawable/border_spinner"
+            android:hint="PF No of Last Employer"
+            android:textColorHint="@color/colorGray"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
+            app:startIconDrawable="@drawable/ic_done_black_24dp">
+
+            <EditText
+                android:id="@+id/edtpf"
+                android:background="@color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <View
             android:layout_width="match_parent"
@@ -1060,7 +1078,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Reference"
-            android:textColor="@color/ColorBlack"
+            android:textColor="@color/fifty_transparent_black"
             android:textStyle="italic" />
 
         <LinearLayout
@@ -1072,48 +1090,45 @@
             android:layout_marginRight="@dimen/_10sdp"
             android:orientation="vertical">
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Name"
-                    android:textColor="@color/ColorBlack" />
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Name"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
 
                 <EditText
                     android:id="@+id/edtReferenceName1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp" />
-            </LinearLayout>
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="phone"
-                    android:text="Phone No."
-                    android:textColor="@color/ColorBlack" />
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Phone No."
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
 
                 <EditText
                     android:id="@+id/edtreferencePhone1"
+                    android:background="@color/transparent"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
                     android:inputType="phone"
-                    android:padding="@dimen/_8sdp"
-                    android:textColor="@color/ColorBlack" />
-            </LinearLayout>
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -1125,48 +1140,45 @@
             android:layout_marginRight="@dimen/_10sdp"
             android:orientation="vertical">
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Name"
-                    android:textColor="@color/ColorBlack" />
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Name"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
 
                 <EditText
+                    android:background="@color/transparent"
                     android:id="@+id/edtreferenceName2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp" />
-            </LinearLayout>
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="phone"
-                    android:text="Phone No."
-                    android:textColor="@color/ColorBlack" />
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Phone No."
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
 
                 <EditText
                     android:id="@+id/edtReferencePhone2"
+                    android:background="@color/transparent"
+                    android:inputType="phone"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp" />
-            </LinearLayout>
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
         </LinearLayout>
 
         <TextView
@@ -1186,47 +1198,45 @@
             android:layout_marginRight="@dimen/_10sdp"
             android:orientation="vertical">
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Bank Name"
-                    android:textColor="@color/ColorBlack" />
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Bank Name"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
 
                 <EditText
+                    android:background="@color/transparent"
                     android:id="@+id/edtBankName"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp" />
-            </LinearLayout>
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Account No."
-                    android:textColor="@color/ColorBlack" />
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Account No."
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
 
                 <EditText
+                    android:background="@color/transparent"
                     android:id="@+id/edtAccountNo"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp" />
-            </LinearLayout>
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -1234,44 +1244,41 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:orientation="vertical">
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/_10sdp">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="IFSCI Code"
-                    android:textColor="@color/ColorBlack" />
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="IFSCI Code"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
 
                 <EditText
+                    android:background="@color/transparent"
                     android:id="@+id/edtIfscCode"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_8sdp" />
-            </LinearLayout>
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-
                 android:paddingTop="@dimen/_10sdp">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Whether ever arrested/ Prosecuted/ Kept Under detention/ Fined / convicted by any court of law.:"
-                    android:textColor="@color/ColorBlack" />
+                    android:textColor="@color/colorWhite" />
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spinArested"
@@ -1281,19 +1288,30 @@
                     android:entries="@array/valid"
                     android:padding="@dimen/_8sdp" />
             </LinearLayout>
+
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/edtcaseDetails"
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Platform.MaterialComponents"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_40sdp"
             android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginRight="@dimen/_10sdp"
-            android:background="@drawable/border_bloour"
+            android:background="@drawable/border_spinner"
             android:hint="Enter Details of cases"
-            android:padding="@dimen/_8sdp"
-            android:textColorHint="@color/colorblack" />
+            android:textColorHint="@color/colorGray"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
+            app:startIconDrawable="@drawable/ic_done_black_24dp">
+
+            <EditText
+                android:id="@+id/edtcaseDetails"
+                android:background="@color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <View
             android:layout_width="match_parent"
@@ -1308,7 +1326,7 @@
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:text="Nationality*"
-            android:textColor="@color/colorblack" />
+            android:textColor="@color/fifty_transparent_black" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -1346,20 +1364,25 @@
                 android:layout_marginRight="@dimen/_2sdp"
                 app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
         </LinearLayout>
+
         <include layout="@layout/personmasterindia" />
+
         <include layout="@layout/personmasterothers" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/_10sdp"
-            android:orientation="horizontal">
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:gravity="center"
                 android:orientation="vertical"
                 android:padding="@dimen/_10sdp">
 
@@ -1367,7 +1390,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Biometric Signature"
-                    android:textColor="@color/primaryTextColor" />
+                    android:textColor="@color/fifty_transparent_black" />
 
                 <Button
                     android:id="@+id/upload_BiometricSignature"
@@ -1383,6 +1406,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:gravity="center"
                 android:orientation="vertical"
                 android:padding="@dimen/_10sdp">
 
@@ -1390,7 +1415,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Upload Signature"
-                    android:textColor="@color/primaryTextColor" />
+                    android:textColor="@color/fifty_transparent_black" />
 
                 <Button
                     android:id="@+id/upload_signature"
@@ -1402,6 +1427,7 @@
                     android:textColor="@color/whiteTextColor" />
             </LinearLayout>
         </LinearLayout>
+
         <CheckBox
             android:id="@+id/chkDeclaration"
             android:layout_width="wrap_content"
@@ -1409,7 +1435,7 @@
             android:layout_marginTop="@dimen/_20sdp"
             android:padding="@dimen/_10sdp"
             android:text=" Declaration: I Certify that the information given by me as above is true and I am responsible for my conduct inside the work/ site premises and for the information provided."
-            android:textColor="@color/ColorBlack"
+            android:textColor="@color/fifty_transparent_black"
             android:textStyle="italic" />
 
         <Button
@@ -1418,8 +1444,11 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_10sdp"
+            android:background="@drawable/edittext_border"
             android:backgroundTint="@color/primaryTextColor"
-            android:text="Submit" />
+            android:text="Submit"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite" />
 
         <ProgressBar
             android:id="@+id/progress_bar"

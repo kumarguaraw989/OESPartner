@@ -51,9 +51,7 @@ public class MaterialGatepassActivity extends AppCompatActivity implements Swipe
             Intent i = new Intent(MaterialGatepassActivity.this, AddMaterialgatepassActivity.class);
             startActivity(i);
         });
-        Handler mHandler = new Handler();
-        mHandler.postDelayed(() -> {
-            swipeRefreshLayout.setRefreshing(true);
+              swipeRefreshLayout.setRefreshing(true);
             RetrofitApi apiService = ApiClient.getClient().create(RetrofitApi.class);
             Data data_model = FastSave.getInstance().getObject("login_data", Data.class);
             Call<List<MaterialGatePassModel>> call = apiService.MaterialGatePass(data_model.getEmail(), data_model.getRole());
@@ -69,13 +67,14 @@ public class MaterialGatepassActivity extends AppCompatActivity implements Swipe
 
                 @Override
                 public void onFailure(Call<List<MaterialGatePassModel>> call, Throwable t) {
+                    swipeRefreshLayout.setRefreshing(false);
                     Log.d("TAG", "Response = " + t.toString());
                 }
             });
-        }, 1000);
-    }
+     }
     @Override
     public void onRefresh() {
          swipeRefreshLayout.setRefreshing(false);
+        materialGatePassModels.clear();
     }
 }

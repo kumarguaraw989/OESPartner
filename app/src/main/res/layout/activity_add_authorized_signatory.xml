@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true">
+
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/whiteTextColor"
         android:orientation="vertical">
+
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,315 +26,335 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:text="Authorised Signatory"
-                android:textStyle="bold"
-                android:textColor="@color/whiteTextColor" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/whiteTextColor"
+                android:textStyle="bold" />
         </androidx.appcompat.widget.Toolbar>
-    <LinearLayout
-        android:layout_margin="@dimen/_20sdp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Client Name *"
-            android:textColor="@color/ColorBlack" />
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/border_spinner"
-            android:layout_marginTop="@dimen/_5sdp">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:id="@+id/client_name"
-                android:textColor="@color/ColorBlack"
-                android:textStyle="bold"
-                android:padding="@dimen/_10sdp"
-                android:background="@drawable/border_bloour"
-                />
-        </RelativeLayout>
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Client Branch Name *"
-            android:textColor="@color/ColorBlack" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/border_spinner"
-            android:layout_marginTop="@dimen/_5sdp">
-            <Spinner
-                android:id="@+id/client_branchname"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:minHeight="@dimen/_35sdp"
-                android:dropDownSelector="@color/colorAccent"
-                android:imeOptions="actionDone"
-                android:paddingRight="@dimen/_1sdp"
-                android:paddingLeft="@dimen/_1sdp"
-                android:spinnerMode="dropdown"
-                android:textColor="@color/ColorBlack"
-                android:theme="@style/ThemeOverlay.AppCompat.Light"
-                android:textColorHint="@color/ColorBlack"
-                android:textSize="@dimen/_12sdp" />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/_2sdp"
-                android:layout_marginEnd="@dimen/_2sdp"
-                android:layout_centerVertical="true"
-                app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
-        </RelativeLayout>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Name Of Person*"
-            android:textColor="@color/ColorBlack" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/border_spinner"
-            android:layout_marginTop="@dimen/_5sdp">
-            <Spinner
-                android:id="@+id/nameof_person"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:minHeight="@dimen/_35sdp"
-                android:dropDownSelector="@color/colorAccent"
-                android:imeOptions="actionDone"
-                android:paddingRight="@dimen/_1sdp"
-                android:paddingLeft="@dimen/_1sdp"
-                android:spinnerMode="dropdown"
-                android:textColor="@color/ColorBlack"
-                android:theme="@style/ThemeOverlay.AppCompat.Light"
-                android:textColorHint="@color/ColorBlack"
-                android:textSize="@dimen/_12sdp" />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/_2sdp"
-                android:layout_marginEnd="@dimen/_2sdp"
-                android:layout_centerVertical="true"
-                app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
-        </RelativeLayout>
-
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Designation *"
-            android:textColor="@color/ColorBlack" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/border_spinner"
-            android:layout_marginTop="@dimen/_5sdp">
-            <Spinner
-                android:id="@+id/designation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:minHeight="@dimen/_35sdp"
-                android:dropDownSelector="@color/colorAccent"
-                android:imeOptions="actionDone"
-                android:paddingRight="@dimen/_1sdp"
-                android:paddingLeft="@dimen/_1sdp"
-                android:entries="@array/designationAuthorized"
-                android:spinnerMode="dropdown"
-                android:textColor="@color/ColorBlack"
-                android:theme="@style/ThemeOverlay.AppCompat.Light"
-                android:textColorHint="@color/ColorBlack"
-                android:textSize="@dimen/_12sdp" />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/_2sdp"
-                android:layout_marginEnd="@dimen/_2sdp"
-                android:layout_centerVertical="true"
-                app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
-        </RelativeLayout>
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Others"
-            android:visibility="gone"
-            android:id="@+id/othersaddwork"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:textColorHint="@color/colorGray"
-            android:textColor="@color/colorblack"
-            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_margin="@dimen/_10sdp"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/_5sdp"
-                android:paddingTop="@dimen/_10sdp">
-                <androidx.appcompat.widget.AppCompatTextView
+                android:text="Client Name *"
+                android:textColor="@color/fifty_transparent_black" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/border_spinner">
+
+                <TextView
+                    android:id="@+id/client_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Work Order Valid Upto*"
-                    android:textColor="@color/ColorBlack" />
-                <EditText
+                    android:padding="@dimen/_10sdp"
+                    android:textColor="@color/ColorBlack"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="Client Branch Name *"
+                android:textColor="@color/fifty_transparent_black" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/border_spinner">
+
+
+                <Spinner
+                    android:id="@+id/client_branchname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:dropDownSelector="@color/colorAccent"
+                    android:imeOptions="actionDone"
+                    android:minHeight="@dimen/_35sdp"
+                    android:paddingLeft="@dimen/_1sdp"
+                    android:paddingRight="@dimen/_1sdp"
+                    android:spinnerMode="dropdown"
+                    android:textColor="@color/ColorBlack"
+                    android:textColorHint="@color/ColorBlack"
+                    android:textSize="@dimen/_12sdp"
+                    android:theme="@style/ThemeOverlay.AppCompat.Light" />
+
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:focusable="false"
-                    android:padding="@dimen/_5sdp"
-                    android:gravity="center|left"
-                    android:textColor="@color/whiteTextColor"
-                    android:id="@+id/edtDate"
-                    android:drawablePadding="10dp"
-                    android:background="@drawable/edit_text_background"
-                    android:drawableRight="@drawable/ic_calendar"
-                    android:text="Select Date"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_2sdp"
+                    android:layout_marginRight="@dimen/_2sdp"
+                    app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="Name Of Person*"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:textColor="@color/fifty_transparent_black" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/border_spinner">
+
+                <Spinner
+                    android:id="@+id/nameof_person"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:dropDownSelector="@color/colorAccent"
+                    android:imeOptions="actionDone"
+                    android:minHeight="@dimen/_35sdp"
+                    android:paddingLeft="@dimen/_1sdp"
+                    android:paddingRight="@dimen/_1sdp"
+                    android:spinnerMode="dropdown"
+                    android:textColor="@color/ColorBlack"
+                    android:textColorHint="@color/ColorBlack"
+                    android:textSize="@dimen/_12sdp"
+                    android:theme="@style/ThemeOverlay.AppCompat.Light" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_2sdp"
+                    android:layout_marginRight="@dimen/_2sdp"
+                    app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+            </RelativeLayout>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Designation *"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:textColor="@color/fifty_transparent_black" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/border_spinner">
+
+                <Spinner
+                    android:id="@+id/designation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:dropDownSelector="@color/colorAccent"
+                    android:entries="@array/designationAuthorized"
+                    android:imeOptions="actionDone"
+                    android:minHeight="@dimen/_35sdp"
+                    android:paddingLeft="@dimen/_1sdp"
+                    android:paddingRight="@dimen/_1sdp"
+                    android:spinnerMode="dropdown"
+                    android:textColor="@color/ColorBlack"
+                    android:textColorHint="@color/ColorBlack"
+                    android:textSize="@dimen/_12sdp"
+                    android:theme="@style/ThemeOverlay.AppCompat.Light" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_2sdp"
+                    android:layout_marginRight="@dimen/_2sdp"
+                    app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+            </RelativeLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/others_layout"
+                style="@style/Platform.MaterialComponents"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Others"
+                android:textColorHint="@color/colorGray"
+                android:visibility="gone"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_favorite_black_24dp">
+
+                <EditText
+                    android:id="@+id/othersaddwork"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:paddingLeft="@dimen/_5sdp"
                 android:paddingTop="@dimen/_10sdp">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Work Order Reference No*"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:text="Work Order Valid Upto*"
+                    android:textColor="@color/fifty_transparent_black" />
+
+                <EditText
+                    android:id="@+id/edtDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/edit_text_background"
+                    android:drawableRight="@drawable/ic_calendar"
+                    android:drawablePadding="10dp"
+                    android:focusable="false"
+                    android:gravity="center|left"
+                    android:padding="@dimen/_8sdp"
+                    android:text="Select Date"
                     android:textColor="@color/ColorBlack" />
+            </LinearLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="@string/WorkOrderReferenceNo"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
+
                 <EditText
                     android:id="@+id/edtWorkrefno"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Enter reference number"/>
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:gravity="center"
-            android:orientation="horizontal">
+                    android:background="@color/transparent" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:paddingLeft="@dimen/_5sdp"
-                android:paddingTop="@dimen/_10sdp">
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Work Order Description*"
-                    android:textColor="@color/ColorBlack" />
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Platform.MaterialComponents"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/border_spinner"
+                android:hint="Work Order Description*"
+                android:textColorHint="@color/colorGray"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/ic_done_black_24dp">
+
                 <EditText
                     android:id="@+id/edtWorkorderDes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_5sdp"
-                    android:gravity="center|left"
-                    android:drawablePadding="10dp"
-                    android:hint="Description"/>
-            </LinearLayout>
+                    android:background="@color/transparent" />
+            </com.google.android.material.textfield.TextInputLayout>
+
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:orientation="vertical"
-                android:paddingLeft="@dimen/_5sdp"
                 android:paddingTop="@dimen/_10sdp">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
                     android:text="Authorised Signatory Valid Upto*"
                     android:textColor="@color/ColorBlack" />
+
                 <EditText
                     android:id="@+id/edtDate2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:focusable="false"
-                    android:padding="@dimen/_5sdp"
-                    android:gravity="center|left"
-                    android:textColor="@color/whiteTextColor"
-                    android:drawablePadding="10dp"
                     android:background="@drawable/edit_text_background"
                     android:drawableRight="@drawable/ic_calendar"
-                    android:text="Select Date"/>
+                    android:focusable="false"
+                    android:padding="@dimen/_8sdp"
+                    android:text="Select Date"
+                    android:textColor="@color/ColorBlack" />
             </LinearLayout>
         </LinearLayout>
+
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/check_declaration1"
-            android:paddingTop="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_5sdp"
-            android:text="Declaration 1: I/We certify that I/We know the above mentioned person personally and to the best of my knowledge He/ She bears good conduct. I /We are responsible for his/ Her conduct inside work/ site premises. No Liability either financially or otherwise on Client Name on the above involvement. Any wrong information made, passes will be treated as invalid or cancelled."/>
+             android:paddingTop="@dimen/_10sdp"
+            android:text="Declaration 1: I/We certify that I/We know the above mentioned person personally and to the best of my knowledge He/ She bears good conduct. I /We are responsible for his/ Her conduct inside work/ site premises. No Liability either financially or otherwise on Client Name on the above involvement. Any wrong information made, passes will be treated as invalid or cancelled."
+
+            android:textColor="@color/fifty_transparent_black" />
+
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/check_declaration2"
+            style="@style/WhiteCheck"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_5sdp"
-            android:text="Declaration 2:
-I hereby authorise Mr/ Mrs/Ms Name of Person as my Authorise representative. He is authorised to sign/ Liaison on my behalf."/>
+             android:text="Declaration 2:
+I hereby authorise Mr/ Mrs/Ms Name of Person as my Authorise representative. He is authorised to sign/ Liaison on my behalf."
+            android:textColor="@color/fifty_transparent_black" />
 
         <ProgressBar
+            android:id="@+id/loading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/loading"
-            android:visibility="gone"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone" />
+
         <Button
             android:id="@+id/add_signatory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:text="Register"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textAllCaps="false"
             android:layout_gravity="center"
-            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:background="@drawable/login_shape_bk"
             android:backgroundTint="@color/colorAccent"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:textColor="@color/whiteTextColor"/>
+            android:text="Register"
+            android:textAllCaps="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/whiteTextColor"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/update_signatory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:text="Update"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textAllCaps="false"
             android:layout_gravity="center"
-            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:background="@drawable/login_shape_bk"
             android:backgroundTint="@color/colorAccent"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:textColor="@color/whiteTextColor"/>
-    </LinearLayout>
+            android:text="Update"
+            android:textAllCaps="false"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/whiteTextColor"
+            android:textStyle="bold" />
     </LinearLayout>
 </ScrollView>

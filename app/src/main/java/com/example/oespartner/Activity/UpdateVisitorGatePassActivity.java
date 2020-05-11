@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -30,6 +31,7 @@ import com.example.oespartner.R;
 import com.example.oespartner.WebService.ApiClient;
 import com.example.oespartner.WebService.Config;
 import com.example.oespartner.WebService.RetrofitApi;
+import com.google.android.material.textfield.TextInputLayout;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 import org.json.JSONArray;
@@ -66,7 +68,7 @@ public class UpdateVisitorGatePassActivity extends AppCompatActivity {
     ProgressBar progress_bar;
     @BindView(R.id.tvFirmName)
     TextView tvFirmName;
-    @BindView(R.id.edtAprovalBy) EditText edtAprovalBy;
+//    @BindView(R.id.edtAprovalBy) EditText edtAprovalBy;
     @BindView(R.id.edtReason) EditText edtReason;
     @BindView(R.id.client_name)
     TextView Clinet_name;
@@ -94,6 +96,7 @@ public class UpdateVisitorGatePassActivity extends AppCompatActivity {
         email=data_model.getEmail();
         role=data_model.getRole();
         imgBack=(ImageView)findViewById(R.id.imgBack);
+        TextInputLayout layputothers=findViewById(R.id.ll_othersvisitor);
         imgBack.setOnClickListener(v -> onBackPressed());
         edtDate.setOnClickListener(v -> Constants.DateDialog(edtDate, UpdateVisitorGatePassActivity.this));
         edtTime.setOnClickListener(v -> {
@@ -123,7 +126,7 @@ public class UpdateVisitorGatePassActivity extends AppCompatActivity {
         try {
             JSONObject jsonObject = new JSONObject(value.toString());
             tvFirmName.setText(jsonObject.get("firm_name").toString());
-            edtAprovalBy.setText(jsonObject.get("approval").toString());
+//            edtAprovalBy.setText(jsonObject.get("approval").toString());
             edtReason.setText(jsonObject.get("reason").toString());
             edtDate.setText(jsonObject.get("visit_date").toString());
             edtTime.setText(jsonObject.get("visit_time").toString());
@@ -142,6 +145,26 @@ public class UpdateVisitorGatePassActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+
+
+
+        spnDesignation.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position==10){
+                    layputothers.setVisibility(View.VISIBLE);
+                }else{
+                    layputothers.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         StringRequest stringRequest1=new StringRequest(Request.Method.POST, Config.URL_CLient, response -> {
             Log.e("response",response);
@@ -183,7 +206,7 @@ public class UpdateVisitorGatePassActivity extends AppCompatActivity {
         queue.add(stringRequest);
         btnRegister.setOnClickListener(v -> {
             String firm_name = tvFirmName.getText().toString();
-            String approval = edtAprovalBy.getText().toString();
+//            String approval = edtAprovalBy.getText().toString();
             String reason = edtReason.getText().toString();
             String visit_date = edtDate.getText().toString();
             String visit_time = edtTime.getText().toString();
@@ -203,7 +226,7 @@ public class UpdateVisitorGatePassActivity extends AppCompatActivity {
             else
             {
                 progress_bar.setVisibility(View.VISIBLE);
-                postVisitorGatePass(email,role,client, branch, person_name, firm_name, designation, approval,
+                postVisitorGatePass(email,role,client, branch, person_name, firm_name, designation,
                         person_visited, reason, visit_date, visit_time, declaration,person_id,id2);
             }
         });
@@ -239,9 +262,9 @@ public class UpdateVisitorGatePassActivity extends AppCompatActivity {
     }
 
     public void postVisitorGatePass(String email,  String role,String client, String branch, String person_name, String firm_name, String designation,
-                                    String approval, String person_visited, String reason, String visit_date, String visit_time, String declaration,String personId,String id2) {
+                                     String person_visited, String reason, String visit_date, String visit_time, String declaration,String personId,String id2) {
         RetrofitApi apiService = ApiClient.getClient().create(RetrofitApi.class);
-         Call<AddVisitorGatePassModel> call = apiService.UpdateVisitorGatePass( email,role,client, branch, person_name, firm_name, designation, approval, person_visited, reason, visit_date, visit_time, declaration,personId,id2
+         Call<AddVisitorGatePassModel> call = apiService.UpdateVisitorGatePass( email,role,client, branch, person_name, firm_name, designation, person_visited, reason, visit_date, visit_time, declaration,personId,id2
         );
         call.enqueue(new Callback<AddVisitorGatePassModel>() {
             @Override

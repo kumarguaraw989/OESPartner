@@ -1,46 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:id="@+id/layout_addchambers"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <LinearLayout
-        android:id="@+id/layoutchamberet"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TableRow
+        android:id="@+id/tabla_cabecera"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TableLayout
+        android:id="@+id/tabla_cuerpo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/_1sdp"
-        android:background="@color/primaryTextColor"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:orientation="horizontal">
-        <EditText
-            android:id="@+id/material_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/border_spinner"
-            android:textColor="@color/ColorBlack" />
-        <EditText
-            android:id="@+id/edtSpecification"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/border_spinner"
-            android:textColor="@color/ColorBlack" />
-        <EditText
-            android:id="@+id/edtUnit"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/border_spinner"
-            android:textColor="@color/ColorBlack" />
-        <EditText
-            android:id="@+id/edtQty"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/border_spinner"
-            android:textColor="@color/ColorBlack" />
-    </LinearLayout>
+        android:weightSum="4">
 
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/et_materialName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                 android:padding="5dp"
+                android:text=""
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/et_specification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                 android:padding="5dp"
+                android:text=""
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/et_Unit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                 android:padding="5dp"
+                android:text=""
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <EditText
+                android:id="@+id/et_qty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                 android:padding="5dp"
+                android:text=""
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/btn_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:layout_weight=".2"
+                android:src="@drawable/ic_interface"/>
+            <ImageView
+                android:id="@+id/btn_remove"
+                android:visibility="visible"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight=".2"
+                android:src="@drawable/ic_add" />
+        </TableRow>
+    </TableLayout>
 </LinearLayout>

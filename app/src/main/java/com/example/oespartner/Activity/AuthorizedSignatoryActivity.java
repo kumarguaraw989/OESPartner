@@ -75,6 +75,7 @@ public class AuthorizedSignatoryActivity extends AppCompatActivity implements Sw
                     }
                     @Override
                     public void onFailure(Call<List<AuthorizedSignatoryModel>> call, Throwable t) {
+                        swipeRefreshLayout.setRefreshing(false);
                         Log.d("TAG","Response = "+t.toString());
                     }
                 });
@@ -86,5 +87,6 @@ public class AuthorizedSignatoryActivity extends AppCompatActivity implements Sw
     @Override
     public void onRefresh() {
         swipeRefreshLayout.setRefreshing(false);
+        authorizedSignatoryModels.clear();
     }
 }

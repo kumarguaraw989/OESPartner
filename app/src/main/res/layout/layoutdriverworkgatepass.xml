@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layout_driver"
     android:layout_width="match_parent"
@@ -13,68 +20,68 @@
         android:layout_height="@dimen/_20sdp"
         android:gravity="center"
         android:text="License Verification *"
-        android:textColor="@color/ColorBlack"
+        android:textColor="@color/fifty_transparent_black"
         android:textStyle="bold" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-         android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:background="@color/ColorBlack" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:gravity="center"
+         android:gravity="center"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/edtDlNo"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Platform.MaterialComponents"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_30sdp"
             android:background="@drawable/border_spinner"
-            android:gravity="center"
             android:hint="Driver Licence No."
-            android:inputType="text"
-            android:padding="@dimen/_5sdp"
-            android:textColorHint="@color/colorDivider" />
+            android:textColorHint="@color/colorGray"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
+            app:startIconDrawable="@drawable/ic_favorite_black_24dp">
 
-        <TextView
-            android:id="@+id/tv1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:text="Licence Valid Upto."
-            android:textColor="@color/colorblack"
-            android:textStyle="normal" />
+            <EditText
+                android:id="@+id/edtDlNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/edtDateValidoflicence"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv1"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:background="@drawable/edit_text_background"
-            android:drawableRight="@drawable/ic_calendar"
-            android:focusable="false"
-            android:gravity="center"
-            android:inputType="text"
-            android:padding="@dimen/_5sdp"
-            android:text="Select Date"
-            android:textColor="@color/whiteTextColor" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Licence Valid Upto."
+                android:textColor="@color/fifty_transparent_black" />
+
+            <EditText
+                android:id="@+id/edtDateValidoflicence"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_background"
+                android:drawableRight="@drawable/ic_calendar"
+                android:focusable="false"
+                android:padding="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="Select Date"
+                android:textColor="@color/fifty_transparent_black" />
+
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:gravity="center"
+        android:layout_marginTop="@dimen/_20sdp"
         android:text="Vehical No : "
-        android:textColor="@color/ColorBlack" />
+        android:textColor="@color/fifty_transparent_black" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -116,23 +123,32 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/edtHelperName"
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Platform.MaterialComponents"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:background="@drawable/border_spinner"
-            android:gravity="center"
             android:hint="Helper Name"
-            android:padding="@dimen/_5sdp"
-            android:textColorHint="@color/colorDivider" />
+            android:textColorHint="@color/colorGray"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
+            app:startIconDrawable="@drawable/ic_favorite_black_24dp">
+
+            <EditText
+                android:id="@+id/edtHelperName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <TextView
             android:id="@+id/tv2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:text="Last eye test date"
             android:textStyle="normal" />
 
@@ -143,14 +159,14 @@
             android:layout_below="@+id/tv2"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="@dimen/_10sdp"
-            android:background="@drawable/edit_text_background"
+            android:background="@drawable/border_spinner"
             android:drawableRight="@drawable/ic_calendar"
             android:focusable="false"
             android:gravity="center"
             android:inputType="text"
-            android:padding="@dimen/_5sdp"
+            android:padding="@dimen/_10sdp"
             android:text="Select Date"
-            android:textColor="@color/whiteTextColor" />
+            android:textColor="@color/fifty_transparent_black" />
     </LinearLayout>
 
 
@@ -161,46 +177,49 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/edtTrainingCertificateno"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Platform.MaterialComponents"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:background="@drawable/border_spinner"
-            android:gravity="center"
             android:hint="Training Certificate no."
-            android:inputType="text"
-            android:padding="@dimen/_5sdp"
-            android:textColorHint="@color/colorDivider" />
+            android:textColorHint="@color/colorGray"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
+            app:startIconDrawable="@drawable/ic_favorite_black_24dp">
+
+            <EditText
+                android:id="@+id/edtTrainingCertificateno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/tv3"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:gravity="center"
+            android:layout_marginTop="@dimen/_20sdp"
             android:text="Report Uploded"
-            android:layout_marginTop="@dimen/_5sdp"
             android:textStyle="normal" />
 
         <Button
             android:id="@+id/btn_uploadreport"
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/_2sdp"
-            android:layout_height="@dimen/_25sdp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/tv3"
-            android:background="@drawable/edit_text_background"
+            android:layout_marginTop="@dimen/_2sdp"
             android:text="Choose Files"
-            android:textColor="@color/colorWhite"
-            android:textAllCaps="false" />
+            android:background="@drawable/border_spinner"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/tv4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:gravity="center"
         android:text="Training Valid Upto" />
 
@@ -215,10 +234,11 @@
         android:drawableRight="@drawable/ic_calendar"
         android:focusable="false"
         android:gravity="center"
-        android:padding="@dimen/_5sdp"
         android:inputType="text"
+        android:padding="@dimen/_5sdp"
         android:text="Select Date"
-        android:textColor="@color/whiteTextColor" />
+        android:textColor="@color/fifty_transparent_black" />
 
 
 </LinearLayout>
+</ScrollView>

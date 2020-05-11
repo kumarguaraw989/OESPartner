@@ -60,12 +60,12 @@ public class WorkGatePassAdapter extends RecyclerView.Adapter<WorkGatePassAdapte
         holder.txtValidity.setText(workGatePassModels.get(position).getPValidUpto());
         holder.txtStatus.setText(workGatePassModels.get(position).getStatus());
         if (workGatePassModels.get(position).getStatus().equals("1")){
-            holder.txtStatus.setTextColor(context.getResources().getColor(R.color.colorWhite));
+            holder.txtStatus.setTextColor(context.getResources().getColor(R.color.whiteTextColor));
             holder.txtStatus.setText("Approved");
         }
         else{
             holder.txtStatus.setText("UnApproved");
-            holder.txtStatus.setTextColor(context.getResources().getColor(R.color.redcolor));
+            holder.txtStatus.setTextColor(context.getResources().getColor(R.color.whiteTextColor));
         }
         holder.btn_popup.setOnClickListener(new View.OnClickListener() {
             @Override

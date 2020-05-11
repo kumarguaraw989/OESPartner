@@ -32,8 +32,6 @@ public class WorkgatepassActivity extends AppCompatActivity implements SwipeRefr
     WorkGatePassAdapter workGatePassAdapter;
     List<WorkGatePassModel> workGatePassModels;
     private SwipeRefreshLayout swipeRefreshLayout;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,10 +46,10 @@ public class WorkgatepassActivity extends AppCompatActivity implements SwipeRefr
         workGatePassModels = new ArrayList<>();
         recyclerview = findViewById(R.id.recyclerview);
         LinearLayoutManager linearLayoutManager =new  LinearLayoutManager(this);
-
         recyclerview.setLayoutManager(linearLayoutManager);
         workGatePassAdapter = new WorkGatePassAdapter(getApplicationContext(),workGatePassModels);
         recyclerview.setAdapter(workGatePassAdapter);
+        swipeRefreshLayout.setRefreshing(false);
 
         imgAdd.setOnClickListener(v -> {
             // TODO Auto-generated method stub
@@ -59,9 +57,7 @@ public class WorkgatepassActivity extends AppCompatActivity implements SwipeRefr
             startActivity(i);
         });
 
-        Handler mHandler = new Handler();
-        mHandler.postDelayed(() -> {
-            swipeRefreshLayout.setRefreshing(true);
+             swipeRefreshLayout.setRefreshing(true);
             RetrofitApi apiService = ApiClient.getClient().create(RetrofitApi.class);
             Data data_model= FastSave.getInstance().getObject("login_data",Data.class);
             Call<List<WorkGatePassModel>> call = apiService.WorkGatePass(data_model.getEmail(),data_model.getRole());
@@ -69,23 +65,23 @@ public class WorkgatepassActivity extends AppCompatActivity implements SwipeRefr
             call.enqueue(new Callback<List<WorkGatePassModel>>() {
                 @Override
                 public void onResponse(Call<List<WorkGatePassModel>> call, Response<List<WorkGatePassModel>> response) {
+                    swipeRefreshLayout.setRefreshing(false);
                     workGatePassModels = response.body();
                     Log.d("TAG","Response success = "+workGatePassModels);
                     workGatePassAdapter.setWorkGatePassList(workGatePassModels);
-                    swipeRefreshLayout.setRefreshing(false);
                 }
-
                 @Override
                 public void onFailure(Call<List<WorkGatePassModel>> call, Throwable t) {
                     Log.d("TAG","Response = "+t.toString());
                 }
             });
-        },1000);
+
 
     }
 
     @Override
     public void onRefresh() {
-     swipeRefreshLayout.setRefreshing(false);
-    }
+        swipeRefreshLayout.setRefreshing(false);
+         workGatePassModels.clear();
+     }
 }

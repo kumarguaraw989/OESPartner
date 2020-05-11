@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Client Name *"
-            android:textColor="@color/ColorBlack" />
+            android:textColor="@color/fifty_transparent_black" />
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,16 +48,16 @@
                 android:text="IOCL"
                 android:id="@+id/client_name"
                 android:textColor="@color/ColorBlack"
-                android:textStyle="bold"
-                android:padding="@dimen/_10sdp"
+                 android:padding="@dimen/_10sdp"
                 android:background="@drawable/border_bloour"/>
         </RelativeLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
             android:text="Branch Name *"
-            android:textColor="@color/ColorBlack" />
+            android:textColor="@color/fifty_transparent_black" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -93,7 +93,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Name Of Person*"
-            android:textColor="@color/ColorBlack" />
+            android:layout_marginTop="@dimen/_20sdp"
+            android:textColor="@color/fifty_transparent_black" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -128,9 +129,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/ColorBlack"
+            android:textColor="@color/fifty_transparent_black"
             android:textStyle="normal"
-            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:text="Person ID"/>
         <TextView
             android:id="@+id/et_personid"
@@ -141,11 +142,32 @@
             android:textStyle="bold"
             android:text="Please Wait.."
             android:padding="@dimen/_10sdp" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Platform.MaterialComponents"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:background="@drawable/border_spinner"
+            android:hint="Work Order Reference No"
+            android:textColorHint="@color/colorGray"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
+            app:startIconDrawable="@drawable/ic_refresh_black_24dp">
+
+            <EditText
+                android:id="@+id/edtReference"
+                android:layout_width="match_parent"
+                android:background="@color/transparent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
             android:text="Partner name"
-            android:textColor="@color/ColorBlack" />
+            android:textColor="@color/fifty_transparent_black" />
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -179,7 +201,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Designation *"
-            android:textColor="@color/ColorBlack" />
+            android:layout_marginTop="@dimen/_20sdp"
+            android:textColor="@color/fifty_transparent_black" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -198,7 +221,7 @@
                 android:paddingLeft="@dimen/_1sdp"
                 android:entries="@array/designation"
                 android:spinnerMode="dropdown"
-                android:textColor="@color/ColorBlack"
+                android:textColor="@color/fifty_transparent_black"
                 android:theme="@style/ThemeOverlay.AppCompat.Light"
                 android:textColorHint="@color/ColorBlack"
                 android:textSize="@dimen/_12sdp" />
@@ -211,58 +234,67 @@
                 android:layout_centerVertical="true"
                 app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
         </RelativeLayout>
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Others"
-            android:visibility="gone"
-            android:id="@+id/othersaddwork"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:textColorHint="@color/colorGray"
-            android:textColor="@color/colorblack"
-            />
 
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Platform.MaterialComponents"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:background="@drawable/border_spinner"
+            android:hint="Others"
+            android:id="@+id/othersaddwork"
+             android:textColorHint="@color/colorGray"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
+            app:startIconDrawable="@drawable/ic_done_black_24dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtReason"
+                android:background="@color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
         <include
             android:visibility="gone"
             layout="@layout/securityaddworkgatepass"/>
+
+
             <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_20sdp"
              android:orientation="vertical">
 
-     <TextView
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:textColor="@color/ColorBlack"
-         android:text="Work Order Reference No *"/>
-                <EditText
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:id="@+id/edtReference"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:background="@drawable/border_bloour"
-                    android:padding="@dimen/_10sdp"/>
-                 <androidx.appcompat.widget.AppCompatTextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:text="Work order valid upto *"
-                    android:textColor="@color/colorblack"/>
-                <EditText
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:focusable="false"
-                    android:padding="@dimen/_5sdp"
-                    android:gravity="center|left"
-                    android:textColor="@color/whiteTextColor"
-                    android:id="@+id/edtDate"
-                    android:drawablePadding="10dp"
-                    android:background="@drawable/edit_text_background"
-                    android:drawableRight="@drawable/ic_calendar"
-                    android:text="Select Date"/>
+                     android:orientation="vertical"
+                    android:paddingTop="@dimen/_10sdp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:text="Work order valid upto *"
+                        android:textColor="@color/fifty_transparent_black" />
+
+                    <EditText
+                        android:id="@+id/edtDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_text_background"
+                        android:drawableRight="@drawable/ic_calendar"
+                        android:focusable="false"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:padding="@dimen/_8sdp"
+                        android:text="Select Date"
+                        android:textColor="@color/fifty_transparent_black" />
+                </LinearLayout>
+
+
+
+
         </LinearLayout>
 
 
@@ -284,15 +316,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Work Order Description*"
-                    android:textColor="@color/colorblack" />
+                    android:textColor="@color/fifty_transparent_black" />
                 <EditText
                     android:background="@drawable/border_spinner"
                     android:id="@+id/edtDescription"
                     android:layout_width="match_parent"
                     android:padding="@dimen/_30sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:layout_height="wrap_content"
                     android:textColorHint="@color/colorDivider"
-                    android:hint="Write Work Order Description"
+                    android:hint="Write Work Order Description...."
                     />
             </LinearLayout>
         </LinearLayout>
@@ -301,7 +334,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="@color/colorblack"
+            android:textColor="@color/fifty_transparent_black"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:text="Gate Pass Validity upto"/>
         <View
@@ -329,13 +362,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Police Verification*"
-                    android:textColor="@color/colorblack" />
+                    android:textColor="@color/fifty_transparent_black" />
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/spnPoliceVerify"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_5sdp"
+                    android:padding="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/border_spinner"
                     android:entries="@array/valid"
                     />
@@ -391,13 +425,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Work valid upto*"
-                    android:textColor="@color/colorblack" />
+                    android:textColor="@color/fifty_transparent_black" />
                 <EditText
                     android:background="@drawable/border_spinner"
                     android:id="@+id/edtWorkValidDate"
                     android:layout_width="match_parent"
                     android:padding="@dimen/_10sdp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:textColorHint="@color/colorDivider"
                     android:hint="Work Order Valid Upto*"
                     />
@@ -407,6 +442,8 @@
         <LinearLayout
             android:layout_marginTop="@dimen/_10sdp"
             android:orientation="horizontal"
+            android:weightSum="2"
+            android:paddingTop="@dimen/_20sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <CheckBox

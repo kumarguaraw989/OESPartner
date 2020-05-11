@@ -33,6 +33,7 @@ import com.example.oespartner.R;
 import com.example.oespartner.WebService.ApiClient;
 import com.example.oespartner.WebService.Config;
 import com.example.oespartner.WebService.RetrofitApi;
+import com.google.android.material.textfield.TextInputLayout;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 import org.json.JSONArray;
@@ -75,8 +76,8 @@ public class AddVisitorgatepassActivity extends AppCompatActivity {
     ProgressBar progress_bar;
     @BindView(R.id.tvFirmName)
     TextView tvFirmName;
-    @BindView(R.id.edtAprovalBy)
-    EditText edtAprovalBy;
+   /* @BindView(R.id.edtAprovalBy)
+    EditText edtAprovalBy;*/
     @BindView(R.id.edtReason)
     EditText edtReason;
     @BindView(R.id.spnBranch)
@@ -99,7 +100,7 @@ public class AddVisitorgatepassActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_visitorgatepass);
         ButterKnife.bind(this);
         getSupportActionBar().hide();
-        LinearLayout layputothers=findViewById(R.id.ll_othersvisitor);
+        TextInputLayout layputothers=findViewById(R.id.ll_othersvisitor);
         Data data_model = FastSave.getInstance().getObject("login_data", Data.class);
         FastSave.init(AddVisitorgatepassActivity.this);
         imgBack = (ImageView) findViewById(R.id.imgBack);
@@ -274,7 +275,7 @@ public class AddVisitorgatepassActivity extends AppCompatActivity {
 
         btnRegister.setOnClickListener(v -> {
             String firm_name = tvFirmName.getText().toString();
-            String approval = edtAprovalBy.getText().toString();
+//            String approval = edtAprovalBy.getText().toString();
             String reason = edtReason.getText().toString();
             String visit_date = edtDate.getText().toString();
             String visit_time = edtTime.getText().toString();
@@ -291,7 +292,7 @@ public class AddVisitorgatepassActivity extends AppCompatActivity {
                 return;
             } else {
                 progress_bar.setVisibility(View.VISIBLE);
-                postVisitorGatePass(data_model.getEmail(), data_model.getRole(), client, branch, person_name, firm_name, designation, approval,
+                postVisitorGatePass(data_model.getEmail(), data_model.getRole(), client, branch, person_name, firm_name, designation,
                         person_visited, reason, visit_date, visit_time, declaration, person_id);
                 onBackPressed();
             }
@@ -299,11 +300,11 @@ public class AddVisitorgatepassActivity extends AppCompatActivity {
     }
 
     public void postVisitorGatePass(String email, String role, String client, String branch, String person_name, String firm_name, String designation,
-                                    String approval, String person_visited, String reason, String visit_date, String visit_time, String declaration, String personId) {
+                                   String person_visited, String reason, String visit_date, String visit_time, String declaration, String personId) {
         RetrofitApi apiService = ApiClient.getClient().create(RetrofitApi.class);
 
         Data data_model = FastSave.getInstance().getObject("login_data", Data.class);
-        Call<AddVisitorGatePassModel> call = apiService.AddVisitorGatePass(email, role, client, branch, person_name, firm_name, designation, approval, person_visited, reason, visit_date, visit_time, declaration, personId
+        Call<AddVisitorGatePassModel> call = apiService.AddVisitorGatePass(email, role, client, branch, person_name, firm_name, designation, person_visited, reason, visit_date, visit_time, declaration, personId
         );
         call.enqueue(new Callback<AddVisitorGatePassModel>() {
             @Override

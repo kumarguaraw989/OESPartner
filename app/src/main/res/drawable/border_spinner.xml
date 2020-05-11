@@ -2,8 +2,12 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:padding="12dp"
     android:shape="rectangle">
-     <solid android:color="@color/whiteTextColor" />
+    <corners
+        android:radius="@dimen/_8sdp"
+        android:bottomLeftRadius="@dimen/_8sdp"
+        />
+     <solid android:color="#D3D3D3" />
     <stroke
         android:width="0.1px"
-        android:color="@color/colorPrimary"/>
+        android:color="@color/colorlightwhite"/>
 </shape>

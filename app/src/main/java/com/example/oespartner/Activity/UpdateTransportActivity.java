@@ -145,13 +145,13 @@ public class UpdateTransportActivity extends AppCompatActivity {
         btnRegister = findViewById(R.id.btnRegister);
         ButterKnife.bind(this);
         getSupportActionBar().hide();
-        final EditText edtNo = findViewById(R.id.material_name);
+      /*  final EditText edtNo = findViewById(R.id.material_name);
         final EditText edtcapacity = findViewById
                 (R.id.edtSpecification);
         final EditText edtDlLevel = findViewById
                 (R.id.edtUnit);
         final EditText edPlLevel = findViewById
-                (R.id.edtQty);
+                (R.id.edtQty);*/
         Data data_model = FastSave.getInstance().getObject("login_data", Data.class);
         email = data_model.getEmail();
         role = data_model.getRole();
@@ -165,7 +165,7 @@ public class UpdateTransportActivity extends AppCompatActivity {
         edtValidUptoPvValve.setOnClickListener(view -> Constants.DateDialog(edtValidUptoPvValve, UpdateTransportActivity.this));
         edtDateValidUptofire.setOnClickListener(view -> Constants.DateDialog(edtDateValidUptofire, UpdateTransportActivity.this));
         edtDateValidUptohealth.setOnClickListener(view -> Constants.DateDialog(edtDateValidUptohealth, UpdateTransportActivity.this));
-        final ViewGroup tes = (ViewGroup) findViewById(R.id.layout_addchambers);
+//        final ViewGroup tes = (ViewGroup) findViewById(R.id.layout_addchambers);
 
 
         Intent intent = getIntent();
@@ -206,7 +206,7 @@ public class UpdateTransportActivity extends AppCompatActivity {
             edtDateValidUptohealth.setText(jsonObject.get("tank_health_valid").toString());
 
 
-            btnRemoveChamberDetails.setOnClickListener
+          /*  btnRemoveChamberDetails.setOnClickListener
                     (v -> tes.removeViewAt(0));
             btnAddChamberDetails.setOnClickListener(v -> {
                 AddChamberDetailsModel mylist1=new AddChamberDetailsModel();
@@ -219,7 +219,9 @@ public class UpdateTransportActivity extends AppCompatActivity {
                 System.out.println(edtcapacity.getText().toString());
                 System.out.println(edtDlLevel.getText().toString());
                 myList.add(mylist1);
-            });
+            });*/
+
+
             edtNoOfChambers.setOnClickListener(v -> {
                 int totalval=0;
                 for (int i=0;i<myList.size();i++){
@@ -281,7 +283,7 @@ public class UpdateTransportActivity extends AppCompatActivity {
 
             }) {
                 @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
+                protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("email", email);
                     params.put("role", role);

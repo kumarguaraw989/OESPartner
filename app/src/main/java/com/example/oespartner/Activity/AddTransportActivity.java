@@ -137,20 +137,19 @@ public class AddTransportActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_transport);
         imgBack = (ImageView) findViewById(R.id.imgBack);
         btnRegister = findViewById(R.id.btnRegister);
-        final EditText edtNo = findViewById(R.id.material_name);
+/*        final EditText edtNo = findViewById(R.id.material_name);
         final EditText edtcapacity = findViewById
                 (R.id.edtSpecification);
         final EditText edtDlLevel = findViewById
                 (R.id.edtUnit);
-        final EditText edPlLevel = findViewById
-                (R.id.edtQty);
+        final EditText edPlLevel = findViewById(R.id.edtQty);*/
 
 
         ButterKnife.bind(this);
         getSupportActionBar().hide();
         myList=new ArrayList<>();
         Data data_model = FastSave.getInstance().getObject("login_data", Data.class);
-        final ViewGroup tes = (ViewGroup) findViewById(R.id.layout_addchambers);
+//        final ViewGroup tes = (ViewGroup) findViewById(R.id.layout_addchambers);
         email=data_model.getEmail();
         role=data_model.getRole();
         imgBack.setOnClickListener(v -> onBackPressed());
@@ -164,7 +163,7 @@ public class AddTransportActivity extends AppCompatActivity {
         edtDateValidUptofire.setOnClickListener(view -> Constants.DateDialog(edtDateValidUptofire, AddTransportActivity.this));
         edtDateValidUptohealth.setOnClickListener(view -> Constants.DateDialog(edtDateValidUptohealth, AddTransportActivity.this));
 
-        btnRemoveChamberDetails.setOnClickListener
+     /*   btnRemoveChamberDetails.setOnClickListener
                 (v -> tes.removeViewAt(0));
         btnAddChamberDetails.setOnClickListener(v -> {
             AddChamberDetailsModel mylist1=new AddChamberDetailsModel();
@@ -177,7 +176,10 @@ public class AddTransportActivity extends AppCompatActivity {
             System.out.println(edtcapacity.getText().toString());
             System.out.println(edtDlLevel.getText().toString());
             myList.add(mylist1);
-        });
+        });*/
+
+
+
         edtNoOfChambers.setOnClickListener(v -> {
             int totalval=0;
             for (int i=0;i<myList.size();i++){

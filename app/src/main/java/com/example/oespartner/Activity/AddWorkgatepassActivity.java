@@ -37,6 +37,7 @@ import com.example.oespartner.R;
 import com.example.oespartner.WebService.ApiClient;
 import com.example.oespartner.WebService.Config;
 import com.example.oespartner.WebService.RetrofitApi;
+import com.google.android.material.textfield.TextInputLayout;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 import org.jetbrains.annotations.NotNull;
@@ -130,7 +131,7 @@ public class AddWorkgatepassActivity extends AppCompatActivity {
     @BindView(R.id.edtReferencesecurity)
     EditText edtReferencesecurity;
     @BindView(R.id.othersaddwork)
-    EditText othersaddwork;
+    TextInputLayout othersaddwork;
     @BindView(R.id.tv_upload_security)
     TextView tv_upload_security;
     String email;

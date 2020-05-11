@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -31,44 +32,48 @@
                 android:textColor="@color/whiteTextColor" />
         </androidx.appcompat.widget.Toolbar>
 
-
-
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Platform.MaterialComponents"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/_5sdp"
-            android:paddingTop="@dimen/_10sdp">
+            android:layout_height="match_parent"
+            android:id="@+id/others_layout"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:background="@drawable/border_spinner"
+            android:hint="Vehicle No:"
+            android:textColorHint="@color/colorGray"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
+            app:startIconDrawable="@drawable/ic_done_black_24dp">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Vehicle No:"
-                android:textColor="@color/ColorBlack" />
-
-            <androidx.appcompat.widget.AppCompatEditText
+            <EditText
                 android:id="@+id/edtVehicleNo"
+                android:background="@color/transparent"
                 android:layout_width="match_parent"
-                android:background="@drawable/border_spinner"
-                android:padding="@dimen/_5sdp"
-                android:layout_height="wrap_content"/>
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Vehicle Type:"
-                android:textColor="@color/ColorBlack" />
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <androidx.appcompat.widget.AppCompatEditText
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Platform.MaterialComponents"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+             android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:background="@drawable/border_spinner"
+            android:hint="Vehicle Type:"
+            android:textColorHint="@color/colorGray"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
+            app:startIconDrawable="@drawable/ic_done_black_24dp">
+
+            <EditText
+                android:background="@color/transparent"
                 android:id="@+id/edtVehicleType"
                 android:layout_width="match_parent"
-                android:background="@drawable/border_spinner"
-                android:padding="@dimen/_5sdp"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-
-
-
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btnSubmit"

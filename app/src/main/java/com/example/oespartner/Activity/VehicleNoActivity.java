@@ -53,31 +53,31 @@ public class VehicleNoActivity extends AppCompatActivity implements SwipeRefresh
             Intent i = new Intent(VehicleNoActivity.this, AddVehicleNoActivity.class);
             startActivity(i);
         });
+
+        swipeRefreshLayout.setRefreshing(true);
+        RetrofitApi apiService = ApiClient.getClient().create(RetrofitApi.class);
+        Data data_model = FastSave.getInstance().getObject("login_data", Data.class);
+        Call<List<VehicleNoModel>> call = apiService.VehicleNo(data_model.getEmail(), data_model.getRole());
+        call.enqueue(new Callback<List<VehicleNoModel>>() {
+            @Override
+            public void onResponse(Call<List<VehicleNoModel>> call, Response<List<VehicleNoModel>> response) {
+                vehicleNoModels = response.body();
+                Log.d("TAG", "Response success = " + vehicleNoModels);
+                vehicleNoAdapter.setVehicleNoList(vehicleNoModels);
+                swipeRefreshLayout.setRefreshing(false);
+            }
+            @Override
+            public void onFailure(Call<List<VehicleNoModel>> call, Throwable t) {
+                Log.d("TAG", "Response = " + t.toString());
+            }
+        });
     }
 
     @Override
     public void onRefresh() {
-         Handler mhandler = new Handler();
-        mhandler.postDelayed(() -> {
-            swipeRefreshLayout.setRefreshing(true);
-             RetrofitApi apiService = ApiClient.getClient().create(RetrofitApi.class);
-            Data data_model = FastSave.getInstance().getObject("login_data", Data.class);
-            Call<List<VehicleNoModel>> call = apiService.VehicleNo(data_model.getEmail(), data_model.getRole());
-            call.enqueue(new Callback<List<VehicleNoModel>>() {
-                @Override
-                public void onResponse(Call<List<VehicleNoModel>> call, Response<List<VehicleNoModel>> response) {
-                    vehicleNoModels = response.body();
-                    Log.d("TAG", "Response success = " + vehicleNoModels);
-                    vehicleNoAdapter.setVehicleNoList(vehicleNoModels);
-                    swipeRefreshLayout.setRefreshing(false);
-                }
-                @Override
-                public void onFailure(Call<List<VehicleNoModel>> call, Throwable t) {
-                    Log.d("TAG", "Response = " + t.toString());
-                }
-            });
-        }, 1000);
-    }
+        swipeRefreshLayout.setRefreshing(false);
+        vehicleNoModels.clear();
+     }
 }
 
 

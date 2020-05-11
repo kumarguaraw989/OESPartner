@@ -68,13 +68,16 @@ public class VisitorgatepassActivity extends AppCompatActivity implements SwipeR
                     }
                     @Override
                     public void onFailure(Call<List<VisitorGatePassModel>> call, Throwable t) {
+                        swipeRefreshLayout.setRefreshing(false);
                         Log.d("TAG", "Response = " + t.toString());
                     }
+
+
                 });
              }
     @Override
     public void onRefresh() {
-
         swipeRefreshLayout.setRefreshing(false);
+        visitorGatePassModels.clear();
     }
 }

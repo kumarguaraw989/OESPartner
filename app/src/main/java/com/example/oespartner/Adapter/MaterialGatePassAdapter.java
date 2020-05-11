@@ -63,10 +63,12 @@ public class MaterialGatePassAdapter extends RecyclerView.Adapter<MaterialGatePa
         if (materialGatePassModels.get(position).getStatus().equals("1")){
             holder.txtStatus.setTextColor(context.getResources().getColor(R.color.whiteTextColor));
             holder.txtStatus.setText("Approved");
+            holder.status.setImageResource(R.drawable.ic_approved_signal);
         }
         else{
             holder.txtStatus.setText("UnApproved");
-            holder.txtStatus.setTextColor(context.getResources().getColor(R.color.redcolor));
+            holder.txtStatus.setTextColor(context.getResources().getColor(R.color.whiteTextColor));
+            holder.status.setImageResource(R.drawable.ic_signs);
         }
         holder.btn_popup.setOnClickListener(v -> {
             PopupMenu popupmenu = new PopupMenu(context, holder.btn_popup);
@@ -122,7 +124,7 @@ public class MaterialGatePassAdapter extends RecyclerView.Adapter<MaterialGatePa
         return 0; }
     public class MyviewHolder extends RecyclerView.ViewHolder {
         TextView txtId, txtDateTime, txtCategory, VehicleNo, txtType, txtReason, txtStatus,tv_gatepasstype;
-        ImageView btn_popup;
+        ImageView btn_popup,status;
 
         public MyviewHolder(View itemView) {
             super(itemView);
@@ -135,6 +137,7 @@ public class MaterialGatePassAdapter extends RecyclerView.Adapter<MaterialGatePa
             txtReason = (TextView) itemView.findViewById(R.id.txtReason);
             txtStatus = (TextView) itemView.findViewById(R.id.txtStatus);
             btn_popup = itemView.findViewById(R.id.btn_popup);
+            status=itemView.findViewById(R.id.iv_status);
         }
     }public void deleteMaterialGatePass(String id) {
         RetrofitApi apiService = ApiClient.getClient().create(RetrofitApi.class);

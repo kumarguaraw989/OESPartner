@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -53,7 +54,7 @@ ImageView imgBack;
 Button btnAdd,btnUpdate;
 
     Spinner  branch_name, material_gatepass, vehical_load, reasonformaterialgatepass, materialbelongsto, material_returnable;
-    AppCompatEditText  partenername, vehical_no, others;
+    EditText partenername, vehical_no, others;
     RelativeLayout materialbelong_layout,materialreturn_layout;
     ProgressBar progress_bar;
     AppCompatTextView stakeholder;
@@ -76,8 +77,8 @@ Button btnAdd,btnUpdate;
         getSupportActionBar().hide();
         ButterKnife.bind(this);
         Data data_model = FastSave.getInstance().getObject("login_data", Data.class);
-        TextView btnAddMaterial=findViewById(R.id.btnAddMaterial);
-        TextView btnRemoveMaterial=findViewById(R.id.btnRemoveMaterial);
+/*        TextView btnAddMaterial=findViewById(R.id.btnAddMaterial);
+        TextView btnRemoveMaterial=findViewById(R.id.btnRemoveMaterial);*/
         Date date = new Date();
         DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.DEFAULT, Locale.getDefault());
         date_time =  dateFormat.format(date);
@@ -102,7 +103,7 @@ Button btnAdd,btnUpdate;
         material_returnable = findViewById(R.id.material_returnable);
         stakeholder.setText(data_model.getVendorCode());
         setupSpinners();
-        final ViewGroup tes = (ViewGroup) findViewById(R.id.layout_addchambers);
+//        final ViewGroup tes = (ViewGroup) findViewById(R.id.layout_addchambers);
 
         imgBack.setOnClickListener(v -> onBackPressed());
         progress_bar=(ProgressBar)findViewById(R.id.progress_bar);
@@ -117,11 +118,11 @@ Button btnAdd,btnUpdate;
             String reason=(String) reasonformaterialgatepass.getSelectedItem().toString();
             String belong_to=(String) materialbelongsto.getSelectedItem().toString();
             String returnable_nonreturnable= material_returnable.getSelectedItem().toString();
-            btnAddMaterial.setOnClickListener(v1 -> {
+       /*     btnAddMaterial.setOnClickListener(v1 -> {
                 final View extend = LayoutInflater.from(v.getContext()).inflate(R.layout.item_chamber_add, tes, false);
                 tes.addView(extend);
             });
-            btnRemoveMaterial.setOnClickListener(v1 -> tes.removeViewAt(1));
+            btnRemoveMaterial.setOnClickListener(v1 -> tes.removeViewAt(1));*/
             if(Clinet_name.equals("")){
                 FancyToast.makeText(UpdateMaterialgatepassActivity.this,"",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
                 return;

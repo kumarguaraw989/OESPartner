@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,6 +19,10 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.appizona.yehiahd.fastsave.FastSave;
 import com.example.oespartner.App_Helper.Constants;
 import com.example.oespartner.model.Data;
@@ -27,8 +32,13 @@ import com.example.oespartner.WebService.RetrofitApi;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -40,8 +50,7 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-
+import retrofit2.http.POST;
 public class AddPartnerPersonActivity extends AppCompatActivity {
     ImageView imgBack;
     EditText PoliceVerification;
@@ -50,8 +59,8 @@ public class AddPartnerPersonActivity extends AppCompatActivity {
     EditText edtDateofBirth;
     @BindView(R.id.edtDateVisaValidity)
     EditText edtDateVisaValidity;
-    @BindView(R.id.edtState)
-    EditText edtState;
+    @BindView(R.id.spn_state)
+    Spinner spnState;
     @BindView(R.id.person_name)
     EditText person_name;
     @BindView(R.id.phone)
@@ -82,8 +91,8 @@ public class AddPartnerPersonActivity extends AppCompatActivity {
     Spinner spnGender;
     @BindView(R.id.spnBloodGrp)
     Spinner spnBloodGrp;
-    @BindView(R.id.edtDistrict)
-    EditText edtDistrict;
+    @BindView(R.id.spn_district)
+    Spinner spnDistrict;
     @BindView(R.id.btnSubmit)
     Button btnSubmit;
     @BindView(R.id.edtMobile)
@@ -183,6 +192,8 @@ public class AddPartnerPersonActivity extends AppCompatActivity {
     Spinner spnRightEyeVision;
     @BindView(R.id.layout_partenerpersonglassyes)
     LinearLayout layout_partenerpersonglassyes;
+    ArrayList<String> SelectState = new ArrayList<>();
+    ArrayList<String> SelectDistrict = new ArrayList<>();
     ArrayList<String> SelectVesionLeft=new ArrayList<>();
     ArrayList<String> SelectVesionRight=new ArrayList<>();
     MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
@@ -220,6 +231,8 @@ public class AddPartnerPersonActivity extends AppCompatActivity {
         spnRightEyeVision.setAdapter(new ArrayAdapter<>(AddPartnerPersonActivity.this,android.R.layout.simple_spinner_dropdown_item,SelectVesionRight));
         String[] rightVision={"6/3","6/6","6/7.5","6/9.5","6/12","6/15","6/18"};
         spnRightEyeVision.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,rightVision));
+
+
         btnSubmit.setOnClickListener(v -> {
             progress_bar.setVisibility(View.VISIBLE);
             builder.addFormDataPart("session_email", Objects.requireNonNull(email))
@@ -243,9 +256,9 @@ public class AddPartnerPersonActivity extends AppCompatActivity {
                     .addFormDataPart("village", Objects.requireNonNull(edtVillage.getText().toString()))
                     .addFormDataPart("post_office", Objects.requireNonNull(edtPostOffice.getText().toString()))
                     .addFormDataPart("police_station", Objects.requireNonNull(edtPoliceStation.getText().toString()))
-                    .addFormDataPart("state", Objects.requireNonNull(edtState.getText().toString()))
+                    .addFormDataPart("state", Objects.requireNonNull(spnState.getSelectedItem().toString()))
                     .addFormDataPart("visa_no", Objects.requireNonNull(edtVisaNo.getText().toString()))
-                    .addFormDataPart("district", Objects.requireNonNull(edtDistrict.getText().toString()))
+                    .addFormDataPart("district", Objects.requireNonNull(spnDistrict.getSelectedItem().toString()))
                     .addFormDataPart("pin_no", Objects.requireNonNull(edtPinNo.getText().toString()))
                     .addFormDataPart("mobile", Objects.requireNonNull(edtMobile.getText().toString()))
                     .addFormDataPart("whether_staying", Objects.requireNonNull(weatherStaying.getSelectedItem().toString()))
@@ -338,6 +351,73 @@ public class AddPartnerPersonActivity extends AppCompatActivity {
             intent.setAction(Intent.ACTION_GET_CONTENT);
             startActivityForResult(Intent.createChooser(intent.putExtra(intent.EXTRA_ALLOW_MULTIPLE, true), "Select Picture"), 6);
 
+        });
+
+
+
+        SelectState.add("Select State");
+//        SelectDistrict.clear();
+        String state_url="http://itniorwings.com/links/country/index.php/Welcome/states/101";
+        StringRequest stringRequest=new StringRequest(state_url, response -> {
+            SelectDistrict.clear(); // clear items
+            try {
+                JSONObject jsonObject=new JSONObject(response);
+                Log.e("state",jsonObject.getString("all_states"));
+                    JSONArray jsonArray=new JSONArray(jsonObject.getString("all_states"));
+                    for (int i=0;i<jsonArray.length();i++) {
+                        JSONObject jsonObject1=jsonArray.getJSONObject(i);
+                        Log.e("states",jsonObject1.toString());
+                        SelectState.add(jsonObject1.getString("name"));
+                    }
+
+                spnState.setAdapter(new ArrayAdapter<>(AddPartnerPersonActivity.this, android.R.layout.simple_spinner_dropdown_item, SelectState));
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }, error -> {
+
+        });
+
+        RequestQueue requestQueue= Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+        SelectDistrict.add("Select");
+        spnState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                SelectDistrict.clear();
+                String city_url="http://itniorwings.com/links/country/index.php/Welcome/city/"+position;
+                Log.e("city_url",city_url);
+
+                StringRequest stringRequest1=new StringRequest(city_url, response -> {
+
+                    try {
+                        JSONObject jsonObject=new JSONObject(response);
+                        JSONArray jsonArray=new JSONArray(jsonObject.getString("all_city"));
+                        for (int i=0;i<jsonArray.length();i++) {
+                            JSONObject jsonObject1=jsonArray.getJSONObject(i);
+                            Log.e("district",jsonObject1.toString());
+                            SelectDistrict.add(jsonObject1.getString("name"));
+                        }
+
+                        spnDistrict.setAdapter(new ArrayAdapter<>(AddPartnerPersonActivity.this, android.R.layout.simple_spinner_dropdown_item, SelectDistrict));
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }, error -> {
+
+                });
+                RequestQueue requestQueue1=Volley.newRequestQueue(getApplicationContext());
+                requestQueue1.add(stringRequest1);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
         });
     }
 

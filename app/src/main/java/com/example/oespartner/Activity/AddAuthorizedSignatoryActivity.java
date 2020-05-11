@@ -31,6 +31,7 @@ import com.example.oespartner.R;
 import com.example.oespartner.WebService.ApiClient;
 import com.example.oespartner.WebService.Config;
 import com.example.oespartner.WebService.RetrofitApi;
+import com.google.android.material.textfield.TextInputLayout;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 import org.json.JSONArray;
@@ -76,8 +77,8 @@ public class AddAuthorizedSignatoryActivity extends AppCompatActivity {
     AppCompatCheckBox declaration1;
     @BindView(R.id.check_declaration2)
     AppCompatCheckBox declaration2;
-    @BindView(R.id.othersaddwork)
-    EditText othersaddwork;
+    @BindView(R.id.others_layout)
+    TextInputLayout othersaddwork;
     ArrayList<String> SelectClientBranch = new ArrayList<>();
     ArrayList<String> SelectClient = new ArrayList<>();
     ArrayList<String> SelectPersonName = new ArrayList<>();

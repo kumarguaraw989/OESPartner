@@ -4,9 +4,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-
+    android:layout_height="wrap_content"
+    android:background="@color/whiteTextColor"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,94 +17,94 @@
         android:layout_gravity="center"
         android:orientation="vertical">
 
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Platform.MaterialComponents"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:paddingTop="@dimen/_10sdp">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Passport No."
-                android:textColor="@color/ColorBlack" />
+            android:layout_height="@dimen/_40sdp"
+            android:id="@+id/others_layout"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/border_spinner"
+            android:hint="Passport No."
+            android:textColorHint="@color/colorGray"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
+            app:startIconDrawable="@drawable/ic_favorite_black_24dp">
 
             <EditText
                 android:id="@+id/edtPassportNo."
+                android:background="@color/transparent"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/border_bloour"
-                android:padding="@dimen/_8sdp" />
-        </LinearLayout>
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginTop="@dimen/_20sdp"
             android:orientation="vertical"
-            android:paddingLeft="@dimen/_5sdp"
             android:paddingTop="@dimen/_10sdp">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
                 android:text="Validity of Visa"
                 android:textColor="@color/ColorBlack" />
 
             <EditText
+                android:id="@+id/edtDateVisaValidity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusable="false"
-                android:padding="@dimen/_8sdp"
-                android:gravity="center|left"
-                android:textColor="@color/whiteTextColor"
-                android:id="@+id/edtDateVisaValidity"
-                android:drawablePadding="10dp"
-                android:layout_marginTop="@dimen/_5sdp"
                 android:background="@drawable/edit_text_background"
                 android:drawableRight="@drawable/ic_calendar"
-                android:text="Select Date"/>
+                android:focusable="false"
+                android:padding="@dimen/_8sdp"
+                android:text="Select Date"
+                android:textColor="@color/ColorBlack" />
         </LinearLayout>
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginRight="@dimen/_10sdp"
         android:layout_gravity="center"
         android:orientation="vertical">
 
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Platform.MaterialComponents"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:paddingTop="@dimen/_10sdp">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Visa No."
-                android:textColor="@color/ColorBlack" />
+            android:layout_height="@dimen/_40sdp"
+             android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/border_spinner"
+            android:hint="Visa No."
+            android:textColorHint="@color/colorGray"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
+            app:startIconDrawable="@drawable/ic_favorite_black_24dp">
 
             <EditText
+                android:background="@color/transparent"
                 android:id="@+id/edtVisaNo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/border_bloour"
-                android:padding="@dimen/_8sdp" />
-        </LinearLayout>
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginTop="@dimen/_20sdp"
             android:orientation="vertical"
             android:paddingTop="@dimen/_10sdp">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
                 android:text="Expert in the Field of"
                 android:textColor="@color/ColorBlack" />
 
@@ -112,11 +112,12 @@
                 android:id="@+id/edtExpertInField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center|left"
-                android:drawablePadding="10dp"
+                android:background="@drawable/edit_text_background"
+                android:drawableRight="@drawable/ic_calendar"
+                android:focusable="false"
                 android:padding="@dimen/_8sdp"
-                android:background="@drawable/border_bloour"
-                android:drawableRight="@drawable/ic_calendar" />
+                android:text="Select Date"
+                android:textColor="@color/ColorBlack" />
         </LinearLayout>
 
 

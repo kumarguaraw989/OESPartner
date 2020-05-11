@@ -1,14 +1,13 @@
 package com.example.oespartner.Activity;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatEditText;
-import androidx.appcompat.widget.AppCompatTextView;
+ import androidx.appcompat.widget.AppCompatTextView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
+ import android.view.View;
+ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,12 +22,16 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.appizona.yehiahd.fastsave.FastSave;
+import com.example.oespartner.Adapter.PartnerPersonAdapter;
+import com.example.oespartner.Adapter.TableAdapter;
 import com.example.oespartner.model.AddMaterialGatePassModel;
 import com.example.oespartner.model.Data;
 import com.example.oespartner.R;
 import com.example.oespartner.WebService.ApiClient;
 import com.example.oespartner.WebService.Config;
 import com.example.oespartner.WebService.RetrofitApi;
+import com.example.oespartner.model.TableModel;
+import com.google.android.material.textfield.TextInputLayout;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 import org.json.JSONArray;
@@ -39,6 +42,7 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -51,10 +55,11 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
     ImageView imgBack;
     Button btnAdd, btnUpdate;
     Spinner branch_name, material_gatepass, vehical_load, reasonformaterialgatepass, materialbelongsto, material_returnable;
-    AppCompatEditText partenername, vehical_no, others;
+    EditText partenername, vehical_no;
+    TextInputLayout  others;
     AppCompatTextView stakeholder;
     RelativeLayout materialbelong_layout, materialreturn_layout;
-    EditText material_name, edtSpecification, edtUnit, edtQty;
+    EditText  edtSpecification, edtUnit, edtQty;
     ArrayList<String> material_list = new ArrayList<>();
     ArrayList<String> edtSpecification1 = new ArrayList<>();
     ArrayList<String> edtUnit1 = new ArrayList<>();
@@ -66,6 +71,11 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
     String email, role;
     ArrayList<String> SelectClientBranch = new ArrayList<>();
     ArrayList<String> SelectClient = new ArrayList<>();
+    RecyclerView recyclerview;
+    TableAdapter tableAdapter;
+    List<TableModel> tableModelList;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,12 +85,11 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
         email = data_model.getEmail();
         ButterKnife.bind(this);
         role = data_model.getRole();
-        material_name = findViewById(R.id.material_name);
-        edtSpecification = findViewById(R.id.edtSpecification);
-        edtUnit = findViewById(R.id.edtUnit);
-        edtQty = findViewById(R.id.edtQty);
-        TextView btnAddMaterial = findViewById(R.id.btnAddMaterial);
-        TextView btnRemoveMaterial = findViewById(R.id.btnRemoveMaterial);
+        recyclerview = findViewById(R.id.recyclerview);
+        LinearLayoutManager linearLayoutManager =new  LinearLayoutManager(this);
+        recyclerview.setLayoutManager(linearLayoutManager);
+        tableAdapter = new TableAdapter(getApplicationContext(),tableModelList);
+        recyclerview.setAdapter(tableAdapter);
         imgBack = (ImageView) findViewById(R.id.imgBack);
         btnAdd = (Button) findViewById(R.id.btnAdd);
         btnUpdate = findViewById(R.id.btnupdate);
@@ -101,7 +110,6 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
         materialbelongsto = findViewById(R.id.material_belongsto);
         material_returnable = findViewById(R.id.material_returnable);
         btnUpdate.setVisibility(View.GONE);
-        final ViewGroup tes = (ViewGroup) findViewById(R.id.layout_addchambers);
         setupSpinners();
         String[] mgatepassType = {"Material Gate Pass Type", "Inward", "Outward"};
         material_gatepass.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, mgatepassType));
@@ -112,11 +120,7 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
         Date date = new Date();
         DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.DEFAULT, Locale.getDefault());
         date_time = dateFormat.format(date);
-        //array list of material name
-        material_list.add(material_name.getText().toString());
-        edtSpecification1.add(edtSpecification.getText().toString());
-        edtQty1.add(edtQty.getText().toString());
-        edtUnit1.add(edtUnit.getText().toString());
+
         SelectClientBranch.add("Select Branch");
         StringRequest request = new StringRequest(Request.Method.POST, Config.URL_ClientBranch, response -> {
             Log.e("branch", response);
@@ -183,11 +187,8 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
-        btnAddMaterial.setOnClickListener(v -> {
-            final View extend = LayoutInflater.from(v.getContext()).inflate(R.layout.item_chamber_add, tes, false);
-            tes.addView(extend);
-        });
-        btnRemoveMaterial.setOnClickListener(v -> tes.removeViewAt(1));
+
+
     }
     public void postMaterialGatePass(String email, String role, String client, String branch, String gate_pass_type, String partner_code, String partner_name, String vehicle_no, String vehicle_load, String reason, String belong_to,
                                      String returnable_nonreturnable, String date_time, ArrayList<String> material_name, ArrayList<String> specification, ArrayList<String> unit, ArrayList<String> qty) {
