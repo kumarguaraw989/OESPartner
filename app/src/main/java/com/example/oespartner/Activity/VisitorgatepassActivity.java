@@ -1,9 +1,11 @@
 package com.example.oespartner.Activity;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,7 +30,7 @@ public class VisitorgatepassActivity extends AppCompatActivity implements SwipeR
     RecyclerView recyclerview;
     VisitorGatePassAdapter visitorGatePassAdapter;
     List<VisitorGatePassModel> visitorGatePassModels;
-    private SwipeRefreshLayout swipeRefreshLayout;
+     SwipeRefreshLayout swipeRefreshLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,37 +49,53 @@ public class VisitorgatepassActivity extends AppCompatActivity implements SwipeR
         recyclerview.setLayoutManager(linearLayoutManager);
         visitorGatePassAdapter = new VisitorGatePassAdapter(getApplicationContext(), visitorGatePassModels);
         recyclerview.setAdapter(visitorGatePassAdapter);
+
         imgAdd.setOnClickListener(v -> {
-            // TODO Auto-generated method stub
-            Intent i = new Intent(VisitorgatepassActivity.this, AddVisitorgatepassActivity.class);
-            startActivity(i);
+            startActivityForResult(
+                    new Intent(VisitorgatepassActivity.this, AddVisitorgatepassActivity.class),1111
+            );
         });
                 swipeRefreshLayout.setRefreshing(true);
-                RetrofitApi apiService = ApiClient.getClient().create(RetrofitApi.class);
-                Data data_model = FastSave.getInstance().getObject("login_data", Data.class);
-                Log.e("email", data_model.getEmail());
-                Log.e("role", data_model.getRole());
-                Call<List<VisitorGatePassModel>> call = apiService.VisitorGatePass(data_model.getEmail(), data_model.getRole());
-                call.enqueue(new Callback<List<VisitorGatePassModel>>() {
-                    @Override
-                    public void onResponse(Call<List<VisitorGatePassModel>> call, Response<List<VisitorGatePassModel>> response) {
-                        visitorGatePassModels = response.body();
-                        Log.d("TAG", "Response success = " + visitorGatePassModels);
-                        visitorGatePassAdapter.setVisitorGatePassList(visitorGatePassModels);
-                        swipeRefreshLayout.setRefreshing(false);
-                    }
-                    @Override
-                    public void onFailure(Call<List<VisitorGatePassModel>> call, Throwable t) {
-                        swipeRefreshLayout.setRefreshing(false);
-                        Log.d("TAG", "Response = " + t.toString());
-                    }
-
-
-                });
+               callApi();
              }
+
+    private void callApi() {
+        RetrofitApi apiService = ApiClient.getClient().create(RetrofitApi.class);
+        Data data_model = FastSave.getInstance().getObject("login_data", Data.class);
+        Log.e("email", data_model.getEmail());
+        Log.e("role", data_model.getRole());
+        Call<List<VisitorGatePassModel>> call = apiService.VisitorGatePass(data_model.getEmail(), data_model.getRole());
+        call.enqueue(new Callback<List<VisitorGatePassModel>>() {
+            @Override
+            public void onResponse(Call<List<VisitorGatePassModel>> call, Response<List<VisitorGatePassModel>> response) {
+                visitorGatePassModels= response.body();
+                Log.d("TAG", "Response success = " + visitorGatePassModels);
+                visitorGatePassAdapter.setVisitorGatePassList(visitorGatePassModels);
+                swipeRefreshLayout.setRefreshing(false);
+            }
+            @Override
+            public void onFailure(Call<List<VisitorGatePassModel>> call, Throwable t) {
+                swipeRefreshLayout.setRefreshing(false);
+                Log.d("TAG", "Response = " + t.toString());
+            }
+        });
+    }
+
     @Override
     public void onRefresh() {
+        Log.d("TAG", "onRefresh");
         swipeRefreshLayout.setRefreshing(false);
-        visitorGatePassModels.clear();
+//        visitorGatePassModels.clear();
+        callApi();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == Activity.RESULT_OK && requestCode == 1111) {
+            swipeRefreshLayout.setRefreshing(true);
+            visitorGatePassModels.clear();
+            callApi();
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.oespartner.Activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,6 +64,8 @@ public class UpdateWorkgatepassActivity extends AppCompatActivity {
     Spinner spnPartnerName;
     @BindView(R.id.client_name)
     TextView Clinet_name;
+    @BindView(R.id.tv_clientname)
+    TextView tv_clientname;
     @BindView(R.id.spnBranch)Spinner spnBranch;
     @BindView(R.id.spnPersonName)Spinner spnPersonName;
     @BindView(R.id.spnDesignation)Spinner spnDesignation;
@@ -84,7 +88,12 @@ public class UpdateWorkgatepassActivity extends AppCompatActivity {
     @BindView(R.id.progress_bar)
     ProgressBar progress_bar;
     String email,role,id2,Partener_id;
-
+    @BindView(R.id.rl_clientname)
+    RelativeLayout rl_clientname;
+    @BindView(R.id.rl_branchname)
+    RelativeLayout rl_branchname;
+    @BindView(R.id.tv_branchname)
+    TextView tv_branchname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,18 +108,23 @@ public class UpdateWorkgatepassActivity extends AppCompatActivity {
         imgBack.setOnClickListener(v -> onBackPressed());
         edtDate.setOnClickListener(v -> Constants.DateDialog(edtDate, UpdateWorkgatepassActivity.this));
         Intent intent = getIntent();
+        tv_clientname.setVisibility(View.GONE);
+        rl_clientname.setVisibility(View.GONE);
+        tv_branchname.setVisibility(View.GONE);
+        rl_branchname.setVisibility(View.GONE);
         String value = intent.getStringExtra("response");
         try {
-            JSONObject jsonObject = new JSONObject(value.toString());
+            assert value != null;
+            JSONObject jsonObject = new JSONObject(value);
+            Log.e("res",value);
             edtReference.setText(jsonObject.get("work_reference_no").toString());
             edtDescription.setText(jsonObject.get("work_description").toString());
             edtWorkValidDate.setText(jsonObject.get("work_valid_upto").toString());
             edtDate.setText(jsonObject.get("work_valid_upto").toString());
-             chk1.setText(jsonObject.get("j_declaration").toString());
-            chk2.setText(jsonObject.get("h_declaration").toString());
-            chk3.setText(jsonObject.get("declaration").toString());
+             chk1.isChecked();
+            chk2.isChecked();
+            chk3.isChecked();
             id2=jsonObject.getString("id").toString();
-            Clinet_name.setText(jsonObject.getString("client_name"));
             SelectClientBranch.add(jsonObject.get("branch").toString());
             spnBranch.setAdapter(new ArrayAdapter<>(UpdateWorkgatepassActivity.this,android.R.layout.simple_spinner_dropdown_item,SelectClientBranch));
 
@@ -121,6 +135,10 @@ public class UpdateWorkgatepassActivity extends AppCompatActivity {
 
             SelectDesignation.add(jsonObject.get("designation").toString());
             spnDesignation.setAdapter(new ArrayAdapter<>(UpdateWorkgatepassActivity.this,android.R.layout.simple_spinner_dropdown_item,SelectDesignation));
+            String[] leftVision = {"Promoter/Partner/Proprietor", "Engineer", "Manager", "Supervisor", "Driver", "Helper", "Contract Labour","Electrician","Security","Other"};
+            spnDesignation.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, leftVision));
+
+
 
             SelectPoliceVerify.add(jsonObject.get("police_verify").toString());
             spnPoliceVerify.setAdapter(new ArrayAdapter<>(UpdateWorkgatepassActivity.this,android.R.layout.simple_spinner_dropdown_item,SelectPoliceVerify));
@@ -133,7 +151,6 @@ public class UpdateWorkgatepassActivity extends AppCompatActivity {
         }
 
         StringRequest stringRequest1=new StringRequest(Request.Method.POST, Config.URL_CLient, response -> {
-            Log.e("response",response);
             try {
                 JSONArray jsonArray=new JSONArray(response);
                 JSONObject jsonObject=jsonArray.getJSONObject(0);
@@ -158,7 +175,6 @@ public class UpdateWorkgatepassActivity extends AppCompatActivity {
 
         SelectClientBranch.add("Select Branch");
         StringRequest request = new StringRequest(Request.Method.POST, Config.URL_ClientBranch, response -> {
-            Log.e("branch", response );
             try {
                 JSONArray jsonArray = new JSONArray(response);
                 for (int i = 0; i < jsonArray.length(); i++) {
@@ -197,7 +213,7 @@ public class UpdateWorkgatepassActivity extends AppCompatActivity {
              } catch (JSONException e) {
                 e.printStackTrace();
             }
-            Toast.makeText(UpdateWorkgatepassActivity.this,response, Toast.LENGTH_SHORT).show();
+
         }, error -> Toast.makeText(UpdateWorkgatepassActivity.this,error.toString(), Toast.LENGTH_SHORT).show()){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
@@ -312,8 +328,10 @@ public class UpdateWorkgatepassActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<AddWorkGatePassModel> call, Response<AddWorkGatePassModel> response) {
                 progress_bar.setVisibility(View.GONE);
-                FancyToast.makeText(UpdateWorkgatepassActivity.this,"Data submitted successfully",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
+                Intent i = new Intent();
+                setResult(Activity.RESULT_OK,i);
                 finish();
+                FancyToast.makeText(UpdateWorkgatepassActivity.this,"Data submitted successfully",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
 
             }
 

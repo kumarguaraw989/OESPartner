@@ -1,4 +1,5 @@
 package com.example.oespartner.Adapter;
+
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -34,22 +35,27 @@ import java.util.Objects;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 public class MaterialGatePassAdapter extends RecyclerView.Adapter<MaterialGatePassAdapter.MyviewHolder> {
     Context context;
     List<MaterialGatePassModel> materialGatePassModels;
+
     public MaterialGatePassAdapter(Context context, List<MaterialGatePassModel> materialGatePassModels) {
         this.context = context;
         this.materialGatePassModels = materialGatePassModels;
     }
+
     public void setMaterialGatePassList(List<MaterialGatePassModel> materialGatePassModels) {
         this.materialGatePassModels = materialGatePassModels;
         notifyDataSetChanged();
     }
+
     @Override
     public MaterialGatePassAdapter.MyviewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_material_gatepass, parent, false);
         return new MyviewHolder(view);
     }
+
     @Override
     public void onBindViewHolder(MaterialGatePassAdapter.MyviewHolder holder, int position) {
         holder.txtId.setText(materialGatePassModels.get(position).getMaterialGatepassId());
@@ -60,28 +66,26 @@ public class MaterialGatePassAdapter extends RecyclerView.Adapter<MaterialGatePa
         holder.tv_gatepasstype.setText(materialGatePassModels.get(position).getGatePassType());
         holder.txtReason.setText(materialGatePassModels.get(position).getReason());
         holder.txtStatus.setText(materialGatePassModels.get(position).getStatus());
-        if (materialGatePassModels.get(position).getStatus().equals("1")){
+        if (materialGatePassModels.get(position).getStatus().equals("1")) {
             holder.txtStatus.setTextColor(context.getResources().getColor(R.color.whiteTextColor));
             holder.txtStatus.setText("Approved");
-            holder.status.setImageResource(R.drawable.ic_approved_signal);
-        }
-        else{
-            holder.txtStatus.setText("UnApproved");
+        } else {
+            holder.txtStatus.setText("Unapproved");
             holder.txtStatus.setTextColor(context.getResources().getColor(R.color.whiteTextColor));
-            holder.status.setImageResource(R.drawable.ic_signs);
         }
         holder.btn_popup.setOnClickListener(v -> {
             PopupMenu popupmenu = new PopupMenu(context, holder.btn_popup);
 
             popupmenu.getMenuInflater().inflate(R.menu.visitor_menu, popupmenu.getMenu());
             popupmenu.getMenu().findItem(R.id.edit).setVisible(true);
-            popupmenu.getMenu().findItem(R.id.delete).setVisible(true);
+            popupmenu.getMenu().findItem(R.id.delete).setVisible(false);
             popupmenu.setOnMenuItemClickListener(item -> {
                 switch (item.getItemId()) {
-                    case R.id.delete:
+
+                 /*   case R.id.delete:
                         deleteMaterialGatePass(materialGatePassModels.get(position).getId());
                         notifyItemRemoved(position);
-                        break;
+                        break;*/
 
                     case R.id.edit:
                         Log.e("id", materialGatePassModels.get(position).getId());
@@ -116,20 +120,23 @@ public class MaterialGatePassAdapter extends RecyclerView.Adapter<MaterialGatePa
             popupmenu.show();
         });
     }
-        @Override
-         public int getItemCount() {
+
+    @Override
+    public int getItemCount() {
         if (materialGatePassModels != null) {
             return materialGatePassModels.size();
         }
-        return 0; }
+        return materialGatePassModels.size();
+    }
+
     public class MyviewHolder extends RecyclerView.ViewHolder {
-        TextView txtId, txtDateTime, txtCategory, VehicleNo, txtType, txtReason, txtStatus,tv_gatepasstype;
-        ImageView btn_popup,status;
+        TextView txtId, txtDateTime, txtCategory, VehicleNo, txtType, txtReason, txtStatus, tv_gatepasstype;
+        ImageView btn_popup, status;
 
         public MyviewHolder(View itemView) {
             super(itemView);
             txtId = itemView.findViewById(R.id.txtId);
-            tv_gatepasstype=itemView.findViewById(R.id.tv_gatepasstype);
+            tv_gatepasstype = itemView.findViewById(R.id.tv_gatepasstype);
             txtDateTime = itemView.findViewById(R.id.txtDateTime);
             txtCategory = itemView.findViewById(R.id.txtCategory);
             VehicleNo = itemView.findViewById(R.id.VehicleNo);
@@ -137,9 +144,10 @@ public class MaterialGatePassAdapter extends RecyclerView.Adapter<MaterialGatePa
             txtReason = (TextView) itemView.findViewById(R.id.txtReason);
             txtStatus = (TextView) itemView.findViewById(R.id.txtStatus);
             btn_popup = itemView.findViewById(R.id.btn_popup);
-            status=itemView.findViewById(R.id.iv_status);
+            status = itemView.findViewById(R.id.iv_status);
         }
-    }public void deleteMaterialGatePass(String id) {
+    }
+  /*  public void deleteMaterialGatePass(String id) {
         RetrofitApi apiService = ApiClient.getClient().create(RetrofitApi.class);
         Call<MaterialGatePassModel> call = apiService.DeleteMaterialGatePass(id);
         call.enqueue(new Callback<MaterialGatePassModel>() {
@@ -150,5 +158,5 @@ public class MaterialGatePassAdapter extends RecyclerView.Adapter<MaterialGatePa
             public void onFailure(Call<MaterialGatePassModel> call, Throwable t) {
             }
         });
-    }
+    }*/
 }

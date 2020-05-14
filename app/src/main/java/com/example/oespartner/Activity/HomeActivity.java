@@ -1,6 +1,8 @@
 package com.example.oespartner.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
@@ -12,6 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.appizona.yehiahd.fastsave.FastSave;
+import com.bumptech.glide.Glide;
 import com.example.oespartner.Adapter.SlidingImage_Adapter;
 import com.example.oespartner.Fragment.ActionBarActivity;
 import com.example.oespartner.Fragment.NavigationDrawerFragment;
@@ -27,6 +30,7 @@ import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import me.relex.circleindicator.CircleIndicator;
 
 public class HomeActivity extends ActionBarActivity
@@ -40,6 +44,7 @@ public class HomeActivity extends ActionBarActivity
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private CharSequence mTitle;
     private DrawerLayout mDrawerLayout;
+    CircleImageView profile_Image;
     TextView textDrawerHeading,txtEmail,visitorgatepass,workgatepass,materialgatepass,authorizedsignatory,partenerperson;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +58,7 @@ public class HomeActivity extends ActionBarActivity
         materialgatepass=findViewById(R.id.tv_Materialgatepass);
         authorizedsignatory=findViewById(R.id.tv_authorisedsignotory);
         partenerperson=findViewById(R.id.tv_partenerperson);
+        profile_Image=findViewById(R.id.profile_image);
         visitorgatepass.setOnClickListener(v -> {
             startActivity(new Intent(HomeActivity.this,VisitorgatepassActivity.class));
             finish();
@@ -91,7 +97,9 @@ public class HomeActivity extends ActionBarActivity
          data_model.getEmail();
         txtEmail.setText(data_model.getEmail());
         textDrawerHeading.setText(data_model.getName());
-        mNavigationDrawerFragment = (NavigationDrawerFragment)
+
+        Glide.with(this).load(data_model.getPartnerPic()).into(profile_Image);
+          mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
         mNavigationDrawerFragment.setUp(
@@ -100,9 +108,7 @@ public class HomeActivity extends ActionBarActivity
         mDrawerLayout = findViewById(R.id.main_layout);
         for (int i = IMAGES.length - 1; i >= 0; i--) {
             Integer image = IMAGES[i];
-
         }
-
         init();
     }
 

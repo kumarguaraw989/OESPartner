@@ -3,6 +3,7 @@ package com.example.oespartner.Activity;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -182,7 +183,6 @@ public class AddWorkgatepassActivity extends AppCompatActivity {
         role = data_model.getRole();
         Client = data_model.getClient();
         Calendar calendar = Calendar.getInstance();
-
         edtDate.setOnClickListener(v -> Constants.DateDialog(edtDate, AddWorkgatepassActivity.this));
         // edtDate2.setOnClickListener(v -> Constants.DateDialog(edtDate2, AddWorkgatepassActivity.this));
         edtDateoftrainingValid.setOnClickListener(v -> Constants.DateDialog(edtDateoftrainingValid, AddWorkgatepassActivity.this));
@@ -286,8 +286,7 @@ public class AddWorkgatepassActivity extends AppCompatActivity {
         });
         SelectVehicalNo.add("Select");
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Config.Spinner_VehicleApi, response -> {
-            Log.e("Response", response);
-            try {
+             try {
                 JSONArray jsonArray = new JSONArray(response);
                 for (int i = 0; i < jsonArray.length(); ++i) {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
@@ -368,8 +367,7 @@ public class AddWorkgatepassActivity extends AppCompatActivity {
 
         SelectClientBranch.add("Select Branch");
         StringRequest request = new StringRequest(Request.Method.POST, Config.URL_ClientBranch, response -> {
-            Log.e("branch", response + Client);
-            try {
+             try {
                 JSONArray jsonArray = new JSONArray(response);
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -395,7 +393,7 @@ public class AddWorkgatepassActivity extends AppCompatActivity {
         StringRequest stringRequest2 = new StringRequest(Request.Method.POST, Config.URL_PersonName, response -> {
             try {
                 JSONArray jsonArray = new JSONArray(response);
-                for (int j = 0; j < jsonArray.length(); ++j) {
+                for (int j = 0; j < jsonArray.length(); j++) {
                     JSONObject jsonObject1 = jsonArray.getJSONObject(j);
                     String catogery = jsonObject1.getString("person_name");
                     String catogery1 = jsonObject1.getString("person_id");
@@ -408,7 +406,7 @@ public class AddWorkgatepassActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }, error -> Toast.makeText(AddWorkgatepassActivity.this, error.toString(), Toast.LENGTH_SHORT).show()) {
+        }, error -> Log.e("error", error.toString()) ) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
@@ -451,8 +449,10 @@ public class AddWorkgatepassActivity extends AppCompatActivity {
             new ApiClient().service.AddWorkGatePass(builder.build()).enqueue(new Callback<String>() {
                 @Override
                 public void onResponse(@NotNull Call<String> call, @NotNull Response<String> response) {
+                    Intent i = new Intent();
+                    setResult(Activity.RESULT_OK,i);
+                    finish();
                     Toast.makeText(getApplicationContext(), "Successfully Added", Toast.LENGTH_SHORT).show();
-                    onBackPressed();
                 }
 
                 @Override

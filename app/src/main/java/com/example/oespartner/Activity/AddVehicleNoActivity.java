@@ -2,6 +2,8 @@ package com.example.oespartner.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -77,6 +79,9 @@ public class AddVehicleNoActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<AddVehicleNo> call, Response<AddVehicleNo> response) {
                 progress_bar.setVisibility(View.GONE);
+                Intent i = new Intent();
+                setResult(Activity.RESULT_OK,i);
+                finish();
                 FancyToast.makeText(AddVehicleNoActivity.this,"Data submitted successfully",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
             }
 

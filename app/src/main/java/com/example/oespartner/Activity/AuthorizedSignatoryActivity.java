@@ -1,10 +1,12 @@
 package com.example.oespartner.Activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -52,41 +54,54 @@ public class AuthorizedSignatoryActivity extends AppCompatActivity implements Sw
         recyclerview.setAdapter(authorizedSignatoryAdapter);
 
         imgAdd.setOnClickListener(v -> {
-            // TODO Auto-generated method stub
-            Intent i = new Intent(AuthorizedSignatoryActivity.this, AddAuthorizedSignatoryActivity.class);
-            startActivity(i);
+            startActivityForResult(
+                    new Intent(AuthorizedSignatoryActivity.this, AddAuthorizedSignatoryActivity.class),4444
+            );
         });
-        Handler mhandler=new Handler();
-        mhandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                swipeRefreshLayout.setRefreshing(true);
-                RetrofitApi apiService = ApiClient.getClient().create(RetrofitApi.class);
-                Data data_model= FastSave.getInstance().getObject("login_data",Data.class);
-                Call<List<AuthorizedSignatoryModel>> call = apiService.AuthorizedSignatory(data_model.getEmail(),data_model.getRole());
+        swipeRefreshLayout.setRefreshing(true);
+        callApi();
 
-                call.enqueue(new Callback<List<AuthorizedSignatoryModel>>() {
-                    @Override
-                    public void onResponse(Call<List<AuthorizedSignatoryModel>> call, Response<List<AuthorizedSignatoryModel>> response) {
-                        authorizedSignatoryModels = response.body();
-                        Log.d("TAG","Response success = "+authorizedSignatoryModels);
-                        authorizedSignatoryAdapter.setAuthorizedSignatoryList(authorizedSignatoryModels);
-                        swipeRefreshLayout.setRefreshing(false);
-                    }
-                    @Override
-                    public void onFailure(Call<List<AuthorizedSignatoryModel>> call, Throwable t) {
-                        swipeRefreshLayout.setRefreshing(false);
-                        Log.d("TAG","Response = "+t.toString());
-                    }
-                });
+
             }
-        },1000);
+
+    private void callApi() {
+        RetrofitApi apiService = ApiClient.getClient().create(RetrofitApi.class);
+        Data data_model= FastSave.getInstance().getObject("login_data",Data.class);
+        Call<List<AuthorizedSignatoryModel>> call = apiService.AuthorizedSignatory(data_model.getEmail(),data_model.getRole());
+
+        call.enqueue(new Callback<List<AuthorizedSignatoryModel>>() {
+            @Override
+            public void onResponse(Call<List<AuthorizedSignatoryModel>> call, Response<List<AuthorizedSignatoryModel>> response) {
+                authorizedSignatoryModels = response.body();
+                Log.d("TAG","Response success = "+authorizedSignatoryModels);
+                authorizedSignatoryAdapter.setAuthorizedSignatoryList(authorizedSignatoryModels);
+                swipeRefreshLayout.setRefreshing(false);
+            }
+            @Override
+            public void onFailure(Call<List<AuthorizedSignatoryModel>> call, Throwable t) {
+                swipeRefreshLayout.setRefreshing(false);
+                Log.d("TAG","Response = "+t.toString());
+            }
+        });
+    }
+
+
+    @Override
+    public void onRefresh() {
+        Log.d("TAG", "onRefresh");
+        swipeRefreshLayout.setRefreshing(false);
+//        authorizedSignatoryModels.clear();
+        callApi();
 
     }
 
     @Override
-    public void onRefresh() {
-        swipeRefreshLayout.setRefreshing(false);
-        authorizedSignatoryModels.clear();
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == Activity.RESULT_OK && requestCode == 1111) {
+            swipeRefreshLayout.setRefreshing(true);
+            authorizedSignatoryModels.clear();
+            callApi();
+        }
     }
 }

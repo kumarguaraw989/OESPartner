@@ -107,7 +107,7 @@ public class AuthorizedSignatoryAdapter extends RecyclerView.Adapter<AuthorizedS
         if(authorizedSignatoryModels != null){
             return authorizedSignatoryModels.size();
         }
-        return 0;
+        return authorizedSignatoryModels.size();
 
     }
 
@@ -141,7 +141,7 @@ public class AuthorizedSignatoryAdapter extends RecyclerView.Adapter<AuthorizedS
     }
 
     public void editAuthorizedSignatory(String id) {
-        String editVisitorGatePass_url = "http://oestech.com/management/vehicle_management/index.php/home_api/get_authorised_signatory";
+        String editVisitorGatePass_url = "http://oestech.com/index.php/home_api/get_authorised_signatory";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, editVisitorGatePass_url, new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

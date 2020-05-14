@@ -3,6 +3,7 @@ package com.example.oespartner.Activity;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -301,6 +302,9 @@ public class AddPartnerPersonActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<String> call, Response<String> response) {
                     progress_bar.setVisibility(View.GONE);
+                    Intent i = new Intent();
+                    setResult(Activity.RESULT_OK,i);
+                    finish();
                     FancyToast.makeText(getApplicationContext(), "Added Successfull", FancyToast.LENGTH_LONG, FancyToast.INFO, false).show();
                 }
 

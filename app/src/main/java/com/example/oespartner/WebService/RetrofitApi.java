@@ -87,7 +87,7 @@ public interface RetrofitApi {
 
 
     @FormUrlEncoded
-    @POST("add_material_gatepass")
+    @POST("add_material")
     Call<AddMaterialGatePassModel> AddMaterialGatePass(
             @Field("email") String email,
             @Field("role") String role,
@@ -102,10 +102,10 @@ public interface RetrofitApi {
             @Field("belong_to") String belong_to,
             @Field("returnable_nonreturnable") String returnable_nonreturnable,
             @Field("date_time") String date_time,
-            @Field("material_name") ArrayList<String> material_name,
-            @Field("specification") ArrayList<String> specification,
-            @Field("unit") ArrayList<String> unit,
-            @Field("qty") ArrayList<String> qty);
+            @Field("material_name") String material_name,
+            @Field("specification") String specification,
+            @Field("unit") String unit,
+            @Field("qty") String qty);
 
 
     @FormUrlEncoded
@@ -307,7 +307,11 @@ public interface RetrofitApi {
             @Field("reason") String reason,
             @Field("belong_to") String belong_to,
             @Field("returnable_nonreturnable") String returnable_nonreturnable,
-            @Field("date_time") String date_time);
+            @Field("date_time") String date_time,
+            @Field("material_name") String material_name,
+            @Field("specification") String specification,
+            @Field("unit") String unit,
+            @Field("qty") String qty);
 
     @POST("update_transport")
     Call<String> UpdateTransport(@Body RequestBody body);

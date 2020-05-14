@@ -278,7 +278,7 @@
                 <Spinner
                     android:id="@+id/spnDesignation"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:background="@null"
                     android:dropDownSelector="@color/colorAccent"
                     android:imeOptions="actionDone"
@@ -396,6 +396,48 @@
                 android:background="@color/transparent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/layout_visitor_gatepass_id"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:paddingLeft="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Visitor Gatepass ID"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:textColor="@color/fifty_transparent_black" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:background="@drawable/border_spinner">
+
+                <TextView
+                    android:id="@+id/visitor_gatepass_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_bloour"
+                    android:padding="@dimen/_10sdp"
+                    android:text=""
+
+                    android:textColor="@color/ColorBlack"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </LinearLayout>
+
 
 
         <LinearLayout

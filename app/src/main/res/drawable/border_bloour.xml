@@ -11,8 +11,8 @@
         android:topLeftRadius="@dimen/_5sdp"
         />
 
-    <solid android:color="#D3D3D3" />
+    <solid android:color="#ffffff" />
     <stroke
         android:width="0.7dp"
-        android:color="#D3D3D3" />
+        android:color="@color/colorAccent" />
 </shape>

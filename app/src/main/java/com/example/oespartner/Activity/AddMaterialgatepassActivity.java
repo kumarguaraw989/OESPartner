@@ -1,13 +1,16 @@
 package com.example.oespartner.Activity;
+
 import androidx.appcompat.app.AppCompatActivity;
- import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
- import android.view.View;
- import android.widget.AdapterView;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -51,19 +54,16 @@ import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 public class AddMaterialgatepassActivity extends AppCompatActivity {
     ImageView imgBack;
     Button btnAdd, btnUpdate;
     Spinner branch_name, material_gatepass, vehical_load, reasonformaterialgatepass, materialbelongsto, material_returnable;
-    EditText partenername, vehical_no;
-    TextInputLayout  others;
+    EditText partenername, vehical_no, others;
+    TextInputLayout layout_others;
     AppCompatTextView stakeholder;
     RelativeLayout materialbelong_layout, materialreturn_layout;
-    EditText  edtSpecification, edtUnit, edtQty;
-    ArrayList<String> material_list = new ArrayList<>();
-    ArrayList<String> edtSpecification1 = new ArrayList<>();
-    ArrayList<String> edtUnit1 = new ArrayList<>();
-    ArrayList<String> edtQty1 = new ArrayList<>();
+
     ProgressBar progress_bar;
     String date_time;
     @BindView(R.id.client_name)
@@ -73,7 +73,7 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
     ArrayList<String> SelectClient = new ArrayList<>();
     RecyclerView recyclerview;
     TableAdapter tableAdapter;
-    List<TableModel> tableModelList;
+    ArrayList<TableModel> tableModelList;
 
 
     @Override
@@ -86,9 +86,11 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         role = data_model.getRole();
         recyclerview = findViewById(R.id.recyclerview);
-        LinearLayoutManager linearLayoutManager =new  LinearLayoutManager(this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerview.setLayoutManager(linearLayoutManager);
-        tableAdapter = new TableAdapter(getApplicationContext(),tableModelList);
+        tableModelList = new ArrayList<>();
+        tableModelList.add(new TableModel());
+        tableAdapter = new TableAdapter(getApplicationContext(), tableModelList);
         recyclerview.setAdapter(tableAdapter);
         imgBack = (ImageView) findViewById(R.id.imgBack);
         btnAdd = (Button) findViewById(R.id.btnAdd);
@@ -107,6 +109,7 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
         vehical_load = findViewById(R.id.vehical_load);
         reasonformaterialgatepass = findViewById(R.id.reson_formaterialgatepass);
         others = findViewById(R.id.others);
+        layout_others = findViewById(R.id.layout_others);
         materialbelongsto = findViewById(R.id.material_belongsto);
         material_returnable = findViewById(R.id.material_returnable);
         btnUpdate.setVisibility(View.GONE);
@@ -120,6 +123,11 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
         Date date = new Date();
         DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.DEFAULT, Locale.getDefault());
         date_time = dateFormat.format(date);
+
+
+        //material table code
+        tableAdapter.setTableModelsList(tableModelList);
+
 
         SelectClientBranch.add("Select Branch");
         StringRequest request = new StringRequest(Request.Method.POST, Config.URL_ClientBranch, response -> {
@@ -167,68 +175,98 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
         RequestQueue requestQueue1 = Volley.newRequestQueue(this);
         requestQueue1.add(stringRequest1);
         btnAdd.setOnClickListener(v -> {
+
             String partner_code = stakeholder.getText().toString();
             String partner_name = partenername.getText().toString();
             String vehicle_no = vehical_no.getText().toString();
             String client = Clinet_name.getText().toString();
-            String branch = (String) branch_name.getSelectedItem();
-            String gate_pass_type = (String) material_gatepass.getSelectedItem();
-            String vehicle_load = (String) vehical_load.getSelectedItem();
-            String reason = (String) reasonformaterialgatepass.getSelectedItem();
-            String belong_to = (String) materialbelongsto.getSelectedItem();
-            String returnable_nonreturnable = (String) material_returnable.getSelectedItem();
+            String branch = branch_name.getSelectedItem().toString();
+            String gate_pass_type = material_gatepass.getSelectedItem().toString();
+            String vehicle_load = vehical_load.getSelectedItem().toString();
+            String reason = reasonformaterialgatepass.getSelectedItem().toString();
+            String belong_to = materialbelongsto.getSelectedItem().toString();
+            String returnable_nonreturnable = material_returnable.getSelectedItem().toString();
             if (Clinet_name.equals("")) {
                 FancyToast.makeText(AddMaterialgatepassActivity.this, "Empty", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
                 return;
             } else {
                 progress_bar.setVisibility(View.VISIBLE);
-                postMaterialGatePass(email, role, client, branch, gate_pass_type,
-                        partner_code, partner_name, vehicle_no, vehicle_load, reason, belong_to, returnable_nonreturnable, date_time, material_list, edtSpecification1, edtUnit1, edtQty1);
-                onBackPressed();
+                Log.e("fo =====r", tableAdapter.getData().size() + "");
+
+                for (int i = 0; i < tableAdapter.getData().size(); i++) {
+                    Log.e("for", i + "");
+
+
+             /*       Log.e("material_name",tableAdapter.getData().get(i).getMaterialName());
+                    Log.e("specification",tableAdapter.getData().get(i).getSpecification());
+                    Log.e("unit",tableAdapter.getData().get(i).getUnit());
+                    Log.e("qty",tableAdapter.getData().get(i).getQuantity());*/
+
+
+                    postMaterialGatePass(email, role, client, branch, gate_pass_type,
+                            partner_code, partner_name, vehicle_no, vehicle_load, reason, belong_to, returnable_nonreturnable, date_time, tableAdapter.getData().get(i).getMaterialName(), tableAdapter.getData().get(i).getSpecification()
+                            , tableAdapter.getData().get(i).getUnit(), tableAdapter.getData().get(i).getQuantity());
+                }
+
+//                tableAdapter.getData()
+//                onBackPressed();
             }
         });
 
 
     }
+
     public void postMaterialGatePass(String email, String role, String client, String branch, String gate_pass_type, String partner_code, String partner_name, String vehicle_no, String vehicle_load, String reason, String belong_to,
-                                     String returnable_nonreturnable, String date_time, ArrayList<String> material_name, ArrayList<String> specification, ArrayList<String> unit, ArrayList<String> qty) {
+                                     String returnable_nonreturnable, String date_time, String material_name, String specification, String unit, String qty) {
         RetrofitApi apiService = ApiClient.getClient().create(RetrofitApi.class);
         Call<AddMaterialGatePassModel> call = apiService.AddMaterialGatePass(email, role, client, branch, gate_pass_type,
                 partner_code, partner_name, vehicle_no, vehicle_load, reason, belong_to, returnable_nonreturnable, date_time, material_name, specification, unit, qty);
         call.enqueue(new Callback<AddMaterialGatePassModel>() {
             @Override
             public void onResponse(Call<AddMaterialGatePassModel> call, Response<AddMaterialGatePassModel> response) {
+                Log.e("response successful", "correct" + response.body());
                 progress_bar.setVisibility(View.GONE);
+                Intent i = new Intent();
+                setResult(Activity.RESULT_OK, i);
+                finish();
                 FancyToast.makeText(AddMaterialgatepassActivity.this, "Data submitted successfully", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
-                finish(); }
-                @Override
-                public void onFailure(Call<AddMaterialGatePassModel> call, Throwable t) {
+            }
+
+            @Override
+            public void onFailure(Call<AddMaterialGatePassModel> call, Throwable t) {
+                Log.e("error", t.getMessage());
                 progress_bar.setVisibility(View.GONE);
             }
         });
     }
+
+//    [{"material_name":"ijaoisj","specification":"2","unit":"2","qty":"2"},{"material_name":"ijaoisj","specification":"2","unit":"2","qty":"2"},]
+
     void setupSpinners() {
         reasonformaterialgatepass.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
                 if (position == 0 || position == 3 || position == 4 || position == 5) {
-                    others.setVisibility(View.GONE);
+                    layout_others.setVisibility(View.GONE);
                     materialbelong_layout.setVisibility(View.GONE);
                     materialreturn_layout.setVisibility(View.GONE);
                 } else if (position == 1 || position == 2) {
-                    others.setVisibility(View.GONE);
+                    layout_others.setVisibility(View.GONE);
                     materialbelong_layout.setVisibility(View.VISIBLE);
                     materialreturn_layout.setVisibility(View.VISIBLE);
                 } else if (position == 6) {
-                    others.setVisibility(View.VISIBLE);
+                    layout_others.setVisibility(View.VISIBLE);
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
     }
+
+
 }
 
 

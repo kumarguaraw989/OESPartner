@@ -64,7 +64,7 @@ public class WorkGatePassAdapter extends RecyclerView.Adapter<WorkGatePassAdapte
             holder.txtStatus.setText("Approved");
         }
         else{
-            holder.txtStatus.setText("UnApproved");
+            holder.txtStatus.setText("Unapproved");
             holder.txtStatus.setTextColor(context.getResources().getColor(R.color.whiteTextColor));
         }
         holder.btn_popup.setOnClickListener(new View.OnClickListener() {
@@ -73,13 +73,13 @@ public class WorkGatePassAdapter extends RecyclerView.Adapter<WorkGatePassAdapte
                 PopupMenu popupmenu = new PopupMenu(context, holder.btn_popup);
                 popupmenu.getMenuInflater().inflate(R.menu.visitor_menu, popupmenu.getMenu());
                 popupmenu.getMenu().findItem(R.id.edit).setVisible(true);
-                popupmenu.getMenu().findItem(R.id.delete).setVisible(true);
+                popupmenu.getMenu().findItem(R.id.delete).setVisible(false);
                 popupmenu.setOnMenuItemClickListener(item -> {
                     switch (item.getItemId()) {
-                        case R.id.delete:
+                     /*   case R.id.delete:
                             deleteGatePass(workGatePassModels.get(position).getId());
                             notifyItemRemoved(position);
-                            break;
+                            break;*/
                         case R.id.edit:
                             editWorkGatePass(workGatePassModels.get(position).getId());
                     }
@@ -91,11 +91,10 @@ public class WorkGatePassAdapter extends RecyclerView.Adapter<WorkGatePassAdapte
     }
     @Override
     public int getItemCount() {
-        if(workGatePassModels != null){
-            return workGatePassModels.size();
-        }
-        return 0;
+        return workGatePassModels.size();
     }
+
+
     public class MyviewHolder extends RecyclerView.ViewHolder{
         TextView txtClientId,txtBranchId,txtStackHolderId,txtPersonId,txtPersonName,txtValidity,txtStatus;
         ImageView btn_popup;
@@ -111,7 +110,7 @@ public class WorkGatePassAdapter extends RecyclerView.Adapter<WorkGatePassAdapte
             btn_popup = itemView.findViewById(R.id.btn_popup);
         }
     }
-    public void deleteGatePass(String person_id) {
+   /* public void deleteGatePass(String person_id) {
         RetrofitApi apiService = ApiClient.getClient().create(RetrofitApi.class);
         Call<WorkGatePassModel> call = apiService.DeleteWorkGatePass( person_id);
         call.enqueue(new Callback<WorkGatePassModel>() {
@@ -123,7 +122,7 @@ public class WorkGatePassAdapter extends RecyclerView.Adapter<WorkGatePassAdapte
             public void onFailure(Call<WorkGatePassModel> call, Throwable t) {
             }
         });
-    }
+    }*/
     //    public void editWorkGatePass(String id) {
 //        RetrofitApi apiService = ApiClient.getClient().create(RetrofitApi.class);
 //        Call<AddWorkGatePassModel> call = apiService.EditWorkGatePass( id);
@@ -160,11 +159,8 @@ public class WorkGatePassAdapter extends RecyclerView.Adapter<WorkGatePassAdapte
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }, new com.android.volley.Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+        }, error -> {
 
-            }
         }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {

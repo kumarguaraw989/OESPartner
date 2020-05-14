@@ -1,5 +1,6 @@
 package com.example.oespartner.Activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -120,15 +121,21 @@ public class UpdateAuthorizedSignatoryActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String value = intent.getStringExtra("response");
+        Log.e("edited_response",value);
         try {
-            JSONObject jsonObject = new JSONObject(value.toString());
+            assert value != null;
+            JSONObject jsonObject = new JSONObject(value);
             edtWorkValidUpto.setText(jsonObject.get("valid_upto").toString());
             edtSignatoryValidupto.setText(jsonObject.get("authorised_validity").toString());
             edtWork_orderreference.setText(jsonObject.get("reference_no").toString());
             edtWork_description.setText(jsonObject.get("description").toString());
             declaration1.setText(jsonObject.get("declaration1").toString());
             declaration2.setText(jsonObject.get("declaration2").toString());
-            Clinet_name.setText(jsonObject.get("client_name").toString());
+            Clinet_name.setText(jsonObject.get("client").toString());
+            SelectDesignation.add(jsonObject.get("designationnn").toString());
+            spin_designation.setAdapter(new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,SelectDesignation));
+            SelectClientBranch.add(jsonObject.get("branch").toString());
+            spin_branchname.setAdapter(new ArrayAdapter<>(UpdateAuthorizedSignatoryActivity.this, android.R.layout.simple_spinner_dropdown_item, SelectClientBranch));
 
              StringRequest stringRequest1=new StringRequest(Request.Method.POST, Config.URL_CLient, response -> {
                 Log.e("response",response);
@@ -221,9 +228,11 @@ public class UpdateAuthorizedSignatoryActivity extends AppCompatActivity {
             public void onResponse(Call<AddAuthorizedSignatoryModel> call, Response<AddAuthorizedSignatoryModel> response) {
                 //  System.out.println(response);
                 loading.setVisibility(View.GONE);
-                Toast.makeText(UpdateAuthorizedSignatoryActivity.this, "successfully  Added", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent();
+                setResult(Activity.RESULT_OK,i);
                 finish();
-            }
+                Toast.makeText(UpdateAuthorizedSignatoryActivity.this, "successfully  Added", Toast.LENGTH_SHORT).show();
+             }
             @Override
             public void onFailure(Call<AddAuthorizedSignatoryModel> call, Throwable t) {
 

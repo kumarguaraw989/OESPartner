@@ -30,6 +30,7 @@ import com.example.oespartner.WebService.ApiClient;
 import com.example.oespartner.WebService.Config;
 import com.example.oespartner.WebService.RetrofitApi;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,9 +46,9 @@ import retrofit2.Response;
 
 
 public class VisitorGatePassAdapter extends RecyclerView.Adapter<VisitorGatePassAdapter.MyviewHolder> {
-    Context context;
-    List<VisitorGatePassModel> visitorGatePassModels;
-     Data data_model = FastSave.getInstance().getObject("login_data", Data.class);
+    private Context context;
+    private List<VisitorGatePassModel> visitorGatePassModels;
+     private Data data_model = FastSave.getInstance().getObject("login_data", Data.class);
 
     public VisitorGatePassAdapter(Context context, List<VisitorGatePassModel> visitorGatePassModels) {
         this.context = context;
@@ -61,8 +62,9 @@ public class VisitorGatePassAdapter extends RecyclerView.Adapter<VisitorGatePass
     }
 
 
+    @NotNull
     @Override
-    public VisitorGatePassAdapter.MyviewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public VisitorGatePassAdapter.MyviewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_visitor_gatepass, parent, false);
         return new MyviewHolder(view);
     }
@@ -81,17 +83,18 @@ public class VisitorGatePassAdapter extends RecyclerView.Adapter<VisitorGatePass
             holder.txtStatus.setText("Approved");
         }
         else{
-            holder.txtStatus.setText("UnApproved");
-            holder.txtStatus.setTextColor(context.getResources().getColor(R.color.redcolor));
+            holder.txtStatus.setText("Unapproved");
+            holder.txtStatus.setTextColor(context.getResources().getColor(R.color.whiteTextColor));
         }
         Log.e("email",data_model.getEmail());
         Log.e("role",data_model.getRole());
 
         new ApiClient().getRetrofitInstance().getPersonId(data_model.getEmail(), data_model.getRole()).enqueue(new Callback<ArrayList<PersonModel>>() {
             @Override
-            public void onResponse(Call<ArrayList<PersonModel>> call, Response<ArrayList<PersonModel>> response) {
-                for (int i=0;i<response.body().size();i++){
-                    holder.txtPersonId.setText(response.body().get(0).getPersonId());
+            public void onResponse(@NotNull Call<ArrayList<PersonModel>> call, @NotNull Response<ArrayList<PersonModel>> response) {
+                assert response.body() != null;
+                for (int i = 0; i<response.body().size(); i++){
+                    holder.txtPersonId.setText(response.body().get(i).getPersonId());
                 }
             }
 
@@ -103,13 +106,13 @@ public class VisitorGatePassAdapter extends RecyclerView.Adapter<VisitorGatePass
             PopupMenu popupmenu = new PopupMenu(context, holder.btn_popup);
             popupmenu.getMenuInflater().inflate(R.menu.visitor_menu, popupmenu.getMenu());
             popupmenu.getMenu().findItem(R.id.edit).setVisible(true);
-            popupmenu.getMenu().findItem(R.id.delete).setVisible(true);
+            popupmenu.getMenu().findItem(R.id.delete).setVisible(false);
             popupmenu.setOnMenuItemClickListener(item -> {
                 switch (item.getItemId()) {
-                    case R.id.delete:
+                /*    case R.id.delete:
                         deleteGatePass(visitorGatePassModels.get(position).getId());
                         notifyItemRemoved(position);
-                        break;
+                        break;*/
 
                     case R.id.edit:
                         Log.e("id", visitorGatePassModels.get(position).getId());
@@ -129,10 +132,8 @@ public class VisitorGatePassAdapter extends RecyclerView.Adapter<VisitorGatePass
 
     @Override
     public int getItemCount() {
-        if (visitorGatePassModels != null) {
-            return visitorGatePassModels.size();
-        }
-        return 0;
+
+        return visitorGatePassModels.size();
 
     }
     public class MyviewHolder extends RecyclerView.ViewHolder {
@@ -150,7 +151,7 @@ public class VisitorGatePassAdapter extends RecyclerView.Adapter<VisitorGatePass
         }
     }
 
-    public void deleteGatePass(String person_id) {
+  /*  public void deleteGatePass(String person_id) {
         RetrofitApi apiService = ApiClient.getClient().create(RetrofitApi.class);
         Call<VisitorGatePassModel> call = apiService.DeleteVisitorGatePass(person_id);
         call.enqueue(new Callback<VisitorGatePassModel>() {
@@ -164,7 +165,8 @@ public class VisitorGatePassAdapter extends RecyclerView.Adapter<VisitorGatePass
             public void onFailure(Call<VisitorGatePassModel> call, Throwable t) {
             }
         });
-    }
+    }*/
+
     public void editVisitorGatePass(String id) {
          StringRequest stringRequest = new StringRequest(Request.Method.POST, Config.editVisitorGatePass_url, response -> {
              Log.e("response", response);
@@ -186,8 +188,8 @@ public class VisitorGatePassAdapter extends RecyclerView.Adapter<VisitorGatePass
 
         }) {
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
                 params.put("id", id);
                 return params;
             }
@@ -196,6 +198,4 @@ public class VisitorGatePassAdapter extends RecyclerView.Adapter<VisitorGatePass
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(stringRequest);
     }
-
-
 }

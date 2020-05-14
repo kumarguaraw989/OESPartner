@@ -3,6 +3,8 @@ package com.example.oespartner.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatCheckBox;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -229,9 +231,11 @@ public class AddAuthorizedSignatoryActivity extends AppCompatActivity {
             public void onResponse(Call<AddAuthorizedSignatoryModel> call, Response<AddAuthorizedSignatoryModel> response) {
                 //  System.out.println(response);
                 loading.setVisibility(View.GONE);
-                Toast.makeText(AddAuthorizedSignatoryActivity.this, "successfully  Added", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent();
+                setResult(Activity.RESULT_OK,i);
                 finish();
-            }
+                Toast.makeText(AddAuthorizedSignatoryActivity.this, "successfully  Added", Toast.LENGTH_SHORT).show();
+             }
             @Override
             public void onFailure(Call<AddAuthorizedSignatoryModel> call, Throwable t) {
 

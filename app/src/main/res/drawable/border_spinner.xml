@@ -6,8 +6,8 @@
         android:radius="@dimen/_8sdp"
         android:bottomLeftRadius="@dimen/_8sdp"
         />
-     <solid android:color="#D3D3D3" />
+     <solid android:color="#ffffff" />
     <stroke
         android:width="0.1px"
-        android:color="@color/colorlightwhite"/>
+        android:color="@color/colorAccent"/>
 </shape>

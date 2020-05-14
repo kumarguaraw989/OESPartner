@@ -61,10 +61,14 @@
         android:id="@+id/swipe_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorPrimary" />
+
+
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>

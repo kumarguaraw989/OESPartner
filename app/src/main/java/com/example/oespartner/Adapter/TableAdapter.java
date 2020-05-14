@@ -1,52 +1,42 @@
 package com.example.oespartner.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
-import androidx.appcompat.widget.ViewUtils;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.example.oespartner.Activity.UpdatePartnerPersonActivity;
-import com.example.oespartner.model.PartnerPersonModel;
 import com.example.oespartner.R;
-
-
 import com.example.oespartner.model.TableModel;
+import com.google.gson.Gson;
 
-
-
-
- import java.util.List;
-
-
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class TableAdapter extends RecyclerView.Adapter<TableAdapter.MyviewHolder> {
-    Context context;
-    List<TableModel> tableModels;
+    private Context context;
+    ArrayList<TableModel> tableModels = new ArrayList();
 
 
-    public TableAdapter(Context context, List<TableModel> tableModels) {
+    public TableAdapter(Context context, ArrayList<TableModel> tableModels) {
         this.context = context;
         this.tableModels = tableModels;
     }
 
-    public void setTableModelsList(List<TableModel> tableModels) {
+    public void setTableModelsList(ArrayList<TableModel> tableModels) {
         this.tableModels = tableModels;
         notifyDataSetChanged();
+    }
+
+    public ArrayList<TableModel> getData() {
+//        new Gson().toJson(tableModels);
+        return tableModels;
     }
 
 
@@ -59,31 +49,112 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.MyviewHolder
 
     @Override
     public void onBindViewHolder(TableAdapter.MyviewHolder holder, int position) {
-        holder.materialName.setText(tableModels.get(position).getMaterialName());
-        holder.specification.setText(tableModels.get(position).getSpecification());
-        holder.unit.setText(tableModels.get(position).getUnit());
-        holder.quantity.setText(tableModels.get(position).getQuantity());
+        TableModel model = tableModels.get(position);
+        holder.materialName.setText(model.getMaterialName());
+        holder.specification.setText(model.getSpecification());
+        holder.unit.setText(model.getUnit());
+        holder.quantity.setText(model.getQuantity());
+        if(position == 0) {
+            holder.remove.setVisibility(View.GONE);
+            holder.add.setVisibility(View.VISIBLE);
+        } else {
+            holder.remove.setVisibility(View.VISIBLE);
+            holder.add.setVisibility(View.GONE);
+        }
         holder.add.setOnClickListener(v -> {
-            int pos = (int) v.getTag();
-            tableModels.remove(pos);
-            TableAdapter.this.notifyDataSetChanged();
+            tableModels.add(tableModels.size() - 1, new TableModel());
+            notifyItemInserted(tableModels.size() - 1);
         });
+
+        holder.remove.setOnClickListener(v -> {
+            holder.add.setVisibility(View.GONE);
+            tableModels.remove(holder.getAdapterPosition());
+            notifyItemRemoved(holder.getAdapterPosition());
+        });
+
+
+        holder.materialName.addTextChangedListener(new TextWatcher(){
+
+
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                tableModels.get(position).setMaterialName(holder.materialName.getText().toString().trim());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        holder.specification.addTextChangedListener(new TextWatcher(){
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                tableModels.get(position).setSpecification(holder.specification.getText().toString().trim());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        holder.unit.addTextChangedListener(new TextWatcher(){
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                tableModels.get(position).setUnit(holder.unit.getText().toString().trim());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        holder.quantity.addTextChangedListener(new TextWatcher(){
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                holder.quantity.clearComposingText();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                tableModels.get(position).setQuantity(holder.quantity.getText().toString().trim());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
     }
 
     @Override
     public int getItemCount() {
-        if (tableModels != null) {
-            return tableModels.size();
-        }
-        return 0;
-
+        return tableModels.size();
     }
 
-    public class MyviewHolder extends RecyclerView.ViewHolder {
+    static class MyviewHolder extends RecyclerView.ViewHolder {
         TextView materialName, specification, unit, quantity;
         ImageView add, remove;
 
-        public MyviewHolder(View itemView) {
+        MyviewHolder(View itemView) {
             super(itemView);
             materialName = itemView.findViewById(R.id.et_materialName);
             specification = itemView.findViewById(R.id.et_specification);
@@ -93,4 +164,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.MyviewHolder
             remove = itemView.findViewById(R.id.btn_remove);
         }
     }
+
+
+
 }

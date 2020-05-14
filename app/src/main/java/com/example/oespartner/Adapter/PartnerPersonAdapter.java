@@ -107,7 +107,7 @@ public class PartnerPersonAdapter extends RecyclerView.Adapter<PartnerPersonAdap
         if(partnerPersonModels != null){
             return partnerPersonModels.size();
         }
-        return 0;
+        return partnerPersonModels.size();
 
     }
 
@@ -156,19 +156,15 @@ public class PartnerPersonAdapter extends RecyclerView.Adapter<PartnerPersonAdap
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }, new com.android.volley.Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+        }, error -> {
 
-            }
         }) {
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
                 params.put("id", id);
                 return params;
             }
-
         };
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(stringRequest);

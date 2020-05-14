@@ -2,12 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_5sdp"
     android:orientation="vertical">
 
     <TableRow
         android:id="@+id/tabla_cabecera"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content" />
 
     <TableLayout
         android:id="@+id/tabla_cuerpo"
@@ -21,20 +22,19 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/et_materialName"
+                 android:id="@+id/et_materialName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                 android:padding="5dp"
-                android:text=""
+                android:focusable="true"
+                 android:text=""
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
                 android:id="@+id/et_specification"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                 android:padding="5dp"
+                 android:layout_weight="1"
                 android:text=""
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -42,8 +42,7 @@
                 android:id="@+id/et_Unit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                 android:padding="5dp"
+                 android:layout_weight="1"
                 android:text=""
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -52,24 +51,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                 android:padding="5dp"
-                android:text=""
+                 android:text=""
                 android:textAppearance="?android:attr/textAppearanceMedium"/>
             <ImageView
                 android:layout_gravity="center"
                 android:id="@+id/btn_add"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                 android:layout_weight="0"
                 android:visibility="visible"
-                android:layout_weight=".2"
                 android:src="@drawable/ic_interface"/>
             <ImageView
                 android:id="@+id/btn_remove"
                 android:visibility="visible"
                 android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight=".2"
+                android:layout_weight="0"
+                android:gravity="center"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
                 android:src="@drawable/ic_add" />
         </TableRow>
     </TableLayout>
