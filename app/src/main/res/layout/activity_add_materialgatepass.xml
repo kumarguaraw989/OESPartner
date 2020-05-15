@@ -352,7 +352,27 @@
                 app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
         </RelativeLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_workReferenceno"
+            style="@style/Platform.MaterialComponents"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:background="@drawable/border_spinner"
+            android:hint="Work Order Reference No"
+            android:textColorHint="@color/colorGray"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
+            app:startIconDrawable="@drawable/ic_done_black_24dp">
 
+            <EditText
+                android:id="@+id/work_order_referenceNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent" />
+        </com.google.android.material.textfield.TextInputLayout>
         <RelativeLayout
             android:id="@+id/materialreturn_layout"
             android:layout_width="match_parent"

@@ -1,53 +1,101 @@
 package com.example.oespartner.model;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class AddMaterialGatePassModel {
 
-    private String email;
-    private String role;
+    @SerializedName("id")
+    @Expose
+    private String id;
+    @SerializedName("client")
+    @Expose
     private String client;
+    @SerializedName("branch")
+    @Expose
     private String branch;
-    private String gate_pass_type;
-    private String partner_code;
-    private String partner_name;
-    private String vehicle_no;
-    private String vehicle_load;
+    @SerializedName("gate_pass_type")
+    @Expose
+    private String gatePassType;
+    @SerializedName("partner_code")
+    @Expose
+    private String partnerCode;
+    @SerializedName("partner_name")
+    @Expose
+    private String partnerName;
+    @SerializedName("vehicle_no")
+    @Expose
+    private String vehicleNo;
+    @SerializedName("vehicle_load")
+    @Expose
+    private String vehicleLoad;
+    @SerializedName("reason")
+    @Expose
     private String reason;
-    private String belong_to;
-    private String returnable_nonreturnable;
-    private String work_order_reference;
-    private String date_time;
+    @SerializedName("belong_to")
+    @Expose
+    private String belongTo;
+    @SerializedName("returnable_nonreturnable")
+    @Expose
+    private String returnableNonreturnable;
+    @SerializedName("work_order_reference")
+    @Expose
+    private String workOrderReference;
+    @SerializedName("material_name")
+    @Expose
+    private Object materialName;
+    @SerializedName("specification")
+    @Expose
+    private Object specification;
+    @SerializedName("unit")
+    @Expose
+    private Object unit;
+    @SerializedName("qty")
+    @Expose
+    private Object qty;
+    @SerializedName("qty_received")
+    @Expose
+    private Object qtyReceived;
+    @SerializedName("material_type")
+    @Expose
+    private Object materialType;
+    @SerializedName("store_no")
+    @Expose
+    private Object storeNo;
+    @SerializedName("reason_of_rejection")
+    @Expose
+    private Object reasonOfRejection;
+    @SerializedName("date_time")
+    @Expose
+    private String dateTime;
+    @SerializedName("status")
+    @Expose
+    private String status;
+    @SerializedName("role")
+    @Expose
+    private String role;
+    @SerializedName("email")
+    @Expose
+    private String email;
+    @SerializedName("material_client")
+    @Expose
+    private String materialClient;
+    @SerializedName("material_gatepass_id")
+    @Expose
+    private String materialGatepassId;
+    @SerializedName("firm_name")
+    @Expose
+    private String firmName;
+    @SerializedName("approval_given_by")
+    @Expose
+    private Object approvalGivenBy;
 
-    public AddMaterialGatePassModel(String email, String role, String client, String branch, String gate_pass_type, String partner_code, String partner_name, String vehicle_no, String vehicle_load, String reason, String belong_to, String returnable_nonreturnable,String date_time) {
-        this.email = email;
-        this.role = role;
-        this.client = client;
-        this.branch = branch;
-        this.gate_pass_type = gate_pass_type;
-        this.partner_code = partner_code;
-        this.partner_name = partner_name;
-        this.vehicle_no = vehicle_no;
-        this.vehicle_load = vehicle_load;
-        this.reason = reason;
-        this.belong_to = belong_to;
-        this.returnable_nonreturnable = returnable_nonreturnable;
-        this.work_order_reference = work_order_reference;
-        this.date_time = date_time;
+    public String getId() {
+        return id;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getClient() {
@@ -66,44 +114,44 @@ public class AddMaterialGatePassModel {
         this.branch = branch;
     }
 
-    public String getGate_pass_type() {
-        return gate_pass_type;
+    public String getGatePassType() {
+        return gatePassType;
     }
 
-    public void setGate_pass_type(String gate_pass_type) {
-        this.gate_pass_type = gate_pass_type;
+    public void setGatePassType(String gatePassType) {
+        this.gatePassType = gatePassType;
     }
 
-    public String getPartner_code() {
-        return partner_code;
+    public String getPartnerCode() {
+        return partnerCode;
     }
 
-    public void setPartner_code(String partner_code) {
-        this.partner_code = partner_code;
+    public void setPartnerCode(String partnerCode) {
+        this.partnerCode = partnerCode;
     }
 
-    public String getPartner_name() {
-        return partner_name;
+    public String getPartnerName() {
+        return partnerName;
     }
 
-    public void setPartner_name(String partner_name) {
-        this.partner_name = partner_name;
+    public void setPartnerName(String partnerName) {
+        this.partnerName = partnerName;
     }
 
-    public String getVehicle_no() {
-        return vehicle_no;
+    public String getVehicleNo() {
+        return vehicleNo;
     }
 
-    public void setVehicle_no(String vehicle_no) {
-        this.vehicle_no = vehicle_no;
+    public void setVehicleNo(String vehicleNo) {
+        this.vehicleNo = vehicleNo;
     }
 
-    public String getVehicle_load() {
-        return vehicle_load;
+    public String getVehicleLoad() {
+        return vehicleLoad;
     }
 
-    public void setVehicle_load(String vehicle_load) {
-        this.vehicle_load = vehicle_load;
+    public void setVehicleLoad(String vehicleLoad) {
+        this.vehicleLoad = vehicleLoad;
     }
 
     public String getReason() {
@@ -114,35 +162,156 @@ public class AddMaterialGatePassModel {
         this.reason = reason;
     }
 
-    public String getBelong_to() {
-        return belong_to;
+    public String getBelongTo() {
+        return belongTo;
     }
 
-    public void setBelong_to(String belong_to) {
-        this.belong_to = belong_to;
+    public void setBelongTo(String belongTo) {
+        this.belongTo = belongTo;
     }
 
-    public String getReturnable_nonreturnable() {
-        return returnable_nonreturnable;
+    public String getReturnableNonreturnable() {
+        return returnableNonreturnable;
     }
 
-    public void setReturnable_nonreturnable(String returnable_nonreturnable) {
-        this.returnable_nonreturnable = returnable_nonreturnable;
+    public void setReturnableNonreturnable(String returnableNonreturnable) {
+        this.returnableNonreturnable = returnableNonreturnable;
     }
 
-    public String getWork_order_reference() {
-        return work_order_reference;
+    public String getWorkOrderReference() {
+        return workOrderReference;
     }
 
-    public void setWork_order_reference(String work_order_reference) {
-        this.work_order_reference = work_order_reference;
+    public void setWorkOrderReference(String workOrderReference) {
+        this.workOrderReference = workOrderReference;
     }
 
-    public String getDate_time() {
-        return date_time;
+    public Object getMaterialName() {
+        return materialName;
     }
 
-    public void setDate_time(String date_time) {
-        this.date_time = date_time;
+    public void setMaterialName(Object materialName) {
+        this.materialName = materialName;
     }
+
+    public Object getSpecification() {
+        return specification;
+    }
+
+    public void setSpecification(Object specification) {
+        this.specification = specification;
+    }
+
+    public Object getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Object unit) {
+        this.unit = unit;
+    }
+
+    public Object getQty() {
+        return qty;
+    }
+
+    public void setQty(Object qty) {
+        this.qty = qty;
+    }
+
+    public Object getQtyReceived() {
+        return qtyReceived;
+    }
+
+    public void setQtyReceived(Object qtyReceived) {
+        this.qtyReceived = qtyReceived;
+    }
+
+    public Object getMaterialType() {
+        return materialType;
+    }
+
+    public void setMaterialType(Object materialType) {
+        this.materialType = materialType;
+    }
+
+    public Object getStoreNo() {
+        return storeNo;
+    }
+
+    public void setStoreNo(Object storeNo) {
+        this.storeNo = storeNo;
+    }
+
+    public Object getReasonOfRejection() {
+        return reasonOfRejection;
+    }
+
+    public void setReasonOfRejection(Object reasonOfRejection) {
+        this.reasonOfRejection = reasonOfRejection;
+    }
+
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMaterialClient() {
+        return materialClient;
+    }
+
+    public void setMaterialClient(String materialClient) {
+        this.materialClient = materialClient;
+    }
+
+    public String getMaterialGatepassId() {
+        return materialGatepassId;
+    }
+
+    public void setMaterialGatepassId(String materialGatepassId) {
+        this.materialGatepassId = materialGatepassId;
+    }
+
+    public String getFirmName() {
+        return firmName;
+    }
+
+    public void setFirmName(String firmName) {
+        this.firmName = firmName;
+    }
+
+    public Object getApprovalGivenBy() {
+        return approvalGivenBy;
+    }
+
+    public void setApprovalGivenBy(Object approvalGivenBy) {
+        this.approvalGivenBy = approvalGivenBy;
+    }
+
 }

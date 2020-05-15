@@ -140,9 +140,9 @@ public class MaterialGatePassAdapter extends RecyclerView.Adapter<MaterialGatePa
             txtDateTime = itemView.findViewById(R.id.txtDateTime);
             txtCategory = itemView.findViewById(R.id.txtCategory);
             VehicleNo = itemView.findViewById(R.id.VehicleNo);
-            txtType = (TextView) itemView.findViewById(R.id.txtType);
-            txtReason = (TextView) itemView.findViewById(R.id.txtReason);
-            txtStatus = (TextView) itemView.findViewById(R.id.txtStatus);
+            txtType = itemView.findViewById(R.id.txtType);
+            txtReason = itemView.findViewById(R.id.txtReason);
+            txtStatus = itemView.findViewById(R.id.txtStatus);
             btn_popup = itemView.findViewById(R.id.btn_popup);
             status = itemView.findViewById(R.id.iv_status);
         }

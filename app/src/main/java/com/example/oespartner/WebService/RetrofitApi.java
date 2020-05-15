@@ -100,12 +100,14 @@ public interface RetrofitApi {
             @Field("vehicle_load") String vehicle_load,
             @Field("reason") String reason,
             @Field("belong_to") String belong_to,
+            @Field("work_order_referenceNo") String work_order_referenceNo,
             @Field("returnable_nonreturnable") String returnable_nonreturnable,
             @Field("date_time") String date_time,
-            @Field("material_name") String material_name,
-            @Field("specification") String specification,
-            @Field("unit") String unit,
-            @Field("qty") String qty);
+            @Field("material_name[]") String material_name,
+            @Field("specification[]") String specification,
+            @Field("unit[]") String unit,
+            @Field("qty[]") String qty);
+
 
 
     @FormUrlEncoded

@@ -43,6 +43,7 @@ import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -59,8 +60,8 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
     ImageView imgBack;
     Button btnAdd, btnUpdate;
     Spinner branch_name, material_gatepass, vehical_load, reasonformaterialgatepass, materialbelongsto, material_returnable;
-    EditText partenername, vehical_no, others;
-    TextInputLayout layout_others;
+    EditText partenername, vehical_no, others, work_order_referenceNo;
+    TextInputLayout layout_others, layout_workReferenceno;
     AppCompatTextView stakeholder;
     RelativeLayout materialbelong_layout, materialreturn_layout;
 
@@ -85,6 +86,7 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
         email = data_model.getEmail();
         ButterKnife.bind(this);
         role = data_model.getRole();
+        layout_workReferenceno = findViewById(R.id.layout_workReferenceno);
         recyclerview = findViewById(R.id.recyclerview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerview.setLayoutManager(linearLayoutManager);
@@ -97,6 +99,7 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
         btnUpdate = findViewById(R.id.btnupdate);
         materialbelong_layout = findViewById(R.id.Relative_maerialbelongstto);
         materialreturn_layout = findViewById(R.id.materialreturn_layout);
+        work_order_referenceNo = findViewById(R.id.work_order_referenceNo);
         imgBack = (ImageView) findViewById(R.id.imgBack);
         btnAdd = (Button) findViewById(R.id.btnAdd);
         imgBack.setOnClickListener(v -> onBackPressed());
@@ -124,7 +127,21 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
         DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.DEFAULT, Locale.getDefault());
         date_time = dateFormat.format(date);
 
+        materialbelongsto.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 2) {
+                    layout_workReferenceno.setVisibility(View.VISIBLE);
+                } else {
+                    layout_workReferenceno.setVisibility(View.GONE);
+                }
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         //material table code
         tableAdapter.setTableModelsList(tableModelList);
 
@@ -176,6 +193,7 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
         requestQueue1.add(stringRequest1);
         btnAdd.setOnClickListener(v -> {
 
+            String workreferenceNo = work_order_referenceNo.getText().toString();
             String partner_code = stakeholder.getText().toString();
             String partner_name = partenername.getText().toString();
             String vehicle_no = vehical_no.getText().toString();
@@ -184,43 +202,83 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
             String gate_pass_type = material_gatepass.getSelectedItem().toString();
             String vehicle_load = vehical_load.getSelectedItem().toString();
             String reason = reasonformaterialgatepass.getSelectedItem().toString();
+            String returnable = material_returnable.getSelectedItem().toString();
             String belong_to = materialbelongsto.getSelectedItem().toString();
-            String returnable_nonreturnable = material_returnable.getSelectedItem().toString();
+//            String other=others.getText().toString();
             if (Clinet_name.equals("")) {
                 FancyToast.makeText(AddMaterialgatepassActivity.this, "Empty", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
                 return;
             } else {
                 progress_bar.setVisibility(View.VISIBLE);
                 Log.e("fo =====r", tableAdapter.getData().size() + "");
+                ArrayList<String> AllMaterialsData = new ArrayList<>();
+                HashMap<ArrayList,ArrayList> put=new HashMap<>();
 
+                for (int i=0;i<tableAdapter.getData().size();i++){
+                    AllMaterialsData.add(tableAdapter.getData().get(i).getMaterialName());
+                    AllMaterialsData.add(tableAdapter.getData().get(i).getSpecification());
+                    AllMaterialsData.add(tableAdapter.getData().get(i).getUnit());
+                    AllMaterialsData.add(tableAdapter.getData().get(i).getQuantity());
+                 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                String material_name = "";
                 for (int i = 0; i < tableAdapter.getData().size(); i++) {
-                    Log.e("for", i + "");
-
-
-             /*       Log.e("material_name",tableAdapter.getData().get(i).getMaterialName());
-                    Log.e("specification",tableAdapter.getData().get(i).getSpecification());
-                    Log.e("unit",tableAdapter.getData().get(i).getUnit());
-                    Log.e("qty",tableAdapter.getData().get(i).getQuantity());*/
-
-
-                    postMaterialGatePass(email, role, client, branch, gate_pass_type,
-                            partner_code, partner_name, vehicle_no, vehicle_load, reason, belong_to, returnable_nonreturnable, date_time, tableAdapter.getData().get(i).getMaterialName(), tableAdapter.getData().get(i).getSpecification()
-                            , tableAdapter.getData().get(i).getUnit(), tableAdapter.getData().get(i).getQuantity());
+                    material_name = material_name + tableAdapter.getData().get(i).getMaterialName();
                 }
+                String Material_name = material_name;
 
-//                tableAdapter.getData()
-//                onBackPressed();
+                String specification = "";
+                for (int i = 0; i < tableAdapter.getData().size(); i++) {
+                    specification = specification + tableAdapter.getData().get(i).getSpecification();
+                }
+                String Specification = specification;
+
+
+                String unit = "";
+                for (int i = 0; i < tableAdapter.getData().size(); i++) {
+                    unit = unit + tableAdapter.getData().get(i).getUnit();
+                }
+                String Unit = material_name;
+
+
+                String quantity = "";
+                for (int i = 0; i < tableAdapter.getData().size(); i++) {
+                    quantity = quantity + tableAdapter.getData().get(i).getQuantity();
+                }
+                String Quantity = quantity;
+
+
+                postMaterialGatePass(email, role, client, branch, gate_pass_type, workreferenceNo,
+                        partner_code, partner_name, vehicle_no, vehicle_load, reason, belong_to, returnable, date_time, Material_name, Specification
+                        , Unit, Quantity);
+
+
             }
         });
 
 
     }
 
-    public void postMaterialGatePass(String email, String role, String client, String branch, String gate_pass_type, String partner_code, String partner_name, String vehicle_no, String vehicle_load, String reason, String belong_to,
-                                     String returnable_nonreturnable, String date_time, String material_name, String specification, String unit, String qty) {
+    public void postMaterialGatePass(String email, String role, String client, String branch, String workreferenceNo, String gate_pass_type, String partner_code, String partner_name, String vehicle_no, String vehicle_load, String reason, String belong_to,
+                                     String returnable, String date_time, String material_name, String specification, String unit, String qty) {
         RetrofitApi apiService = ApiClient.getClient().create(RetrofitApi.class);
         Call<AddMaterialGatePassModel> call = apiService.AddMaterialGatePass(email, role, client, branch, gate_pass_type,
-                partner_code, partner_name, vehicle_no, vehicle_load, reason, belong_to, returnable_nonreturnable, date_time, material_name, specification, unit, qty);
+                partner_code, partner_name, vehicle_no, vehicle_load, workreferenceNo, reason, belong_to, returnable, date_time, material_name, specification, unit, qty);
         call.enqueue(new Callback<AddMaterialGatePassModel>() {
             @Override
             public void onResponse(Call<AddMaterialGatePassModel> call, Response<AddMaterialGatePassModel> response) {

@@ -152,7 +152,7 @@
     <string-array name="reasonformaterial_gatepass">
         <item>Reason for Material Gate Pass</item>
         <item>Material Loading</item>
-        <item>Material Unloading</item>
+        <item>Material empty</item>
         <item>Vehical Checking-Checking</item>
         <item>Vehical Checking-Calibration</item>
         <item>Vehical Checking-Lock</item>

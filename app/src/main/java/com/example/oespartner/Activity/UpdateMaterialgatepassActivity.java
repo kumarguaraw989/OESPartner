@@ -90,8 +90,7 @@ public class UpdateMaterialgatepassActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         ButterKnife.bind(this);
         Data data_model = FastSave.getInstance().getObject("login_data", Data.class);
-/*        TextView btnAddMaterial=findViewById(R.id.btnAddMaterial);
-        TextView btnRemoveMaterial=findViewById(R.id.btnRemoveMaterial);*/
+
         Date date = new Date();
         DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.DEFAULT, Locale.getDefault());
         date_time = dateFormat.format(date);
@@ -131,7 +130,6 @@ public class UpdateMaterialgatepassActivity extends AppCompatActivity {
 
         //material table code
         tableAdapter.setTableModelsList(tableModelList);
-//        final ViewGroup tes = (ViewGroup) findViewById(R.id.layout_addchambers);
 
         imgBack.setOnClickListener(v -> onBackPressed());
         progress_bar = (ProgressBar) findViewById(R.id.progress_bar);
@@ -165,8 +163,6 @@ public class UpdateMaterialgatepassActivity extends AppCompatActivity {
                             partner_code, partner_name, vehicle_no, vehicle_load, reason, belong_to, returnable_nonreturnable, date_time,tableAdapter.getData().get(i).getMaterialName(),  tableAdapter.getData().get(i).getSpecification(),tableAdapter.getData().get(i).getUnit(),tableAdapter.getData().get(i).getQuantity());
 
                 }
-
-
             }
         });
         Intent intent = getIntent();
@@ -187,7 +183,6 @@ public class UpdateMaterialgatepassActivity extends AppCompatActivity {
             String mgatepassType[] = {"Outward"};
             material_gatepass.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, mgatepassType));
             StringRequest stringRequest1 = new StringRequest(Request.Method.POST, Config.URL_CLient, response -> {
-                Log.e("response", response);
                 try {
                     JSONArray jsonArray = new JSONArray(response);
                     JSONObject jsonObject1 = jsonArray.getJSONObject(0);
@@ -212,7 +207,6 @@ public class UpdateMaterialgatepassActivity extends AppCompatActivity {
             branch_name.setAdapter(new ArrayAdapter<>(UpdateMaterialgatepassActivity.this, android.R.layout.simple_spinner_dropdown_item, SelectClientBranch));
             SelectClientBranch.add("Select Branch");
             StringRequest request = new StringRequest(Request.Method.POST, Config.URL_ClientBranch, response -> {
-                Log.e("branch", response);
                 try {
                     JSONArray jsonArray = new JSONArray(response);
                     for (int i = 0; i < jsonArray.length(); i++) {
