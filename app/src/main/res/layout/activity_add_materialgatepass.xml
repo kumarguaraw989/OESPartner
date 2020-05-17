@@ -33,13 +33,8 @@
         </androidx.appcompat.widget.Toolbar>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginRight="@dimen/_8sdp"
-            android:text="Client Name *"
-            android:textColor="@color/fifty_transparent_black" />
+            style="@style/marginStyle"
+            android:text="@string/client_name" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -58,17 +53,12 @@
                 android:text=""
                 android:textColor="@color/ColorBlack"
                 android:textStyle="bold" />
+
         </RelativeLayout>
 
-
         <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_8sdp"
-            android:text="Branch Name *"
-            android:textColor="@color/fifty_transparent_black" />
+            style="@style/marginStyle"
+            android:text="Branch Name *" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -87,16 +77,13 @@
                 android:entries="@array/branchname"
                 android:imeOptions="actionDone"
                 android:minHeight="@dimen/_35sdp"
-
                 android:paddingLeft="@dimen/_1sdp"
                 android:paddingRight="@dimen/_1sdp"
                 android:spinnerMode="dropdown"
                 android:textColor="@color/ColorBlack"
                 android:textColorHint="@color/ColorBlack"
                 android:textSize="@dimen/_12sdp"
-                android:theme="@style/ThemeOverlay.AppCompat.Light"
-
-                />
+                android:theme="@style/ThemeOverlay.AppCompat.Light" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -109,13 +96,8 @@
         </RelativeLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_8sdp"
-            android:text="Material Gate Pass Type *"
-            android:textColor="@color/fifty_transparent_black" />
+            style="@style/marginStyle"
+            android:text="Material Gate Pass Type *" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -134,16 +116,13 @@
                 android:entries="@array/materialgatepasstype_list"
                 android:imeOptions="actionDone"
                 android:minHeight="@dimen/_35sdp"
-
                 android:paddingLeft="@dimen/_1sdp"
                 android:paddingRight="@dimen/_1sdp"
                 android:spinnerMode="dropdown"
                 android:textColor="@color/ColorBlack"
                 android:textColorHint="@color/colorGray"
                 android:textSize="@dimen/_12sdp"
-                android:theme="@style/ThemeOverlay.AppCompat.Light"
-
-                />
+                android:theme="@style/ThemeOverlay.AppCompat.Light" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -153,16 +132,12 @@
                 android:layout_marginEnd="@dimen/_2sdp"
                 android:layout_marginRight="@dimen/_2sdp"
                 app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
+
         </RelativeLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_8sdp"
-            android:text="Partener Code *"
-            android:textColor="@color/fifty_transparent_black" />
+            style="@style/marginStyle"
+            android:text="Partener Code *" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/edtStakeholder"
@@ -180,7 +155,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
             android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_16sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:background="@drawable/border_spinner"
             android:hint="Partner Name"
@@ -194,6 +169,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -215,13 +191,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent" />
+
         </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            style="@style/marginStyle"
+            android:text="Vehicle Load *" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_12sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:background="@drawable/border_spinner">
 
@@ -254,11 +235,20 @@
                 app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp" />
         </RelativeLayout>
 
+        <TextView
+            android:id="@+id/tv_reason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:text="Reason for Material Gate Pass *" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_12sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:background="@drawable/border_spinner">
 
@@ -312,12 +302,22 @@
                 android:background="@color/transparent" />
         </com.google.android.material.textfield.TextInputLayout>
 
+
+        <TextView
+            android:id="@+id/tv_belongto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:text="Material Belongs to *" />
+
         <RelativeLayout
             android:id="@+id/Relative_maerialbelongstto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_12sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:background="@drawable/border_spinner">
 
@@ -331,8 +331,6 @@
                 android:imeOptions="actionDone"
                 android:minHeight="@dimen/_35sdp"
                 android:paddingLeft="@dimen/_1sdp"
-
-                android:paddingTop="@dimen/_5sdp"
                 android:paddingRight="@dimen/_1sdp"
                 android:spinnerMode="dropdown"
                 android:textColor="@color/ColorBlack"
@@ -373,12 +371,24 @@
                 android:layout_height="wrap_content"
                 android:background="@color/transparent" />
         </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:id="@+id/tv_returnable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginRight="@dimen/_8sdp"
+            android:text="Material is Returnable or Non-Returnable *" />
+
+
         <RelativeLayout
             android:id="@+id/materialreturn_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_12sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:background="@drawable/border_spinner">
 
@@ -397,9 +407,7 @@
                 android:textColor="@color/ColorBlack"
                 android:textColorHint="@color/ColorBlack"
                 android:textSize="@dimen/_12sdp"
-                android:theme="@style/ThemeOverlay.AppCompat.Light"
-
-                />
+                android:theme="@style/ThemeOverlay.AppCompat.Light" />
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -412,50 +420,69 @@
         </RelativeLayout>
 
         <LinearLayout
-            android:paddingTop="@dimen/_20sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_15sdp"
             android:orientation="horizontal"
-            android:weightSum="4">
-            <TextView
-                android:layout_weight=".5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:textColor="@color/ColorBlack"
-                android:text="Material Name" />
+            android:paddingTop="@dimen/_20sdp"
+            android:weightSum="6">
 
             <TextView
-                android:layout_weight=".5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="@color/ColorBlack"
-                android:text="Specification" />
+                android:text="Material\nName"
+                android:textAlignment="center"
+                android:textColor="@color/ColorBlack" />
 
             <TextView
-                android:layout_weight=".9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="@color/ColorBlack"
-                android:text="Unit" />
+                android:text="Specification"
+                android:textColor="@color/ColorBlack" />
 
             <TextView
-                android:layout_weight=".9"
-                android:textColor="@color/ColorBlack"
-                android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Qty" />
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Unit"
+                android:textColor="@color/ColorBlack" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Qty"
+                android:textColor="@color/ColorBlack" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Material\nType"
+                android:textColor="@color/ColorBlack" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Add\nMore+"
+                android:textColor="@color/ColorBlack" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
-            android:layout_marginTop="@dimen/_10sdp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_10sdp" />
 
         <ProgressBar
             android:id="@+id/progress_bar"

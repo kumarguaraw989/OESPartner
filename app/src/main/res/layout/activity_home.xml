@@ -47,7 +47,7 @@
                     android:layout_height="@dimen/_70sdp"
                     android:layout_below="@+id/indicator"
                     android:background="@color/colorAccent"
-                    android:drawableLeft="@drawable/ic_chamber_add"
+                    android:drawableLeft="@drawable/ic_business"
                     android:gravity="center"
                     android:padding="@dimen/_10sdp"
                     android:text="Visitor GatePass"

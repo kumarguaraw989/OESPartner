@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/_5sdp"
     android:orientation="vertical">
 
     <TableRow
@@ -14,7 +14,7 @@
         android:id="@+id/tabla_cuerpo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="4">
+        android:weightSum="5">
 
         <TableRow
             android:id="@+id/tableRow1"
@@ -22,19 +22,24 @@
             android:layout_height="wrap_content">
 
             <EditText
-                 android:id="@+id/et_materialName"
+                android:id="@+id/et_materialName"
                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:focusable="true"
-                 android:text=""
+                android:layout_span="1"
+                 android:focusable="true"
+                android:inputType="textCapSentences|textMultiLine"
+                android:maxLength="150"
+                android:maxLines="4"
+                android:text=""
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <EditText
                 android:id="@+id/et_specification"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                 android:layout_weight="1"
+                android:layout_weight="1"
+                android:layout_span="1"
                 android:text=""
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -42,7 +47,7 @@
                 android:id="@+id/et_Unit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                 android:layout_weight="1"
+                android:layout_weight="1"
                 android:text=""
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -51,25 +56,41 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                 android:text=""
-                android:textAppearance="?android:attr/textAppearanceMedium"/>
+                android:layout_span="1"
+                android:text=""
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="@dimen/_70sdp"
+                android:background="@drawable/border_bloour"
+                android:layout_height="@dimen/_30sdp"
+                 android:entries="@array/material_type"
+                android:layout_span="1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.498" />
+
+
             <ImageView
-                android:layout_gravity="center"
                 android:id="@+id/btn_add"
                 android:layout_width="@dimen/_15sdp"
                 android:layout_height="@dimen/_15sdp"
-                 android:layout_weight="0"
-                android:visibility="visible"
-                android:src="@drawable/ic_interface"/>
-            <ImageView
-                android:id="@+id/btn_remove"
-                android:visibility="visible"
                 android:layout_gravity="center"
                 android:layout_weight="0"
-                android:gravity="center"
+                android:layout_span="1"
+                android:src="@drawable/ic_interface"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/btn_remove"
                 android:layout_width="@dimen/_15sdp"
                 android:layout_height="@dimen/_15sdp"
-                android:src="@drawable/ic_add" />
+                android:layout_gravity="center"
+                android:layout_span="1"
+                android:layout_weight="0"
+                android:gravity="center"
+                android:src="@drawable/ic_add"
+                android:visibility="gone" />
         </TableRow>
     </TableLayout>
 </LinearLayout>

@@ -84,6 +84,7 @@
     <string name="login_pin_hint">Password</string>
     <string name="action_Logout">Logout</string>
     <string name="login">Login</string>
+    <string name="client_name">Client Name *</string>
 
     <string-array name="country_arrays">
         <item>Select Country</item>
@@ -150,7 +151,7 @@
     </string-array>
 
     <string-array name="reasonformaterial_gatepass">
-        <item>Reason for Material Gate Pass</item>
+        <item>Select</item>
         <item>Material Loading</item>
         <item>Material empty</item>
         <item>Vehical Checking-Checking</item>
@@ -159,9 +160,9 @@
         <item>Others</item>
     </string-array>
     <string-array name="vehical_load">
-        <item>Vehical Load</item>
+        <item>Select</item>
         <item>loaded</item>
-        <item>Unloaded</item>
+        <item>Empty</item>
     </string-array>
 
     <string-array name="materialgatepasstype_list">
@@ -175,10 +176,22 @@
     </string-array>
 
     <string-array name="client">
-        <item>Material Belongs to</item>
+        <item>Select</item>
         <item>Client</item>
         <item>Stakeholder</item>
     </string-array>
+
+    <string-array name="material_type">
+        <item>Select</item>
+        <item>Civil</item>
+        <item>Mechanical</item>
+        <item>Electrical</item>
+        <item>Instrumentation</item>
+        <item>Computer</item>
+
+    </string-array>
+
+
     <string-array name="returnable">
         <item>Material is Returnable or Non-Returnable</item>
         <item>Non-returnable</item>
@@ -207,7 +220,6 @@
         <item>Supervisor</item>
         <item>Other</item>
     </string-array>
-
 
 
     <string-array name="gender">

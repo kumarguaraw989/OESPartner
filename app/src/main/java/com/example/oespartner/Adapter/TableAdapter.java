@@ -16,8 +16,6 @@ import com.example.oespartner.model.TableModel;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 public class TableAdapter extends RecyclerView.Adapter<TableAdapter.MyviewHolder> {
     private Context context;
@@ -35,7 +33,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.MyviewHolder
     }
 
     public ArrayList<TableModel> getData() {
-//        new Gson().toJson(tableModels);
+        new Gson().toJson(tableModels);
         return tableModels;
     }
 
@@ -52,29 +50,38 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.MyviewHolder
         TableModel model = tableModels.get(position);
         holder.materialName.setText(model.getMaterialName());
         holder.specification.setText(model.getSpecification());
-        holder.unit.setText(model.getUnit());
         holder.quantity.setText(model.getQuantity());
-        if(position == 0) {
+        holder.unit.setText(model.getUnit());
+
+        if (position == 0) {
             holder.remove.setVisibility(View.GONE);
             holder.add.setVisibility(View.VISIBLE);
         } else {
             holder.remove.setVisibility(View.VISIBLE);
             holder.add.setVisibility(View.GONE);
         }
+
+
         holder.add.setOnClickListener(v -> {
-            tableModels.add(tableModels.size() - 1, new TableModel());
+            tableModels.add(tableModels.size() - 1, new TableModel("", "", "", ""));
+
+            holder.materialName.setText(tableModels.get(position).getMaterialName());
+            holder.specification.setText(tableModels.get(position).getSpecification());
+            holder.unit.setText(tableModels.get(position).getUnit());
+            holder.quantity.setText(tableModels.get(position).getQuantity());
             notifyItemInserted(tableModels.size() - 1);
         });
 
         holder.remove.setOnClickListener(v -> {
             holder.add.setVisibility(View.GONE);
+
+
             tableModels.remove(holder.getAdapterPosition());
             notifyItemRemoved(holder.getAdapterPosition());
         });
 
 
-        holder.materialName.addTextChangedListener(new TextWatcher(){
-
+        holder.materialName.addTextChangedListener(new TextWatcher() {
 
 
             @Override
@@ -84,7 +91,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.MyviewHolder
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                tableModels.get(position).setMaterialName(holder.materialName.getText().toString().trim());
+                tableModels.get(holder.getAdapterPosition()).setMaterialName(holder.materialName.getText().toString().trim());
             }
 
             @Override
@@ -92,14 +99,15 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.MyviewHolder
 
             }
         });
-        holder.specification.addTextChangedListener(new TextWatcher(){
+        holder.specification.addTextChangedListener(new TextWatcher() {
 
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                tableModels.get(position).setSpecification(holder.specification.getText().toString().trim());
+                tableModels.get(holder.getAdapterPosition()).setSpecification(holder.specification.getText().toString().trim());
             }
 
             @Override
@@ -108,14 +116,15 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.MyviewHolder
             }
         });
 
-        holder.unit.addTextChangedListener(new TextWatcher(){
+        holder.unit.addTextChangedListener(new TextWatcher() {
 
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                tableModels.get(position).setUnit(holder.unit.getText().toString().trim());
+                tableModels.get(holder.getAdapterPosition()).setUnit(holder.unit.getText().toString().trim());
             }
 
             @Override
@@ -124,7 +133,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.MyviewHolder
             }
         });
 
-        holder.quantity.addTextChangedListener(new TextWatcher(){
+        holder.quantity.addTextChangedListener(new TextWatcher() {
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -133,7 +142,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.MyviewHolder
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                tableModels.get(position).setQuantity(holder.quantity.getText().toString().trim());
+                tableModels.get(holder.getAdapterPosition()).setQuantity(holder.quantity.getText().toString().trim());
             }
 
             @Override
@@ -164,7 +173,6 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.MyviewHolder
             remove = itemView.findViewById(R.id.btn_remove);
         }
     }
-
 
 
 }

@@ -21,11 +21,13 @@ import com.example.oespartner.model.WorkGatePassModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
@@ -88,25 +90,7 @@ public interface RetrofitApi {
 
     @FormUrlEncoded
     @POST("add_material")
-    Call<AddMaterialGatePassModel> AddMaterialGatePass(
-            @Field("email") String email,
-            @Field("role") String role,
-            @Field("client") String client,
-            @Field("branch") String branch,
-            @Field("gate_pass_type") String gate_pass_type,
-            @Field("partner_code") String partner_code,
-            @Field("partner_name") String partner_name,
-            @Field("vehicle_no") String vehicle_no,
-            @Field("vehicle_load") String vehicle_load,
-            @Field("reason") String reason,
-            @Field("belong_to") String belong_to,
-            @Field("work_order_referenceNo") String work_order_referenceNo,
-            @Field("returnable_nonreturnable") String returnable_nonreturnable,
-            @Field("date_time") String date_time,
-            @Field("material_name[]") String material_name,
-            @Field("specification[]") String specification,
-            @Field("unit[]") String unit,
-            @Field("qty[]") String qty);
+    Call<AddMaterialGatePassModel> AddMaterialGatePass(@FieldMap Map<String, String> params);
 
 
 

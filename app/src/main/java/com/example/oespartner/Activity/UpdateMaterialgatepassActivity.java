@@ -58,9 +58,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class UpdateMaterialgatepassActivity extends AppCompatActivity {
+
     ImageView imgBack;
     Button btnAdd, btnUpdate;
-
+    TextView tv_material_belongs_to, tv_returnable;
     Spinner branch_name, material_gatepass, vehical_load, reasonformaterialgatepass, materialbelongsto, material_returnable;
     EditText partenername, vehical_no, others;
     TextInputLayout layout_others;
@@ -90,23 +91,20 @@ public class UpdateMaterialgatepassActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         ButterKnife.bind(this);
         Data data_model = FastSave.getInstance().getObject("login_data", Data.class);
-
         Date date = new Date();
         DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.DEFAULT, Locale.getDefault());
         date_time = dateFormat.format(date);
         imgBack = (ImageView) findViewById(R.id.imgBack);
         layout_others = findViewById(R.id.layout_others);
-
-
+        tv_material_belongs_to = findViewById(R.id.tv_belongto);
+        tv_returnable = findViewById(R.id.tv_returnable);
         recyclerview = findViewById(R.id.recyclerview);
-        LinearLayoutManager linearLayoutManager =new  LinearLayoutManager(this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerview.setLayoutManager(linearLayoutManager);
-        tableModelList= new ArrayList<>();
+        tableModelList = new ArrayList<>();
         tableModelList.add(new TableModel());
-        tableAdapter = new TableAdapter(getApplicationContext(),tableModelList);
+        tableAdapter = new TableAdapter(getApplicationContext(), tableModelList);
         recyclerview.setAdapter(tableAdapter);
-
-
         btnAdd = (Button) findViewById(R.id.btnAdd);
         materialbelong_layout = findViewById(R.id.Relative_maerialbelongstto);
         materialreturn_layout = findViewById(R.id.materialreturn_layout);
@@ -144,32 +142,59 @@ public class UpdateMaterialgatepassActivity extends AppCompatActivity {
             String reason = (String) reasonformaterialgatepass.getSelectedItem().toString();
             String belong_to = (String) materialbelongsto.getSelectedItem().toString();
             String returnable_nonreturnable = material_returnable.getSelectedItem().toString();
-       /*     btnAddMaterial.setOnClickListener(v1 -> {
-                final View extend = LayoutInflater.from(v.getContext()).inflate(R.layout.item_chamber_add, tes, false);
-                tes.addView(extend);
-            });
-            btnRemoveMaterial.setOnClickListener(v1 -> tes.removeViewAt(1));*/
+
             if (Clinet_name.equals("")) {
                 FancyToast.makeText(UpdateMaterialgatepassActivity.this, "", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
                 return;
             } else {
                 progress_bar.setVisibility(View.VISIBLE);
 
-                Log.e("fo =====r",tableAdapter.getData().size()+"");
+                Log.e("fo =====r", tableAdapter.getData().size() + "");
 
-                for(int i=0;i< tableAdapter.getData().size();i++){
-                    Log.e("for",i+"");
+                for (int i = 0; i < tableAdapter.getData().size(); i++) {
+                    Log.e("for", i + "");
                     postUpdateMaterialGatePass(id2, data_model.getEmail(), data_model.getRole(), client, branch, gate_pass_type,
-                            partner_code, partner_name, vehicle_no, vehicle_load, reason, belong_to, returnable_nonreturnable, date_time,tableAdapter.getData().get(i).getMaterialName(),  tableAdapter.getData().get(i).getSpecification(),tableAdapter.getData().get(i).getUnit(),tableAdapter.getData().get(i).getQuantity());
+                            partner_code, partner_name, vehicle_no, vehicle_load, reason, belong_to, returnable_nonreturnable, date_time, tableAdapter.getData().get(i).getMaterialName(), tableAdapter.getData().get(i).getSpecification(), tableAdapter.getData().get(i).getUnit(), tableAdapter.getData().get(i).getQuantity());
 
                 }
             }
         });
+
         Intent intent = getIntent();
         String value = intent.getStringExtra("response");
-        Log.e("res_material", value);
         try {
-            JSONObject jsonObject = new JSONObject(value.toString());
+
+            JSONObject object = new JSONObject(value);
+            JSONArray array = object.getJSONArray("material_gatepass");
+            JSONArray arrays = object.getJSONArray("material_gatepass_more_details");
+            JSONObject jsonObject = array.getJSONObject(0);
+            //JSONObject objects = arrays.getJSONObject(0);
+
+            ArrayList<TableModel> sendDatatoRecyclerView = new ArrayList<>();
+
+            for (int i = 0; i < arrays.length(); i++) {
+
+                JSONObject objects = arrays.getJSONObject(i);
+                Log.e("material_name", objects.getString("material_name"));
+
+                /*tableAdapter.getData().get(i).setMaterialName(objects.getString("material_name"));
+                tableAdapter.getData().get(i).setSpecification(objects.getString("specification"));
+                tableAdapter.getData().get(i).setQuantity(objects.getString("qty"));
+                tableAdapter.getData().get(i).setUnit(objects.getString("unit"));*/
+
+                TableModel tableModel = new TableModel();
+                tableModel.setMaterialName(objects.getString("material_name"));
+                tableModel.setUnit(objects.getString("unit"));
+                tableModel.setQuantity(objects.getString("qty"));
+                tableModel.setSpecification(objects.getString("specification"));
+                sendDatatoRecyclerView.add(tableModel);
+
+            }
+
+            tableAdapter = new TableAdapter(getApplicationContext(), sendDatatoRecyclerView);
+            recyclerview.setAdapter(tableAdapter);
+
+
             stakeholder.setText(jsonObject.get("partner_code").toString());
             partenername.setText(jsonObject.get("partner_name").toString());
             vehical_no.setText(jsonObject.get("vehicle_no").toString());
@@ -182,17 +207,16 @@ public class UpdateMaterialgatepassActivity extends AppCompatActivity {
             vehical_load.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, vehicalload));
             String mgatepassType[] = {"Outward"};
             material_gatepass.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, mgatepassType));
+
             StringRequest stringRequest1 = new StringRequest(Request.Method.POST, Config.URL_CLient, response -> {
                 try {
                     JSONArray jsonArray = new JSONArray(response);
                     JSONObject jsonObject1 = jsonArray.getJSONObject(0);
                     Clinet_name.setText(jsonObject1.getString("client_id"));
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }, error -> {
-
             }) {
                 @Override
                 protected Map<String, String> getParams() {
@@ -203,6 +227,8 @@ public class UpdateMaterialgatepassActivity extends AppCompatActivity {
             };
             RequestQueue requestQueue1 = Volley.newRequestQueue(this);
             requestQueue1.add(stringRequest1);
+
+
             SelectClientBranch.add(jsonObject.get("branch").toString());
             branch_name.setAdapter(new ArrayAdapter<>(UpdateMaterialgatepassActivity.this, android.R.layout.simple_spinner_dropdown_item, SelectClientBranch));
             SelectClientBranch.add("Select Branch");
@@ -227,6 +253,8 @@ public class UpdateMaterialgatepassActivity extends AppCompatActivity {
             };
             RequestQueue queue4 = Volley.newRequestQueue(this);
             queue4.add(request);
+
+
             Selectmaterial_gatepass.add(jsonObject.get("gate_pass_type").toString());
             material_gatepass.setAdapter(new ArrayAdapter<>(UpdateMaterialgatepassActivity.this, android.R.layout.simple_spinner_dropdown_item, Selectmaterial_gatepass));
             SelectVehicalLoad.add(jsonObject.get("vehicle_load").toString());
@@ -237,11 +265,6 @@ public class UpdateMaterialgatepassActivity extends AppCompatActivity {
             materialbelongsto.setAdapter(new ArrayAdapter<>(UpdateMaterialgatepassActivity.this, android.R.layout.simple_spinner_dropdown_item, SelectMaterialBelongsTo));
             SelectReturnable.add(jsonObject.get("returnable_nonreturnable").toString());
             material_returnable.setAdapter(new ArrayAdapter<>(UpdateMaterialgatepassActivity.this, android.R.layout.simple_spinner_dropdown_item, SelectReturnable));
-            /*String material_returnable1[] = {"Material Loading","Material Unloading","Vehical Checking-Checking","Vehical Checking-Calibration","Vehical Checking-Lock"};
-
-            material_returnable.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1,material_returnable1 ));*/
-
-
             id2 = jsonObject.get("id").toString();
         } catch (JSONException e) {
             e.printStackTrace();
@@ -256,10 +279,14 @@ public class UpdateMaterialgatepassActivity extends AppCompatActivity {
                     layout_others.setVisibility(View.GONE);
                     materialbelong_layout.setVisibility(View.GONE);
                     materialreturn_layout.setVisibility(View.GONE);
+                    tv_material_belongs_to.setVisibility(View.GONE);
+                    tv_returnable.setVisibility(View.GONE);
                 } else if (position == 1 || position == 2) {
                     layout_others.setVisibility(View.GONE);
                     materialbelong_layout.setVisibility(View.VISIBLE);
                     materialreturn_layout.setVisibility(View.VISIBLE);
+                    tv_material_belongs_to.setVisibility(View.VISIBLE);
+                    tv_returnable.setVisibility(View.VISIBLE);
                 } else if (position == 6) {
                     layout_others.setVisibility(View.VISIBLE);
                     //others.setText().toString().trim();
@@ -274,12 +301,10 @@ public class UpdateMaterialgatepassActivity extends AppCompatActivity {
     }
 
     public void postUpdateMaterialGatePass(String id2, String email, String role, String client, String branch, String gate_pass_type, String partner_code, String partner_name, String vehicle_no, String vehicle_load, String reason, String belong_to,
-                                           String returnable_nonreturnable, String date_time,String material_name,String Specification,String quantity,String unit) {
-        //LoginModel model = sh.getLoginModel(getString(R.string.login_model));
+                                           String returnable_nonreturnable, String date_time, String material_name, String Specification, String quantity, String unit) {
         RetrofitApi apiService = ApiClient.getClient().create(RetrofitApi.class);
-        Data data_model = FastSave.getInstance().getObject("login_data", Data.class);
-        Call<AddMaterialGatePassModel> call = apiService.UpdateMaterialGatePass(id2, data_model.getEmail(), data_model.getRole(), client, branch, gate_pass_type,
-                partner_code, partner_name, vehicle_no, vehicle_load, reason, belong_to, returnable_nonreturnable, date_time,material_name,Specification,quantity,unit);
+        Call<AddMaterialGatePassModel> call = apiService.UpdateMaterialGatePass(id2, email, role, client, branch, gate_pass_type,
+                partner_code, partner_name, vehicle_no, vehicle_load, reason, belong_to, returnable_nonreturnable, date_time, material_name, Specification, quantity, unit);
         call.enqueue(new Callback<AddMaterialGatePassModel>() {
             @Override
             public void onResponse(Call<AddMaterialGatePassModel> call, Response<AddMaterialGatePassModel> response) {
@@ -288,7 +313,6 @@ public class UpdateMaterialgatepassActivity extends AppCompatActivity {
                 setResult(Activity.RESULT_OK, i);
                 finish();
                 FancyToast.makeText(UpdateMaterialgatepassActivity.this, "Data submitted successfully", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
-
             }
 
             @Override

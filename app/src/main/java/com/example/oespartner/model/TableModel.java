@@ -1,6 +1,7 @@
 package com.example.oespartner.model;
 
 public class TableModel {
+
     String MaterialName;
     String Specification;
     String Unit;
@@ -58,4 +59,5 @@ public class TableModel {
                 ", Quantity='" + Quantity + '\'' +
                 '}';
     }
+
 }

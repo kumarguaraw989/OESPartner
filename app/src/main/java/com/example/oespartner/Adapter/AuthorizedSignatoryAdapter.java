@@ -69,35 +69,31 @@ public class AuthorizedSignatoryAdapter extends RecyclerView.Adapter<AuthorizedS
         holder.txtPersonName.setText(authorizedSignatoryModels.get(position).getPerson_name());
         holder.txtValidity.setText(authorizedSignatoryModels.get(position).getValid_upto());
 
-        holder.btn_popup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                PopupMenu popupmenu = new PopupMenu(context, holder.btn_popup);
+        holder.btn_popup.setOnClickListener(v -> {
+            PopupMenu popupmenu = new PopupMenu(context, holder.btn_popup);
 
-                popupmenu.getMenuInflater().inflate(R.menu.visitor_menu, popupmenu.getMenu());
-                popupmenu.getMenu().findItem(R.id.edit).setVisible(true);
-                popupmenu.getMenu().findItem(R.id.delete).setVisible(true);
-                popupmenu.setOnMenuItemClickListener(item -> {
-                    switch (item.getItemId()) {
-                        case R.id.delete:
-                            deleteGatePass(authorizedSignatoryModels.get(position).getId());
-                            notifyItemRemoved(position);
-                            break;
+            popupmenu.getMenuInflater().inflate(R.menu.visitor_menu, popupmenu.getMenu());
+            popupmenu.getMenu().findItem(R.id.edit).setVisible(true);
+            popupmenu.getMenu().findItem(R.id.delete).setVisible(true);
+            popupmenu.setOnMenuItemClickListener(item -> {
+                switch (item.getItemId()) {
+                    case R.id.delete:
+                        deleteGatePass(authorizedSignatoryModels.get(position).getId());
+                        notifyItemRemoved(position);
+                        break;
 
-                        case R.id.edit:
-                            //Log.e("id", authorizedSignatoryModels.get(position).getId());
-                            editAuthorizedSignatory(authorizedSignatoryModels.get(position).getId());
+                    case R.id.edit:
+                        //Log.e("id", authorizedSignatoryModels.get(position).getId());
+                        editAuthorizedSignatory(authorizedSignatoryModels.get(position).getId());
 
 
-                    }
-                    return true;
+                }
+                return true;
 
-                });
+            });
 
 
-                popupmenu.show();
-            }
-
+            popupmenu.show();
         });
 
     }

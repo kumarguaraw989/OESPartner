@@ -25,6 +25,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.appizona.yehiahd.fastsave.FastSave;
+import com.bumptech.glide.util.LogTime;
 import com.example.oespartner.Adapter.PartnerPersonAdapter;
 import com.example.oespartner.Adapter.TableAdapter;
 import com.example.oespartner.model.AddMaterialGatePassModel;
@@ -64,14 +65,13 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
     TextInputLayout layout_others, layout_workReferenceno;
     AppCompatTextView stakeholder;
     RelativeLayout materialbelong_layout, materialreturn_layout;
-
     ProgressBar progress_bar;
     String date_time;
     @BindView(R.id.client_name)
     TextView Clinet_name;
+    TextView tv_material_belongs_to,tv_returnable;
     String email, role;
     ArrayList<String> SelectClientBranch = new ArrayList<>();
-    ArrayList<String> SelectClient = new ArrayList<>();
     RecyclerView recyclerview;
     TableAdapter tableAdapter;
     ArrayList<TableModel> tableModelList;
@@ -85,6 +85,8 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
         Data data_model = FastSave.getInstance().getObject("login_data", Data.class);
         email = data_model.getEmail();
         ButterKnife.bind(this);
+        tv_material_belongs_to=findViewById(R.id.tv_belongto);
+        tv_returnable=findViewById(R.id.tv_returnable);
         role = data_model.getRole();
         layout_workReferenceno = findViewById(R.id.layout_workReferenceno);
         recyclerview = findViewById(R.id.recyclerview);
@@ -148,7 +150,6 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
 
         SelectClientBranch.add("Select Branch");
         StringRequest request = new StringRequest(Request.Method.POST, Config.URL_ClientBranch, response -> {
-            Log.e("branch", response);
             try {
                 JSONArray jsonArray = new JSONArray(response);
                 for (int i = 0; i < jsonArray.length(); i++) {
@@ -170,7 +171,6 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
         RequestQueue queue4 = Volley.newRequestQueue(this);
         queue4.add(request);
         StringRequest stringRequest1 = new StringRequest(Request.Method.POST, Config.URL_CLient, response -> {
-            Log.e("response", response);
             try {
                 JSONArray jsonArray = new JSONArray(response);
                 JSONObject jsonObject = jsonArray.getJSONObject(0);
@@ -193,17 +193,7 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
         requestQueue1.add(stringRequest1);
         btnAdd.setOnClickListener(v -> {
 
-            String workreferenceNo = work_order_referenceNo.getText().toString();
-            String partner_code = stakeholder.getText().toString();
-            String partner_name = partenername.getText().toString();
-            String vehicle_no = vehical_no.getText().toString();
-            String client = Clinet_name.getText().toString();
-            String branch = branch_name.getSelectedItem().toString();
-            String gate_pass_type = material_gatepass.getSelectedItem().toString();
-            String vehicle_load = vehical_load.getSelectedItem().toString();
-            String reason = reasonformaterialgatepass.getSelectedItem().toString();
-            String returnable = material_returnable.getSelectedItem().toString();
-            String belong_to = materialbelongsto.getSelectedItem().toString();
+
 //            String other=others.getText().toString();
             if (Clinet_name.equals("")) {
                 FancyToast.makeText(AddMaterialgatepassActivity.this, "Empty", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
@@ -211,74 +201,46 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
             } else {
                 progress_bar.setVisibility(View.VISIBLE);
                 Log.e("fo =====r", tableAdapter.getData().size() + "");
-                ArrayList<String> AllMaterialsData = new ArrayList<>();
-                HashMap<ArrayList,ArrayList> put=new HashMap<>();
 
-                for (int i=0;i<tableAdapter.getData().size();i++){
-                    AllMaterialsData.add(tableAdapter.getData().get(i).getMaterialName());
-                    AllMaterialsData.add(tableAdapter.getData().get(i).getSpecification());
-                    AllMaterialsData.add(tableAdapter.getData().get(i).getUnit());
-                    AllMaterialsData.add(tableAdapter.getData().get(i).getQuantity());
-                 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                String material_name = "";
-                for (int i = 0; i < tableAdapter.getData().size(); i++) {
-                    material_name = material_name + tableAdapter.getData().get(i).getMaterialName();
-                }
-                String Material_name = material_name;
-
-                String specification = "";
-                for (int i = 0; i < tableAdapter.getData().size(); i++) {
-                    specification = specification + tableAdapter.getData().get(i).getSpecification();
-                }
-                String Specification = specification;
-
-
-                String unit = "";
-                for (int i = 0; i < tableAdapter.getData().size(); i++) {
-                    unit = unit + tableAdapter.getData().get(i).getUnit();
-                }
-                String Unit = material_name;
-
-
-                String quantity = "";
-                for (int i = 0; i < tableAdapter.getData().size(); i++) {
-                    quantity = quantity + tableAdapter.getData().get(i).getQuantity();
-                }
-                String Quantity = quantity;
-
-
-                postMaterialGatePass(email, role, client, branch, gate_pass_type, workreferenceNo,
-                        partner_code, partner_name, vehicle_no, vehicle_load, reason, belong_to, returnable, date_time, Material_name, Specification
-                        , Unit, Quantity);
+                postMaterialGatePass(getParam());
 
 
             }
         });
-
-
     }
 
-    public void postMaterialGatePass(String email, String role, String client, String branch, String workreferenceNo, String gate_pass_type, String partner_code, String partner_name, String vehicle_no, String vehicle_load, String reason, String belong_to,
-                                     String returnable, String date_time, String material_name, String specification, String unit, String qty) {
+    private Map<String, String> getParam() {
+        Log.d("tableAdapterDate", tableAdapter.getData().toString());
+        Map<String, String> mParam = new HashMap<>();
+        mParam.put("email", email);
+        mParam.put("client", Clinet_name.getText().toString());
+        mParam.put("role", role);
+        mParam.put("branch", branch_name.getSelectedItem().toString());
+        mParam.put("gate_pass_type", material_gatepass.getSelectedItem().toString());
+        mParam.put("partner_code",  stakeholder.getText().toString());
+        mParam.put("partner_name", partenername.getText().toString());
+        mParam.put("vehicle_no", vehical_no.getText().toString());
+        mParam.put("vehicle_load", vehical_load.getSelectedItem().toString());
+        mParam.put("reason",  reasonformaterialgatepass.getSelectedItem().toString());
+        mParam.put("belong_to",  materialbelongsto.getSelectedItem().toString());
+        mParam.put("work_order_referenceNo", work_order_referenceNo.getText().toString());
+        mParam.put("returnable_nonreturnable", material_returnable.getSelectedItem().toString());
+        mParam.put("date_time", date_time);
+
+        for (int i = 0; i < tableAdapter.getData().size(); i++) {
+            mParam.put("material_name[" + i + "]", tableAdapter.getData().get(i).getMaterialName());
+            mParam.put("specification[" + i + "]", tableAdapter.getData().get(i).getSpecification());
+            mParam.put("qty[" + i + "]", tableAdapter.getData().get(i).getQuantity());
+            mParam.put("unit[" + i + "]", tableAdapter.getData().get(i).getUnit());
+        }
+
+        Log.e("mapsss", mParam.toString());
+        return mParam;
+    }
+
+    public void postMaterialGatePass(Map<String, String> map) {
         RetrofitApi apiService = ApiClient.getClient().create(RetrofitApi.class);
-        Call<AddMaterialGatePassModel> call = apiService.AddMaterialGatePass(email, role, client, branch, gate_pass_type,
-                partner_code, partner_name, vehicle_no, vehicle_load, workreferenceNo, reason, belong_to, returnable, date_time, material_name, specification, unit, qty);
+        Call<AddMaterialGatePassModel> call = apiService.AddMaterialGatePass(map);
         call.enqueue(new Callback<AddMaterialGatePassModel>() {
             @Override
             public void onResponse(Call<AddMaterialGatePassModel> call, Response<AddMaterialGatePassModel> response) {
@@ -308,10 +270,14 @@ public class AddMaterialgatepassActivity extends AppCompatActivity {
                     layout_others.setVisibility(View.GONE);
                     materialbelong_layout.setVisibility(View.GONE);
                     materialreturn_layout.setVisibility(View.GONE);
+                    tv_material_belongs_to.setVisibility(View.GONE);
+                    tv_returnable.setVisibility(View.GONE);
                 } else if (position == 1 || position == 2) {
                     layout_others.setVisibility(View.GONE);
                     materialbelong_layout.setVisibility(View.VISIBLE);
                     materialreturn_layout.setVisibility(View.VISIBLE);
+                    tv_material_belongs_to.setVisibility(View.VISIBLE);
+                    tv_returnable.setVisibility(View.VISIBLE);
                 } else if (position == 6) {
                     layout_others.setVisibility(View.VISIBLE);
                 }

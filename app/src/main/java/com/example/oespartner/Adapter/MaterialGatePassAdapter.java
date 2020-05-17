@@ -90,13 +90,10 @@ public class MaterialGatePassAdapter extends RecyclerView.Adapter<MaterialGatePa
                     case R.id.edit:
                         Log.e("id", materialGatePassModels.get(position).getId());
                         StringRequest stringRequest = new StringRequest(Request.Method.POST, Config.editMaterialGatePass_url, response -> {
-                            Log.e("response", response);
                             try {
-                                JSONArray jsonArray = new JSONArray(response);
-                                for (int i = 0; i < jsonArray.length(); i++) {
-                                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                    Log.e("response1", jsonObject.toString());
-                                    Intent intent = new Intent(context, UpdateMaterialgatepassActivity.class);
+                                JSONObject jsonObject = new JSONObject(response);
+                                for (int i = 0; i < jsonObject.length(); i++) {
+                                     Intent intent = new Intent(context, UpdateMaterialgatepassActivity.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                     intent.putExtra("response", jsonObject.toString());
                                     context.startActivity(intent);

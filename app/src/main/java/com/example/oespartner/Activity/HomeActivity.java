@@ -39,7 +39,7 @@ public class HomeActivity extends ActionBarActivity
     private static ViewPager mPager;
     private static int currentPage = 0;
     private static int NUM_PAGES = 0;
-    private static final Integer[] IMAGES= {R.drawable.b,R.drawable.b,R.drawable.c,R.drawable.b};
+    private static final Integer[] IMAGES= {R.drawable.b,R.drawable.e,R.drawable.c,R.drawable.f};
     private ArrayList<Integer> ImagesArray = new ArrayList<Integer>();
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private CharSequence mTitle;
